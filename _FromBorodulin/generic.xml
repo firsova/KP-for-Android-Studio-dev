@@ -581,4 +581,43 @@ foaf:Person, foaf:account, foaf:OnlineAccount
 
 
 
+
+
+
+
+
+
+
+
+
+<!-- Class Microphone Service (subclass of Service) -->
+
+<owl:Class rdf:ID="MicrophoneService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<owl:DatatypeProperty rdf:ID="ip">
+    <rdfs:domain rdf:resource="#MicrophoneService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="port">
+    <rdfs:domain rdf:resource="#MicrophoneService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+
+
+
+
+
+
+<!-- Сlass Request -->
+<owl:Class rdf:ID="Request"/>
+
+<!-- Request properties -->
+<owl:DatatypeProperty rdf:ID="hasState">
+    <rdfs:domain rdf:resource="#State"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
 </rdf:RDF>
