@@ -15,7 +15,7 @@ import java.lang.Thread;
 import java.net.InetSocketAddress;
 
 import java.io.IOException;
-import org.xiph.speex.SpeexEncoder;
+//import org.xiph.speex.SpeexEncoder;
 import android.util.Log;
 
 /**
@@ -37,7 +37,7 @@ public class MicService extends Service {
 	private final int mode = 0;
 	private final int samples = 320;
 	private final int quality = 10;
-	private SpeexEncoder encoder;
+	//private SpeexEncoder encoder;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -87,22 +87,22 @@ public class MicService extends Service {
 					byte[] audioData = new byte[samples];
 					
 					/* Read data from smartphone mike */
-					mInputData.read(audioData, 0, samples);
+					//mInputData.read(audioData, 0, samples);
 					
 					/* Encode data with Speex */
-					if(!encoder.processData(audioData, 0, samples))
-						Log.i("encoding", "failed");
+					/*if(!encoder.processData(audioData, 0, samples))
+						Log.i("encoding", "failed"); */
 					
-					int encDataLen = encoder.getProcessedDataByteSize();
-					byte[] encData = new byte[encDataLen];
+					//int encDataLen = encoder.getProcessedDataByteSize();
+					//byte[] encData = new byte[encDataLen];
 					
 					/* Load processed data to byte array */
-					encoder.getProcessedData(encData, 0);
+					//encoder.getProcessedData(encData, 0);
 					
 					/*Log.i("encoded data size", String.valueOf(
 						encoder.getProcessedData(encData, 0)));*/
 					
-					sendEncodedBytes(encData);
+					//sendEncodedBytes(encData);
 				}
 				mActiveMic = false;
 				stopRecording();
@@ -132,8 +132,8 @@ public class MicService extends Service {
 	 * Initializes Speex encoder
 	 */
 	public void initEncoder() {
-		encoder = new SpeexEncoder();
-		encoder.init(mode, quality, mSampleRate, channels);
+		//encoder = new SpeexEncoder();
+		// encoder.init(mode, quality, mSampleRate, channels);
 	}
 
 	/**

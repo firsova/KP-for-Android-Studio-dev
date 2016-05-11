@@ -183,7 +183,8 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 
 						new DividerDrawerItem(),
 						//new PrimaryDrawerItem().withName("City gallery *WIP*").withIcon(FontAwesome.Icon.faw_globe),
-						new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close)
+						new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close),
+						new PrimaryDrawerItem().withName("QueueService").withIcon(FontAwesome.Icon.faw_globe)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
@@ -221,6 +222,8 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
                     case 14:
 						startActivity(Navigation.exitApp());
                         break;
+					case 15:
+						startActivity(Navigation.getQueueServIntent(getApplicationContext()));
                     default:
                         break;
                 }

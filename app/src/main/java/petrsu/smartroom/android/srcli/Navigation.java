@@ -55,43 +55,46 @@ public class Navigation { // was abstract lol
                         new PrimaryDrawerItem().withName(R.string.manual).withIcon(FontAwesome.Icon.faw_download),
 
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close)
+                        new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close),
+                        new PrimaryDrawerItem().withName("QueueService").withIcon(FontAwesome.Icon.faw_globe)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                        //Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-                        switch ((int) id) {
+            @Override
+            public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+                //Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+                switch ((int) id) {
 
-                            case 1:
-                                activity.startActivity(getAgendaIntent(context));
-                                break;
-                            case 2:
-                                activity.startActivity(getPresentationIntent(context));
-                                break;
-                            case 4:
-                                activity.startActivity(getSocialProgramIntent(context));
-                                break;
-                            case 5:
-                                activity.startActivity(getCurDisqIntent(context));
-                                break;
-                            case 6:
-                                activity.startActivity(getDisqListIntent(context));
-                                break;
-                            case 8:
-                                activity.startActivity(getSettingsIntent(context));
-                                break;
-                            case 10:
-                                activity.startActivity(getManIntent(context));
-                                break;
-                            case 12:
-                                activity.startActivity(exitApp());
-                                break;
-                            default:
-                                break;
-                        }
-                        return true;
-                    }
-                }).build();
+                    case 1:
+                        activity.startActivity(getAgendaIntent(context));
+                        break;
+                    case 2:
+                        activity.startActivity(getPresentationIntent(context));
+                        break;
+                    case 4:
+                        activity.startActivity(getSocialProgramIntent(context));
+                        break;
+                    case 5:
+                        activity.startActivity(getCurDisqIntent(context));
+                        break;
+                    case 6:
+                        activity.startActivity(getDisqListIntent(context));
+                        break;
+                    case 8:
+                        activity.startActivity(getSettingsIntent(context));
+                        break;
+                    case 10:
+                        activity.startActivity(getManIntent(context));
+                        break;
+                    case 12:
+                        activity.startActivity(exitApp());
+                        break;
+                    case 13:
+                        activity.startActivity(getQueueServIntent(context));
+                    default:
+                        break;
+                }
+                return true;
+            }
+        }).build();
     }
 
     /**========================================================================
@@ -203,6 +206,10 @@ public class Navigation { // was abstract lol
         Intent intent = new Intent();
         intent.setClass(context, CityGallery.class);
         return intent;
+    }
+
+    public static Intent getQueueServIntent(Context context){
+        return new Intent(context , QueueService.class);
     }
 }
 
