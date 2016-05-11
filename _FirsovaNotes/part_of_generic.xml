@@ -1,0 +1,209 @@
+<!DOCTYPE rdf:RDF [
+<!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+]>
+
+<rdf:RDF xml:base="http://www.cs.karelia.ru/smartroom#"
+    xmlns="http://www.cs.karelia.ru/smartroom#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+
+
+
+
+<!-- Class SmartRoom -->
+
+<owl:Class rdf:ID="SmartRoom" />
+
+
+
+
+
+
+<!-- Class service -->
+
+<owl:Class rdf:ID="Service" />
+
+<!-- Object property between SmartRoom and Service classes -->
+
+<owl:ObjectProperty rdf:ID="hasService">
+    <rdfs:domain rdf:resource="#SmartRoom"/>
+    <rdfs:range rdf:resource="#Service"/>
+</owl:ObjectProperty>
+
+<!-- Service properties -->
+
+<owl:DatatypeProperty rdf:ID="serviceName">
+    <rdfs:domain rdf:resource="#Service"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="serviceDescription">
+    <rdfs:domain rdf:resource="#Service"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="serviceStatus">
+    <rdfs:domain rdf:resource="#Service"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="hasPresentationServiceUrl">
+    <rdfs:domain rdf:resource="#Service"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="hasAgendaServiceUrl">
+    <rdfs:domain rdf:resource="#Service"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="hasClientUrl">
+    <rdfs:domain rdf:resource="#Service"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+
+
+
+
+
+<!-- Class Agenda Service (subclass of Service) -->
+<owl:Class rdf:ID="ConferenceService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:ID="currentSection">
+    <rdfs:domain rdf:resource="#ConferenceService"/>
+    <rdfs:range rdf:resource="#Section"/>
+</owl:ObjectProperty>
+
+<!-- AgendaService properties -->
+<owl:ObjectProperty rdf:ID="holdsActivity">
+    <rdfs:domain rdf:resource="#ConferenceService"/>
+    <rdfs:range rdf:resource="#Activity"/>
+</owl:ObjectProperty>
+
+
+
+
+
+
+<!-- Class Presentation Service (subclass of Service) -->
+
+<owl:Class rdf:ID="PresentationService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:ID="currentPresentation">
+    <rdfs:domain rdf:resource="#PresentationService"/>
+    <rdfs:range rdf:resource="#Presentation"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="currentSlideNum">
+    <rdfs:domain rdf:resource="#PresentationService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="currentSlideCount">
+    <rdfs:domain rdf:resource="#PresentationService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="currentSlideImg">
+    <rdfs:domain rdf:resource="#PresentationService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+
+
+
+
+
+
+<!-- Class of Discussion service (subclass of Service) -->
+
+<owl:Class rdf:ID="DiscussionService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+
+
+
+
+
+
+<!-- Class of Content-service (subclass of Service) -->
+
+<owl:Class rdf:ID="ContentService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<owl:DatatypeProperty rdf:ID="contentUrl">
+    <rdfs:domain rdf:resource="#ContentService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+
+
+
+
+
+
+
+<!-- Class Timeslot -->
+<owl:Class rdf:ID="Timeslot"/>
+
+<!-- Timeslot properties -->
+
+<owl:ObjectProperty rdf:ID="nextTimeslot">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="#Timeslot"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="timeslotPerson">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="timeslotPresentation">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="#Presentation"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="timeslotSpeakerName">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="timeslotTitle">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="timeslotDuration">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="timeslotActualDuration">
+    <rdfs:domain rdf:resource="#Timeslot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</rdf:RDF>
