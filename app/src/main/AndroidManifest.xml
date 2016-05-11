@@ -97,7 +97,7 @@
 
         <activity
             android:name="petrsu.smartroom.android.srcli.QueueActivity"
-            android:label="QueueServ">
+            android:label="Queue">
         </activity>
 
     </application>

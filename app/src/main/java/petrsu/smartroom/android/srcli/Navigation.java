@@ -56,7 +56,7 @@ public class Navigation { // was abstract lol
 
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close),
-                        new PrimaryDrawerItem().withName("QueueService").withIcon(FontAwesome.Icon.faw_globe)
+                        new PrimaryDrawerItem().withName("QueueActivity").withIcon(FontAwesome.Icon.faw_globe)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
@@ -88,7 +88,7 @@ public class Navigation { // was abstract lol
                         activity.startActivity(exitApp());
                         break;
                     case 13:
-                        activity.startActivity(getQueueServIntent(context));
+                        activity.startActivity(getQueueActIntent(context));
                     default:
                         break;
                 }
@@ -208,8 +208,8 @@ public class Navigation { // was abstract lol
         return intent;
     }
 
-    public static Intent getQueueServIntent(Context context){
-        return new Intent(context , QueueService.class);
+    public static Intent getQueueActIntent(Context context){
+        return new Intent(context , QueueActivity.class);
     }
 }
 
