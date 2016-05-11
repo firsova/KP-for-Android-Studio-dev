@@ -1,0 +1,18 @@
+Web_page-service allows to provide services of SmartRoom with web applications.
+
+For installation instructions read INSTALL file.
+
+Configuration:
+Settings are located in config.py file:
+* SIB_IP and SIB_PORT - specifies IP address and port of SIB (Smart-M3)
+
+To enter Web_page-service run in a web browser:
+http://<your_ip_address>:8080
+or
+http://localhost:8080
+
+The project is done by FRUCT Lab at the IT-park of Petrozavodsk State University (PetrSU), Russia. 
+This project is financially supported by:
+- 2014-present: Ministry of Education and Science of the Russian Federation, project # 1481 from the basic part of state research assignment # 2014/154.
+- 2014-present: Ministry of Education and Science of the Russian Federation, Project # 2.2336.2014/K from the project part of state research assignment.
+- 2014-present: Ministry of Education and Science of the Russian Federation, Project # 14.574.21.0060 (RFMEFI57414X0060) of Federal Target Program "Research and development on priority directions of scientific-technological complex of Russia for 2014–2020".

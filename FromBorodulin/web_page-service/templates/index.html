@@ -1,0 +1,25 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<title>Web Page Service</title>
+</head>
+<body>
+<h1>List of urls</h1>
+<ol>
+<li><a href="${MOUNT_POINT}/sp">Social Program</a></li>
+<li><a href="${MOUNT_POINT}/chat">Chat</a></li>
+</ol>
+
+<h1>Restore functions</h1>
+<form action="${MOUNT_POINT}/restoreServiceUrls" type="get" target="hidden-form">
+		<input type="submit" value="Restore all URLs">
+</form>
+<form action="${MOUNT_POINT}/restoreSocialProgramUrls" type="get" target="hidden-form">
+	<input type="submit" value="Restore social program URLs">
+</form>
+<form action="${MOUNT_POINT}/restoreChatUrls" type="get" target="hidden-form">
+	<input type="submit" value="Restore chat service URLs">
+</form>
+<IFRAME style="display:none" name="hidden-form"></IFRAME>  
+</body>
+</html>

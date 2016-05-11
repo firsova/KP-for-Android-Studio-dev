@@ -1,0 +1,2 @@
+sudo service memcached stop
+sudo service memcached start

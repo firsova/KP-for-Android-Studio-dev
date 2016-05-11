@@ -1,0 +1,21 @@
+To install and run web_page-service you need:
+* Linux or Windows
+* Python 2.7
+* CherryPy
+* Mako
+* m3_kp.py (Smart-M3 python kpi)
+* memcached
+Optional:
+* Apache
+* mod_wsgi
+
+Manual install in Ubuntu Linux (in short):
+1) Check out memcached configuration (ip - 127.0.0.1, port - 12111, memory - 64 Мbyte min) 
+2) Check out status of memcached with 'memcached_status' script, if memcached is not running, than start it with 'memcached_start' script 
+3) Start in console:
+python web_page-service.py
+4) After these steps web_page-service will be available in browser on:
+http://<your_ip_address>:8080/
+
+If you need to use Apache as server, configure wsgi alias in server settings (/etc/apache2/sites-enabled/000-default) as example with:
+WSGIScriptAlias /page /var/www/web_page-service/web_page-service.py/
