@@ -1,0 +1,6 @@
+@echo off
+set PATH=%JAVA_HOME%;
+set FILES=generic.xml
+set OUTPUT_PATH=client-c
+mkdir %OUTPUT_PATH%
+java -jar SmartSlogCodeGen_0.42.jar %FILES% -o %OUTPUT_PATH% -h C
