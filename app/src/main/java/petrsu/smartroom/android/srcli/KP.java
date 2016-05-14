@@ -108,6 +108,9 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native boolean sectionChanged();
 	public static native int startVideo(String url);
 	public static native void stopVideo();
+    
+    
+    public static native int justNumber();
 	
 	/* Loading of shared library */
 	static {

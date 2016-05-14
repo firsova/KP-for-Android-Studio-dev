@@ -2,8 +2,8 @@ package petrsu.smartroom.android.srcli;
 
 
 public class QueueService {
-    public void hi(){
-        System.out.println("Hi");
+    public static void hi(){
+        System.out.println(KP.justNumber());
     }
 }
 
