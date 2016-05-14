@@ -620,16 +620,13 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:domain rdf:resource="#QueueService"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
 
-<!-- QueueService properties -->
+
+
 <owl:DatatypeProperty rdf:ID="lastReq">
     <rdfs:domain rdf:resource="#QueueService"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
-
-
 
 
 
@@ -642,14 +639,14 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:domain rdf:resource="#Request"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
+
 
 <!-- Request properties -->
 <owl:DatatypeProperty rdf:ID="requestUsername">
     <rdfs:domain rdf:resource="#Request"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
+
 
 
 
@@ -664,14 +661,13 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:domain rdf:resource="#ControllRequest"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
+
 
 <!-- Request properties -->
 <owl:DatatypeProperty rdf:ID="args">
     <rdfs:domain rdf:resource="#ControllRequest"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
 
 
 
@@ -687,7 +683,7 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:domain rdf:resource="#QueueHead"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
-</rdf:RDF>
+
 
 <!-- Request properties -->
 <owl:DatatypeProperty rdf:ID="headUsername">
