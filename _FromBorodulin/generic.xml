@@ -610,6 +610,28 @@ foaf:Person, foaf:account, foaf:OnlineAccount
 
 
 
+<!-- Сlass QueueService (subclass of Service)-->
+<owl:Class rdf:ID="QueueService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<!-- QueueService properties -->
+<owl:DatatypeProperty rdf:ID="firstReq">
+    <rdfs:domain rdf:resource="#QueueService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- QueueService properties -->
+<owl:DatatypeProperty rdf:ID="lastReq">
+    <rdfs:domain rdf:resource="#QueueService"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+
+
+
 
 
 <!-- Сlass Request -->
@@ -617,7 +639,66 @@ foaf:Person, foaf:account, foaf:OnlineAccount
 
 <!-- Request properties -->
 <owl:DatatypeProperty rdf:ID="hasState">
-    <rdfs:domain rdf:resource="#State"/>
+    <rdfs:domain rdf:resource="#Request"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
 </rdf:RDF>
+
+<!-- Request properties -->
+<owl:DatatypeProperty rdf:ID="requestUsername">
+    <rdfs:domain rdf:resource="#Request"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+
+
+
+
+
+<!-- Сlass ControllRequest -->
+<owl:Class rdf:ID="ControllRequest"/>
+
+<!-- Request properties -->
+<owl:DatatypeProperty rdf:ID="type">
+    <rdfs:domain rdf:resource="#ControllRequest"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Request properties -->
+<owl:DatatypeProperty rdf:ID="args">
+    <rdfs:domain rdf:resource="#ControllRequest"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+
+
+
+
+
+
+<!-- Сlass QueueHead -->
+<owl:Class rdf:ID="QueueHead"/>
+
+<!-- Request properties -->
+<owl:DatatypeProperty rdf:ID="isBusy">
+    <rdfs:domain rdf:resource="#QueueHead"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Request properties -->
+<owl:DatatypeProperty rdf:ID="headUsername">
+    <rdfs:domain rdf:resource="#QueueHead"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+</rdf:RDF>
+
+
+
+
+
+
+
