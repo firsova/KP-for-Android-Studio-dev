@@ -66,6 +66,6 @@ individual_t* createPlace(const char *);
 list_t* getVideoList();
 
 
-
+individual_t* createRequest(const char *, const char *);
 
 #endif

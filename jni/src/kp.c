@@ -2354,3 +2354,61 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIE
     char *just_string = (*env)->NewStringUTF(env, "Hello");
     return just_string;
 }
+
+
+/**
+ * @brief Creates request in SmartSpace
+ *
+ * @param person 
+ *        state
+ * @return Request individual in success and NULL otherwise
+ */
+individual_t* createRequest(const char *r_username,const char *r_state) {
+    
+    char *username = "";
+    char *state = "";
+    
+    individual_t *request = sslog_new_individual(CLASS_REQUEST);
+    
+   	sslog_set_individual_uuid(request,
+                              generateUuid("http://www.cs.karelia.ru/smartroom#Request"));
+    
+    if(sslog_ss_add_property(request, PROPERTY_HASSTATE, (void *)state) == -1)
+        return NULL;
+    
+    if(sslog_ss_add_property(request, PROPERTY_REQUESTUSERNAME, (void *)username) == -1)
+        return NULL;
+
+    
+    if(sslog_ss_insert_individual(request) == -1)
+        return NULL;
+    
+    return request;
+}
+
+
+
+
+/**
+ * @brief Creates new request in Smart Space
+ * @param userName - user name
+ * @param phone - user phone number
+ * @param email - user email
+ * @return 0 in success and -1 otherwise
+ */
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
+                                                    JNIEnv *env, jclass clazz, jstring username, jstring state) {
+    
+    const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
+    const char *p_state = (*env)->GetStringUTFChars(env, state, NULL);
+    
+    individual_t *request = createRequest(p_username, p_state);
+    
+    if(request == NULL) {
+            return -1;
+        }
+    else {
+        return 0;
+    }
+
+}
