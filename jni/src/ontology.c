@@ -1,7 +1,10 @@
-#include "generic.h"
+#include "ontology.h"
 
 
 
+#if INCLUDE_CLASS_SEARCHACTIVITY
+class_t *CLASS_SEARCHACTIVITY;
+#endif
 #if INCLUDE_CLASS_PROFILE
 class_t *CLASS_PROFILE;
 #endif
@@ -11,11 +14,11 @@ class_t *CLASS_TIMESLOT;
 #if INCLUDE_CLASS_CONFERENCESERVICE
 class_t *CLASS_CONFERENCESERVICE;
 #endif
-#if INCLUDE_CLASS_CONTENTSERVICE
-class_t *CLASS_CONTENTSERVICE;
-#endif
 #if INCLUDE_CLASS_CONTROLLREQUEST
 class_t *CLASS_CONTROLLREQUEST;
+#endif
+#if INCLUDE_CLASS_CONTENTSERVICE
+class_t *CLASS_CONTENTSERVICE;
 #endif
 #if INCLUDE_CLASS_NOTHING
 class_t *CLASS_NOTHING;
@@ -32,11 +35,23 @@ class_t *CLASS_PERSON;
 #if INCLUDE_CLASS_ACTIVITY
 class_t *CLASS_ACTIVITY;
 #endif
+#if INCLUDE_CLASS_PLACESLOT
+class_t *CLASS_PLACESLOT;
+#endif
+#if INCLUDE_CLASS_DSNOTIFICATIONPARAMETER
+class_t *CLASS_DSNOTIFICATIONPARAMETER;
+#endif
 #if INCLUDE_CLASS_PLACE
 class_t *CLASS_PLACE;
 #endif
+#if INCLUDE_CLASS_WEBSERVERNOTIFICATION
+class_t *CLASS_WEBSERVERNOTIFICATION;
+#endif
 #if INCLUDE_CLASS_DISCUSSIONSERVICE
 class_t *CLASS_DISCUSSIONSERVICE;
+#endif
+#if INCLUDE_CLASS_SOCIALPROGRAMSERVICE
+class_t *CLASS_SOCIALPROGRAMSERVICE;
 #endif
 #if INCLUDE_CLASS_PRESENTATIONSERVICE
 class_t *CLASS_PRESENTATIONSERVICE;
@@ -56,20 +71,35 @@ class_t *CLASS_QUEUESERVICE;
 #if INCLUDE_CLASS_NOTIFICATIONPARAMETER
 class_t *CLASS_NOTIFICATIONPARAMETER;
 #endif
-#if INCLUDE_CLASS_MICROPHONESERVICE
-class_t *CLASS_MICROPHONESERVICE;
+#if INCLUDE_CLASS_SOCIALPROGRAM
+class_t *CLASS_SOCIALPROGRAM;
+#endif
+#if INCLUDE_CLASS_MEETINGNOTIFICATION
+class_t *CLASS_MEETINGNOTIFICATION;
 #endif
 #if INCLUDE_CLASS_REQUEST
 class_t *CLASS_REQUEST;
 #endif
+#if INCLUDE_CLASS_MICROPHONESERVICE
+class_t *CLASS_MICROPHONESERVICE;
+#endif
 #if INCLUDE_CLASS_AGENDANOTIFICATION
 class_t *CLASS_AGENDANOTIFICATION;
+#endif
+#if INCLUDE_CLASS_SEARCHACTIVITYPARAMETER
+class_t *CLASS_SEARCHACTIVITYPARAMETER;
 #endif
 #if INCLUDE_CLASS_PRESENTATIONNOTIFICATION
 class_t *CLASS_PRESENTATIONNOTIFICATION;
 #endif
+#if INCLUDE_CLASS_SOCIALPROGRAMNOTIFICATION
+class_t *CLASS_SOCIALPROGRAMNOTIFICATION;
+#endif
 #if INCLUDE_CLASS_QUEUEHEAD
 class_t *CLASS_QUEUEHEAD;
+#endif
+#if INCLUDE_CLASS_MEETINGSERVICE
+class_t *CLASS_MEETINGSERVICE;
 #endif
 #if INCLUDE_CLASS_THING
 class_t *CLASS_THING;
@@ -94,8 +124,17 @@ class_t *CLASS_CONFERENCENOTIFICATION;
 #if INCLUDE_PROPERTY_MBOX
 property_t *PROPERTY_MBOX;
 #endif
+#if INCLUDE_PROPERTY_STARTMEETING
+property_t *PROPERTY_STARTMEETING;
+#endif
 #if INCLUDE_PROPERTY_SECTIONPARAMETER
 property_t *PROPERTY_SECTIONPARAMETER;
+#endif
+#if INCLUDE_PROPERTY_STARTUPDATESERVICEPAGE
+property_t *PROPERTY_STARTUPDATESERVICEPAGE;
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE
+property_t *PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE;
 #endif
 #if INCLUDE_PROPERTY_PRESENTATIONURL
 property_t *PROPERTY_PRESENTATIONURL;
@@ -124,6 +163,9 @@ property_t *PROPERTY_ENDPRESENTATION;
 #if INCLUDE_PROPERTY_CURRENTSLIDENUM
 property_t *PROPERTY_CURRENTSLIDENUM;
 #endif
+#if INCLUDE_PROPERTY_STOPSEARCH
+property_t *PROPERTY_STOPSEARCH;
+#endif
 #if INCLUDE_PROPERTY_HOLDSACTIVITY
 property_t *PROPERTY_HOLDSACTIVITY;
 #endif
@@ -139,6 +181,12 @@ property_t *PROPERTY_ACTIVITYTITLE;
 #if INCLUDE_PROPERTY_REQUESTUSERNAME
 property_t *PROPERTY_REQUESTUSERNAME;
 #endif
+#if INCLUDE_PROPERTY_STARTMEETINGFROM
+property_t *PROPERTY_STARTMEETINGFROM;
+#endif
+#if INCLUDE_PROPERTY_VOTEUPDATE
+property_t *PROPERTY_VOTEUPDATE;
+#endif
 #if INCLUDE_PROPERTY_USERNAME
 property_t *PROPERTY_USERNAME;
 #endif
@@ -151,11 +199,14 @@ property_t *PROPERTY_PHOTOTITLE;
 #if INCLUDE_PROPERTY_TIMESLOTACTUALDURATION
 property_t *PROPERTY_TIMESLOTACTUALDURATION;
 #endif
+#if INCLUDE_PROPERTY_PASSWORD
+property_t *PROPERTY_PASSWORD;
+#endif
 #if INCLUDE_PROPERTY_TOPIC_INTEREST
 property_t *PROPERTY_TOPIC_INTEREST;
 #endif
-#if INCLUDE_PROPERTY_PASSWORD
-property_t *PROPERTY_PASSWORD;
+#if INCLUDE_PROPERTY_PLACESLOTMINUSRATING
+property_t *PROPERTY_PLACESLOTMINUSRATING;
 #endif
 #if INCLUDE_PROPERTY_HASVIDEO
 property_t *PROPERTY_HASVIDEO;
@@ -169,17 +220,29 @@ property_t *PROPERTY_HASPRESENTATIONSERVICEURL;
 #if INCLUDE_PROPERTY_SECTIONACTUALSTARTTIME
 property_t *PROPERTY_SECTIONACTUALSTARTTIME;
 #endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMTITLE
+property_t *PROPERTY_SOCIALPROGRAMTITLE;
+#endif
 #if INCLUDE_PROPERTY_PHONE
 property_t *PROPERTY_PHONE;
 #endif
 #if INCLUDE_PROPERTY_HASSTATE
 property_t *PROPERTY_HASSTATE;
 #endif
+#if INCLUDE_PROPERTY_UPDATESERVICEINFORMATION
+property_t *PROPERTY_UPDATESERVICEINFORMATION;
+#endif
 #if INCLUDE_PROPERTY_STARTCONFERENCE
 property_t *PROPERTY_STARTCONFERENCE;
 #endif
+#if INCLUDE_PROPERTY_PLACESLOTPLUSRATING
+property_t *PROPERTY_PLACESLOTPLUSRATING;
+#endif
 #if INCLUDE_PROPERTY_CURRENTSLIDECOUNT
 property_t *PROPERTY_CURRENTSLIDECOUNT;
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTRATING
+property_t *PROPERTY_PLACESLOTRATING;
 #endif
 #if INCLUDE_PROPERTY_HASSERVICE
 property_t *PROPERTY_HASSERVICE;
@@ -223,11 +286,17 @@ property_t *PROPERTY_TIMESLOTPARAMETER;
 #if INCLUDE_PROPERTY_HASSECTION
 property_t *PROPERTY_HASSECTION;
 #endif
+#if INCLUDE_PROPERTY_STARTSEARCH
+property_t *PROPERTY_STARTSEARCH;
+#endif
 #if INCLUDE_PROPERTY_STARTVIDEO
 property_t *PROPERTY_STARTVIDEO;
 #endif
 #if INCLUDE_PROPERTY_FIRSTTIMESLOT
 property_t *PROPERTY_FIRSTTIMESLOT;
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT
+property_t *PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT;
 #endif
 #if INCLUDE_PROPERTY_PLACELONGITUDECOORDINATE
 property_t *PROPERTY_PLACELONGITUDECOORDINATE;
@@ -237,6 +306,9 @@ property_t *PROPERTY_SERVICENAME;
 #endif
 #if INCLUDE_PROPERTY_NAME
 property_t *PROPERTY_NAME;
+#endif
+#if INCLUDE_PROPERTY_REMOVETIMESLOT
+property_t *PROPERTY_REMOVETIMESLOT;
 #endif
 #if INCLUDE_PROPERTY_PRESENTATIONTAGS
 property_t *PROPERTY_PRESENTATIONTAGS;
@@ -259,8 +331,20 @@ property_t *PROPERTY_ARGS;
 #if INCLUDE_PROPERTY_SHOWSLIDE
 property_t *PROPERTY_SHOWSLIDE;
 #endif
+#if INCLUDE_PROPERTY_ENDMEETING
+property_t *PROPERTY_ENDMEETING;
+#endif
+#if INCLUDE_PROPERTY_ADDTIMESLOT
+property_t *PROPERTY_ADDTIMESLOT;
+#endif
 #if INCLUDE_PROPERTY_IP
 property_t *PROPERTY_IP;
+#endif
+#if INCLUDE_PROPERTY_CURRENTSOCIALPROGRAM
+property_t *PROPERTY_CURRENTSOCIALPROGRAM;
+#endif
+#if INCLUDE_PROPERTY_HASSERVICEPARAMETER
+property_t *PROPERTY_HASSERVICEPARAMETER;
 #endif
 #if INCLUDE_PROPERTY_UPDATEPRESENTATION
 property_t *PROPERTY_UPDATEPRESENTATION;
@@ -286,11 +370,20 @@ property_t *PROPERTY_ENDCONFERENCE;
 #if INCLUDE_PROPERTY_SERVICEDESCRIPTION
 property_t *PROPERTY_SERVICEDESCRIPTION;
 #endif
+#if INCLUDE_PROPERTY_PLACEPARAMETER
+property_t *PROPERTY_PLACEPARAMETER;
+#endif
 #if INCLUDE_PROPERTY_TIMESLOTPERSON
 property_t *PROPERTY_TIMESLOTPERSON;
 #endif
+#if INCLUDE_PROPERTY_NOTIFICATIONNUMBERPARAMETER
+property_t *PROPERTY_NOTIFICATIONNUMBERPARAMETER;
+#endif
 #if INCLUDE_PROPERTY_SHOWSUMMARYSLIDE
 property_t *PROPERTY_SHOWSUMMARYSLIDE;
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE
+property_t *PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE;
 #endif
 #if INCLUDE_PROPERTY_STATUS
 property_t *PROPERTY_STATUS;
@@ -319,8 +412,14 @@ property_t *PROPERTY_AGE;
 #if INCLUDE_PROPERTY_UPDATEAGENDA
 property_t *PROPERTY_UPDATEAGENDA;
 #endif
+#if INCLUDE_PROPERTY_SEARCHTYPEPARAMETER
+property_t *PROPERTY_SEARCHTYPEPARAMETER;
+#endif
 #if INCLUDE_PROPERTY_IMG
 property_t *PROPERTY_IMG;
+#endif
+#if INCLUDE_PROPERTY_PRESENTSOCIALPROGRAM
+property_t *PROPERTY_PRESENTSOCIALPROGRAM;
 #endif
 #if INCLUDE_PROPERTY_HASAGENDASERVICEURL
 property_t *PROPERTY_HASAGENDASERVICEURL;
@@ -328,8 +427,14 @@ property_t *PROPERTY_HASAGENDASERVICEURL;
 #if INCLUDE_PROPERTY_PLACELATITUDECOORDINATE
 property_t *PROPERTY_PLACELATITUDECOORDINATE;
 #endif
+#if INCLUDE_PROPERTY_PLACESLOTPRESENTPLACE
+property_t *PROPERTY_PLACESLOTPRESENTPLACE;
+#endif
 #if INCLUDE_PROPERTY_LANGUAGE
 property_t *PROPERTY_LANGUAGE;
+#endif
+#if INCLUDE_PROPERTY_SERVICEINFORMATIONPARAMETER
+property_t *PROPERTY_SERVICEINFORMATIONPARAMETER;
 #endif
 #if INCLUDE_PROPERTY_PLACETITLE
 property_t *PROPERTY_PLACETITLE;
@@ -348,6 +453,15 @@ property_t *PROPERTY_STARTCONFERENCEFROM;
 #endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
 property_t *PROPERTY_SERVICESTATUS;
+#endif
+#if INCLUDE_PROPERTY_FROMSERVICEPARAMETER
+property_t *PROPERTY_FROMSERVICEPARAMETER;
+#endif
+#if INCLUDE_PROPERTY_STOPUPDATESERVICEPAGE
+property_t *PROPERTY_STOPUPDATESERVICEPAGE;
+#endif
+#if INCLUDE_PROPERTY_SEARCHVARIABLEPARAMETER
+property_t *PROPERTY_SEARCHVARIABLEPARAMETER;
 #endif
 #if INCLUDE_PROPERTY_PLACEDESCRIPTION
 property_t *PROPERTY_PLACEDESCRIPTION;
@@ -395,6 +509,25 @@ PROPERTY_MBOX->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_MBOX);
 
 #endif
+#if INCLUDE_PROPERTY_STARTMEETING
+
+PROPERTY_STARTMEETING =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_STARTMEETING->name = strdup("http://www.cs.karelia.ru/smartroom#startMeeting");
+PROPERTY_STARTMEETING->about = strdup("startMeeting");
+//PROPERTY_STARTMEETING->range = "http://www.cs.karelia.ru/smartroom#Section"; //getRange
+PROPERTY_STARTMEETING->domain = strdup("-260c49d6:154b40996a6:-7ff7"); 
+PROPERTY_STARTMEETING->maxcardinality = -1;
+PROPERTY_STARTMEETING->mincardinality = -1;
+PROPERTY_STARTMEETING->subpropertyof = NULL;
+PROPERTY_STARTMEETING->oneof = list_get_new_list();  
+PROPERTY_STARTMEETING->rtti = RTTI_PROPERTY;
+PROPERTY_STARTMEETING->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_STARTMEETING);
+
+#endif
 #if INCLUDE_PROPERTY_SECTIONPARAMETER
 
 PROPERTY_SECTIONPARAMETER =  (property_t *) malloc(sizeof(property_t));
@@ -412,6 +545,44 @@ PROPERTY_SECTIONPARAMETER->type = OBJECTPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_SECTIONPARAMETER);
+
+#endif
+#if INCLUDE_PROPERTY_STARTUPDATESERVICEPAGE
+
+PROPERTY_STARTUPDATESERVICEPAGE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_STARTUPDATESERVICEPAGE->name = strdup("http://www.cs.karelia.ru/smartroom#startUpdateServicePage");
+PROPERTY_STARTUPDATESERVICEPAGE->about = strdup("startUpdateServicePage");
+//PROPERTY_STARTUPDATESERVICEPAGE->range = "http://www.cs.karelia.ru/smartroom#Service"; //getRange
+PROPERTY_STARTUPDATESERVICEPAGE->domain = strdup("http://www.cs.karelia.ru/smartroom#WebServerNotification"); 
+PROPERTY_STARTUPDATESERVICEPAGE->maxcardinality = -1;
+PROPERTY_STARTUPDATESERVICEPAGE->mincardinality = -1;
+PROPERTY_STARTUPDATESERVICEPAGE->subpropertyof = NULL;
+PROPERTY_STARTUPDATESERVICEPAGE->oneof = list_get_new_list();  
+PROPERTY_STARTUPDATESERVICEPAGE->rtti = RTTI_PROPERTY;
+PROPERTY_STARTUPDATESERVICEPAGE->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_STARTUPDATESERVICEPAGE);
+
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE
+
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->name = strdup("http://www.cs.karelia.ru/smartroom#socialProgramLatitudeCoordinate");
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->about = strdup("socialProgramLatitudeCoordinate");
+//PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgram"); 
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->maxcardinality = -1;
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->mincardinality = -1;
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->subpropertyof = NULL;
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->oneof = list_get_new_list();  
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->rtti = RTTI_PROPERTY;
+PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE);
 
 #endif
 #if INCLUDE_PROPERTY_PRESENTATIONURL
@@ -553,7 +724,7 @@ PROPERTY_ENDPRESENTATION =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_ENDPRESENTATION->name = strdup("http://www.cs.karelia.ru/smartroom#endPresentation");
 PROPERTY_ENDPRESENTATION->about = strdup("endPresentation");
 //PROPERTY_ENDPRESENTATION->range = "http://www.cs.karelia.ru/smartroom#Presentation"; //getRange
-PROPERTY_ENDPRESENTATION->domain = strdup("-72239002:154affda04e:-7ff4"); 
+PROPERTY_ENDPRESENTATION->domain = strdup("-260c49d6:154b40996a6:-7ff1"); 
 PROPERTY_ENDPRESENTATION->maxcardinality = -1;
 PROPERTY_ENDPRESENTATION->mincardinality = -1;
 PROPERTY_ENDPRESENTATION->subpropertyof = NULL;
@@ -585,6 +756,25 @@ PROPERTY_CURRENTSLIDENUM->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_CURRENTSLIDENUM);
 
 #endif
+#if INCLUDE_PROPERTY_STOPSEARCH
+
+PROPERTY_STOPSEARCH =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_STOPSEARCH->name = strdup("http://www.cs.karelia.ru/smartroom#stopSearch");
+PROPERTY_STOPSEARCH->about = strdup("stopSearch");
+//PROPERTY_STOPSEARCH->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_STOPSEARCH->domain = strdup("http://www.cs.karelia.ru/smartroom#SearchActivity"); 
+PROPERTY_STOPSEARCH->maxcardinality = -1;
+PROPERTY_STOPSEARCH->mincardinality = -1;
+PROPERTY_STOPSEARCH->subpropertyof = NULL;
+PROPERTY_STOPSEARCH->oneof = list_get_new_list();  
+PROPERTY_STOPSEARCH->rtti = RTTI_PROPERTY;
+PROPERTY_STOPSEARCH->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_STOPSEARCH);
+
+#endif
 #if INCLUDE_PROPERTY_HOLDSACTIVITY
 
 PROPERTY_HOLDSACTIVITY =  (property_t *) malloc(sizeof(property_t));
@@ -610,7 +800,7 @@ PROPERTY_STARTSERVICEMODE =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_STARTSERVICEMODE->name = strdup("http://www.cs.karelia.ru/smartroom#startServiceMode");
 PROPERTY_STARTSERVICEMODE->about = strdup("startServiceMode");
 //PROPERTY_STARTSERVICEMODE->range = "http://www.cs.karelia.ru/smartroom#Service"; //getRange
-PROPERTY_STARTSERVICEMODE->domain = strdup("-72239002:154affda04e:-7ff0"); 
+PROPERTY_STARTSERVICEMODE->domain = strdup("-260c49d6:154b40996a6:-7fe9"); 
 PROPERTY_STARTSERVICEMODE->maxcardinality = -1;
 PROPERTY_STARTSERVICEMODE->mincardinality = -1;
 PROPERTY_STARTSERVICEMODE->subpropertyof = NULL;
@@ -678,6 +868,44 @@ PROPERTY_REQUESTUSERNAME->type = DATATYPEPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_REQUESTUSERNAME);
+
+#endif
+#if INCLUDE_PROPERTY_STARTMEETINGFROM
+
+PROPERTY_STARTMEETINGFROM =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_STARTMEETINGFROM->name = strdup("http://www.cs.karelia.ru/smartroom#startMeetingFrom");
+PROPERTY_STARTMEETINGFROM->about = strdup("startMeetingFrom");
+//PROPERTY_STARTMEETINGFROM->range = "http://www.cs.karelia.ru/smartroom#NotificationParameter"; //getRange
+PROPERTY_STARTMEETINGFROM->domain = strdup("http://www.cs.karelia.ru/smartroom#MeetingNotification"); 
+PROPERTY_STARTMEETINGFROM->maxcardinality = -1;
+PROPERTY_STARTMEETINGFROM->mincardinality = -1;
+PROPERTY_STARTMEETINGFROM->subpropertyof = NULL;
+PROPERTY_STARTMEETINGFROM->oneof = list_get_new_list();  
+PROPERTY_STARTMEETINGFROM->rtti = RTTI_PROPERTY;
+PROPERTY_STARTMEETINGFROM->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_STARTMEETINGFROM);
+
+#endif
+#if INCLUDE_PROPERTY_VOTEUPDATE
+
+PROPERTY_VOTEUPDATE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_VOTEUPDATE->name = strdup("http://www.cs.karelia.ru/smartroom#voteUpdate");
+PROPERTY_VOTEUPDATE->about = strdup("voteUpdate");
+//PROPERTY_VOTEUPDATE->range = "http://www.cs.karelia.ru/smartroom#Placeslot"; //getRange
+PROPERTY_VOTEUPDATE->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgramNotification"); 
+PROPERTY_VOTEUPDATE->maxcardinality = -1;
+PROPERTY_VOTEUPDATE->mincardinality = -1;
+PROPERTY_VOTEUPDATE->subpropertyof = NULL;
+PROPERTY_VOTEUPDATE->oneof = list_get_new_list();  
+PROPERTY_VOTEUPDATE->rtti = RTTI_PROPERTY;
+PROPERTY_VOTEUPDATE->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_VOTEUPDATE);
 
 #endif
 #if INCLUDE_PROPERTY_USERNAME
@@ -756,6 +984,25 @@ PROPERTY_TIMESLOTACTUALDURATION->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_TIMESLOTACTUALDURATION);
 
 #endif
+#if INCLUDE_PROPERTY_PASSWORD
+
+PROPERTY_PASSWORD =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PASSWORD->name = strdup("http://www.cs.karelia.ru/smartroom#password");
+PROPERTY_PASSWORD->about = strdup("password");
+//PROPERTY_PASSWORD->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_PASSWORD->domain = strdup("http://www.cs.karelia.ru/smartroom#Profile"); 
+PROPERTY_PASSWORD->maxcardinality = -1;
+PROPERTY_PASSWORD->mincardinality = -1;
+PROPERTY_PASSWORD->subpropertyof = NULL;
+PROPERTY_PASSWORD->oneof = list_get_new_list();  
+PROPERTY_PASSWORD->rtti = RTTI_PROPERTY;
+PROPERTY_PASSWORD->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_PASSWORD);
+
+#endif
 #if INCLUDE_PROPERTY_TOPIC_INTEREST
 
 PROPERTY_TOPIC_INTEREST =  (property_t *) malloc(sizeof(property_t));
@@ -775,23 +1022,23 @@ PROPERTY_TOPIC_INTEREST->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_TOPIC_INTEREST);
 
 #endif
-#if INCLUDE_PROPERTY_PASSWORD
+#if INCLUDE_PROPERTY_PLACESLOTMINUSRATING
 
-PROPERTY_PASSWORD =  (property_t *) malloc(sizeof(property_t));
-PROPERTY_PASSWORD->name = strdup("http://www.cs.karelia.ru/smartroom#password");
-PROPERTY_PASSWORD->about = strdup("password");
-//PROPERTY_PASSWORD->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
-PROPERTY_PASSWORD->domain = strdup("http://www.cs.karelia.ru/smartroom#Profile"); 
-PROPERTY_PASSWORD->maxcardinality = -1;
-PROPERTY_PASSWORD->mincardinality = -1;
-PROPERTY_PASSWORD->subpropertyof = NULL;
-PROPERTY_PASSWORD->oneof = list_get_new_list();  
-PROPERTY_PASSWORD->rtti = RTTI_PROPERTY;
-PROPERTY_PASSWORD->type = DATATYPEPROPERTY;
+PROPERTY_PLACESLOTMINUSRATING =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PLACESLOTMINUSRATING->name = strdup("http://www.cs.karelia.ru/smartroom#placeslotMinusRating");
+PROPERTY_PLACESLOTMINUSRATING->about = strdup("placeslotMinusRating");
+//PROPERTY_PLACESLOTMINUSRATING->range = "http://xmlns.com/foaf/0.1/Person"; //getRange
+PROPERTY_PLACESLOTMINUSRATING->domain = strdup("http://www.cs.karelia.ru/smartroom#Placeslot"); 
+PROPERTY_PLACESLOTMINUSRATING->maxcardinality = -1;
+PROPERTY_PLACESLOTMINUSRATING->mincardinality = -1;
+PROPERTY_PLACESLOTMINUSRATING->subpropertyof = NULL;
+PROPERTY_PLACESLOTMINUSRATING->oneof = list_get_new_list();  
+PROPERTY_PLACESLOTMINUSRATING->rtti = RTTI_PROPERTY;
+PROPERTY_PLACESLOTMINUSRATING->type = OBJECTPROPERTY;
 
 
 
-sslog_repo_add_entity((void *) PROPERTY_PASSWORD);
+sslog_repo_add_entity((void *) PROPERTY_PLACESLOTMINUSRATING);
 
 #endif
 #if INCLUDE_PROPERTY_HASVIDEO
@@ -870,6 +1117,25 @@ PROPERTY_SECTIONACTUALSTARTTIME->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_SECTIONACTUALSTARTTIME);
 
 #endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMTITLE
+
+PROPERTY_SOCIALPROGRAMTITLE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SOCIALPROGRAMTITLE->name = strdup("http://www.cs.karelia.ru/smartroom#socialProgramTitle");
+PROPERTY_SOCIALPROGRAMTITLE->about = strdup("socialProgramTitle");
+//PROPERTY_SOCIALPROGRAMTITLE->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_SOCIALPROGRAMTITLE->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgram"); 
+PROPERTY_SOCIALPROGRAMTITLE->maxcardinality = -1;
+PROPERTY_SOCIALPROGRAMTITLE->mincardinality = -1;
+PROPERTY_SOCIALPROGRAMTITLE->subpropertyof = NULL;
+PROPERTY_SOCIALPROGRAMTITLE->oneof = list_get_new_list();  
+PROPERTY_SOCIALPROGRAMTITLE->rtti = RTTI_PROPERTY;
+PROPERTY_SOCIALPROGRAMTITLE->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SOCIALPROGRAMTITLE);
+
+#endif
 #if INCLUDE_PROPERTY_PHONE
 
 PROPERTY_PHONE =  (property_t *) malloc(sizeof(property_t));
@@ -908,13 +1174,32 @@ PROPERTY_HASSTATE->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_HASSTATE);
 
 #endif
+#if INCLUDE_PROPERTY_UPDATESERVICEINFORMATION
+
+PROPERTY_UPDATESERVICEINFORMATION =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_UPDATESERVICEINFORMATION->name = strdup("http://www.cs.karelia.ru/smartroom#updateServiceInformation");
+PROPERTY_UPDATESERVICEINFORMATION->about = strdup("updateServiceInformation");
+//PROPERTY_UPDATESERVICEINFORMATION->range = "http://www.cs.karelia.ru/smartroom#DSNotificationParameter"; //getRange
+PROPERTY_UPDATESERVICEINFORMATION->domain = strdup("http://www.cs.karelia.ru/smartroom#ClientNotification"); 
+PROPERTY_UPDATESERVICEINFORMATION->maxcardinality = -1;
+PROPERTY_UPDATESERVICEINFORMATION->mincardinality = -1;
+PROPERTY_UPDATESERVICEINFORMATION->subpropertyof = NULL;
+PROPERTY_UPDATESERVICEINFORMATION->oneof = list_get_new_list();  
+PROPERTY_UPDATESERVICEINFORMATION->rtti = RTTI_PROPERTY;
+PROPERTY_UPDATESERVICEINFORMATION->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_UPDATESERVICEINFORMATION);
+
+#endif
 #if INCLUDE_PROPERTY_STARTCONFERENCE
 
 PROPERTY_STARTCONFERENCE =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_STARTCONFERENCE->name = strdup("http://www.cs.karelia.ru/smartroom#startConference");
 PROPERTY_STARTCONFERENCE->about = strdup("startConference");
 //PROPERTY_STARTCONFERENCE->range = "http://www.cs.karelia.ru/smartroom#Section"; //getRange
-PROPERTY_STARTCONFERENCE->domain = strdup("-72239002:154affda04e:-7ffd"); 
+PROPERTY_STARTCONFERENCE->domain = strdup("-260c49d6:154b40996a6:-7ffd"); 
 PROPERTY_STARTCONFERENCE->maxcardinality = -1;
 PROPERTY_STARTCONFERENCE->mincardinality = -1;
 PROPERTY_STARTCONFERENCE->subpropertyof = NULL;
@@ -925,6 +1210,25 @@ PROPERTY_STARTCONFERENCE->type = OBJECTPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_STARTCONFERENCE);
+
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTPLUSRATING
+
+PROPERTY_PLACESLOTPLUSRATING =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PLACESLOTPLUSRATING->name = strdup("http://www.cs.karelia.ru/smartroom#placeslotPlusRating");
+PROPERTY_PLACESLOTPLUSRATING->about = strdup("placeslotPlusRating");
+//PROPERTY_PLACESLOTPLUSRATING->range = "http://xmlns.com/foaf/0.1/Person"; //getRange
+PROPERTY_PLACESLOTPLUSRATING->domain = strdup("http://www.cs.karelia.ru/smartroom#Placeslot"); 
+PROPERTY_PLACESLOTPLUSRATING->maxcardinality = -1;
+PROPERTY_PLACESLOTPLUSRATING->mincardinality = -1;
+PROPERTY_PLACESLOTPLUSRATING->subpropertyof = NULL;
+PROPERTY_PLACESLOTPLUSRATING->oneof = list_get_new_list();  
+PROPERTY_PLACESLOTPLUSRATING->rtti = RTTI_PROPERTY;
+PROPERTY_PLACESLOTPLUSRATING->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_PLACESLOTPLUSRATING);
 
 #endif
 #if INCLUDE_PROPERTY_CURRENTSLIDECOUNT
@@ -944,6 +1248,25 @@ PROPERTY_CURRENTSLIDECOUNT->type = DATATYPEPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_CURRENTSLIDECOUNT);
+
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTRATING
+
+PROPERTY_PLACESLOTRATING =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PLACESLOTRATING->name = strdup("http://www.cs.karelia.ru/smartroom#placeslotRating");
+PROPERTY_PLACESLOTRATING->about = strdup("placeslotRating");
+//PROPERTY_PLACESLOTRATING->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_PLACESLOTRATING->domain = strdup("http://www.cs.karelia.ru/smartroom#Placeslot"); 
+PROPERTY_PLACESLOTRATING->maxcardinality = -1;
+PROPERTY_PLACESLOTRATING->mincardinality = -1;
+PROPERTY_PLACESLOTRATING->subpropertyof = NULL;
+PROPERTY_PLACESLOTRATING->oneof = list_get_new_list();  
+PROPERTY_PLACESLOTRATING->rtti = RTTI_PROPERTY;
+PROPERTY_PLACESLOTRATING->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_PLACESLOTRATING);
 
 #endif
 #if INCLUDE_PROPERTY_HASSERVICE
@@ -1104,7 +1427,7 @@ PROPERTY_STOPSERVICEMODE =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_STOPSERVICEMODE->name = strdup("http://www.cs.karelia.ru/smartroom#stopServiceMode");
 PROPERTY_STOPSERVICEMODE->about = strdup("stopServiceMode");
 //PROPERTY_STOPSERVICEMODE->range = "http://www.cs.karelia.ru/smartroom#Service"; //getRange
-PROPERTY_STOPSERVICEMODE->domain = strdup("-72239002:154affda04e:-7fed"); 
+PROPERTY_STOPSERVICEMODE->domain = strdup("-260c49d6:154b40996a6:-7fe6"); 
 PROPERTY_STOPSERVICEMODE->maxcardinality = -1;
 PROPERTY_STOPSERVICEMODE->mincardinality = -1;
 PROPERTY_STOPSERVICEMODE->subpropertyof = NULL;
@@ -1212,6 +1535,25 @@ PROPERTY_HASSECTION->type = OBJECTPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_HASSECTION);
 
 #endif
+#if INCLUDE_PROPERTY_STARTSEARCH
+
+PROPERTY_STARTSEARCH =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_STARTSEARCH->name = strdup("http://www.cs.karelia.ru/smartroom#startSearch");
+PROPERTY_STARTSEARCH->about = strdup("startSearch");
+//PROPERTY_STARTSEARCH->range = "http://www.cs.karelia.ru/smartroom#SearchActivityParameter"; //getRange
+PROPERTY_STARTSEARCH->domain = strdup("http://www.cs.karelia.ru/smartroom#SearchActivity"); 
+PROPERTY_STARTSEARCH->maxcardinality = -1;
+PROPERTY_STARTSEARCH->mincardinality = -1;
+PROPERTY_STARTSEARCH->subpropertyof = NULL;
+PROPERTY_STARTSEARCH->oneof = list_get_new_list();  
+PROPERTY_STARTSEARCH->rtti = RTTI_PROPERTY;
+PROPERTY_STARTSEARCH->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_STARTSEARCH);
+
+#endif
 #if INCLUDE_PROPERTY_STARTVIDEO
 
 PROPERTY_STARTVIDEO =  (property_t *) malloc(sizeof(property_t));
@@ -1248,6 +1590,25 @@ PROPERTY_FIRSTTIMESLOT->type = OBJECTPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_FIRSTTIMESLOT);
+
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT
+
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->name = strdup("http://www.cs.karelia.ru/smartroom#socialProgramPresentPlaceslot");
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->about = strdup("socialProgramPresentPlaceslot");
+//PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->range = "http://www.cs.karelia.ru/smartroom#Placeslot"; //getRange
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgram"); 
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->maxcardinality = -1;
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->mincardinality = -1;
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->subpropertyof = NULL;
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->oneof = list_get_new_list();  
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->rtti = RTTI_PROPERTY;
+PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT);
 
 #endif
 #if INCLUDE_PROPERTY_PLACELONGITUDECOORDINATE
@@ -1307,6 +1668,25 @@ PROPERTY_NAME->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_NAME);
 
 #endif
+#if INCLUDE_PROPERTY_REMOVETIMESLOT
+
+PROPERTY_REMOVETIMESLOT =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_REMOVETIMESLOT->name = strdup("http://www.cs.karelia.ru/smartroom#removeTimeslot");
+PROPERTY_REMOVETIMESLOT->about = strdup("removeTimeslot");
+//PROPERTY_REMOVETIMESLOT->range = "http://www.cs.karelia.ru/smartroom#NotificationParameter"; //getRange
+PROPERTY_REMOVETIMESLOT->domain = strdup("http://www.cs.karelia.ru/smartroom#MeetingNotification"); 
+PROPERTY_REMOVETIMESLOT->maxcardinality = -1;
+PROPERTY_REMOVETIMESLOT->mincardinality = -1;
+PROPERTY_REMOVETIMESLOT->subpropertyof = NULL;
+PROPERTY_REMOVETIMESLOT->oneof = list_get_new_list();  
+PROPERTY_REMOVETIMESLOT->rtti = RTTI_PROPERTY;
+PROPERTY_REMOVETIMESLOT->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_REMOVETIMESLOT);
+
+#endif
 #if INCLUDE_PROPERTY_PRESENTATIONTAGS
 
 PROPERTY_PRESENTATIONTAGS =  (property_t *) malloc(sizeof(property_t));
@@ -1351,7 +1731,7 @@ PROPERTY_STARTPRESENTATION =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_STARTPRESENTATION->name = strdup("http://www.cs.karelia.ru/smartroom#startPresentation");
 PROPERTY_STARTPRESENTATION->about = strdup("startPresentation");
 //PROPERTY_STARTPRESENTATION->range = "http://www.cs.karelia.ru/smartroom#Presentation"; //getRange
-PROPERTY_STARTPRESENTATION->domain = strdup("-72239002:154affda04e:-7ff7"); 
+PROPERTY_STARTPRESENTATION->domain = strdup("-260c49d6:154b40996a6:-7ff4"); 
 PROPERTY_STARTPRESENTATION->maxcardinality = -1;
 PROPERTY_STARTPRESENTATION->mincardinality = -1;
 PROPERTY_STARTPRESENTATION->subpropertyof = NULL;
@@ -1440,6 +1820,44 @@ PROPERTY_SHOWSLIDE->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_SHOWSLIDE);
 
 #endif
+#if INCLUDE_PROPERTY_ENDMEETING
+
+PROPERTY_ENDMEETING =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_ENDMEETING->name = strdup("http://www.cs.karelia.ru/smartroom#endMeeting");
+PROPERTY_ENDMEETING->about = strdup("endMeeting");
+//PROPERTY_ENDMEETING->range = "http://www.cs.karelia.ru/smartroom#Section"; //getRange
+PROPERTY_ENDMEETING->domain = strdup("http://www.cs.karelia.ru/smartroom#MeetingNotification"); 
+PROPERTY_ENDMEETING->maxcardinality = -1;
+PROPERTY_ENDMEETING->mincardinality = -1;
+PROPERTY_ENDMEETING->subpropertyof = NULL;
+PROPERTY_ENDMEETING->oneof = list_get_new_list();  
+PROPERTY_ENDMEETING->rtti = RTTI_PROPERTY;
+PROPERTY_ENDMEETING->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_ENDMEETING);
+
+#endif
+#if INCLUDE_PROPERTY_ADDTIMESLOT
+
+PROPERTY_ADDTIMESLOT =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_ADDTIMESLOT->name = strdup("http://www.cs.karelia.ru/smartroom#addTimeslot");
+PROPERTY_ADDTIMESLOT->about = strdup("addTimeslot");
+//PROPERTY_ADDTIMESLOT->range = "http://www.cs.karelia.ru/smartroom#NotificationParameter"; //getRange
+PROPERTY_ADDTIMESLOT->domain = strdup("http://www.cs.karelia.ru/smartroom#MeetingNotification"); 
+PROPERTY_ADDTIMESLOT->maxcardinality = -1;
+PROPERTY_ADDTIMESLOT->mincardinality = -1;
+PROPERTY_ADDTIMESLOT->subpropertyof = NULL;
+PROPERTY_ADDTIMESLOT->oneof = list_get_new_list();  
+PROPERTY_ADDTIMESLOT->rtti = RTTI_PROPERTY;
+PROPERTY_ADDTIMESLOT->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_ADDTIMESLOT);
+
+#endif
 #if INCLUDE_PROPERTY_IP
 
 PROPERTY_IP =  (property_t *) malloc(sizeof(property_t));
@@ -1457,6 +1875,44 @@ PROPERTY_IP->type = DATATYPEPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_IP);
+
+#endif
+#if INCLUDE_PROPERTY_CURRENTSOCIALPROGRAM
+
+PROPERTY_CURRENTSOCIALPROGRAM =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_CURRENTSOCIALPROGRAM->name = strdup("http://www.cs.karelia.ru/smartroom#currentSocialProgram");
+PROPERTY_CURRENTSOCIALPROGRAM->about = strdup("currentSocialProgram");
+//PROPERTY_CURRENTSOCIALPROGRAM->range = "http://www.cs.karelia.ru/smartroom#SocialProgram"; //getRange
+PROPERTY_CURRENTSOCIALPROGRAM->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgramService"); 
+PROPERTY_CURRENTSOCIALPROGRAM->maxcardinality = -1;
+PROPERTY_CURRENTSOCIALPROGRAM->mincardinality = -1;
+PROPERTY_CURRENTSOCIALPROGRAM->subpropertyof = NULL;
+PROPERTY_CURRENTSOCIALPROGRAM->oneof = list_get_new_list();  
+PROPERTY_CURRENTSOCIALPROGRAM->rtti = RTTI_PROPERTY;
+PROPERTY_CURRENTSOCIALPROGRAM->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_CURRENTSOCIALPROGRAM);
+
+#endif
+#if INCLUDE_PROPERTY_HASSERVICEPARAMETER
+
+PROPERTY_HASSERVICEPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_HASSERVICEPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#hasServiceParameter");
+PROPERTY_HASSERVICEPARAMETER->about = strdup("hasServiceParameter");
+//PROPERTY_HASSERVICEPARAMETER->range = "http://www.cs.karelia.ru/smartroom#Service"; //getRange
+PROPERTY_HASSERVICEPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#DSNotificationParameter"); 
+PROPERTY_HASSERVICEPARAMETER->maxcardinality = -1;
+PROPERTY_HASSERVICEPARAMETER->mincardinality = -1;
+PROPERTY_HASSERVICEPARAMETER->subpropertyof = NULL;
+PROPERTY_HASSERVICEPARAMETER->oneof = list_get_new_list();  
+PROPERTY_HASSERVICEPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_HASSERVICEPARAMETER->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_HASSERVICEPARAMETER);
 
 #endif
 #if INCLUDE_PROPERTY_UPDATEPRESENTATION
@@ -1579,7 +2035,7 @@ PROPERTY_ENDCONFERENCE =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_ENDCONFERENCE->name = strdup("http://www.cs.karelia.ru/smartroom#endConference");
 PROPERTY_ENDCONFERENCE->about = strdup("endConference");
 //PROPERTY_ENDCONFERENCE->range = "http://www.cs.karelia.ru/smartroom#Section"; //getRange
-PROPERTY_ENDCONFERENCE->domain = strdup("-72239002:154affda04e:-7ffa"); 
+PROPERTY_ENDCONFERENCE->domain = strdup("-260c49d6:154b40996a6:-7ffa"); 
 PROPERTY_ENDCONFERENCE->maxcardinality = -1;
 PROPERTY_ENDCONFERENCE->mincardinality = -1;
 PROPERTY_ENDCONFERENCE->subpropertyof = NULL;
@@ -1611,6 +2067,25 @@ PROPERTY_SERVICEDESCRIPTION->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_SERVICEDESCRIPTION);
 
 #endif
+#if INCLUDE_PROPERTY_PLACEPARAMETER
+
+PROPERTY_PLACEPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PLACEPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#placeParameter");
+PROPERTY_PLACEPARAMETER->about = strdup("placeParameter");
+//PROPERTY_PLACEPARAMETER->range = "http://www.cs.karelia.ru/smartroom#Place"; //getRange
+PROPERTY_PLACEPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#SearchActivityParameter"); 
+PROPERTY_PLACEPARAMETER->maxcardinality = -1;
+PROPERTY_PLACEPARAMETER->mincardinality = -1;
+PROPERTY_PLACEPARAMETER->subpropertyof = NULL;
+PROPERTY_PLACEPARAMETER->oneof = list_get_new_list();  
+PROPERTY_PLACEPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_PLACEPARAMETER->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_PLACEPARAMETER);
+
+#endif
 #if INCLUDE_PROPERTY_TIMESLOTPERSON
 
 PROPERTY_TIMESLOTPERSON =  (property_t *) malloc(sizeof(property_t));
@@ -1630,6 +2105,25 @@ PROPERTY_TIMESLOTPERSON->type = OBJECTPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_TIMESLOTPERSON);
 
 #endif
+#if INCLUDE_PROPERTY_NOTIFICATIONNUMBERPARAMETER
+
+PROPERTY_NOTIFICATIONNUMBERPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#notificationNumberParameter");
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->about = strdup("notificationNumberParameter");
+//PROPERTY_NOTIFICATIONNUMBERPARAMETER->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#DSNotificationParameter"); 
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->maxcardinality = -1;
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->mincardinality = -1;
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->subpropertyof = NULL;
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->oneof = list_get_new_list();  
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_NOTIFICATIONNUMBERPARAMETER->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_NOTIFICATIONNUMBERPARAMETER);
+
+#endif
 #if INCLUDE_PROPERTY_SHOWSUMMARYSLIDE
 
 PROPERTY_SHOWSUMMARYSLIDE =  (property_t *) malloc(sizeof(property_t));
@@ -1647,6 +2141,25 @@ PROPERTY_SHOWSUMMARYSLIDE->type = DATATYPEPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_SHOWSUMMARYSLIDE);
+
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE
+
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->name = strdup("http://www.cs.karelia.ru/smartroom#socialProgramLongitudeCoordinate");
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->about = strdup("socialProgramLongitudeCoordinate");
+//PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgram"); 
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->maxcardinality = -1;
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->mincardinality = -1;
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->subpropertyof = NULL;
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->oneof = list_get_new_list();  
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->rtti = RTTI_PROPERTY;
+PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE);
 
 #endif
 #if INCLUDE_PROPERTY_STATUS
@@ -1807,7 +2320,7 @@ PROPERTY_UPDATEAGENDA =  (property_t *) malloc(sizeof(property_t));
 PROPERTY_UPDATEAGENDA->name = strdup("http://www.cs.karelia.ru/smartroom#updateAgenda");
 PROPERTY_UPDATEAGENDA->about = strdup("updateAgenda");
 //PROPERTY_UPDATEAGENDA->range = "http://www.cs.karelia.ru/smartroom#Section"; //getRange
-PROPERTY_UPDATEAGENDA->domain = strdup(""); 
+PROPERTY_UPDATEAGENDA->domain = strdup("-260c49d6:154b40996a6:-7fec"); 
 PROPERTY_UPDATEAGENDA->maxcardinality = -1;
 PROPERTY_UPDATEAGENDA->mincardinality = -1;
 PROPERTY_UPDATEAGENDA->subpropertyof = NULL;
@@ -1818,6 +2331,25 @@ PROPERTY_UPDATEAGENDA->type = OBJECTPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_UPDATEAGENDA);
+
+#endif
+#if INCLUDE_PROPERTY_SEARCHTYPEPARAMETER
+
+PROPERTY_SEARCHTYPEPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SEARCHTYPEPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#searchTypeParameter");
+PROPERTY_SEARCHTYPEPARAMETER->about = strdup("searchTypeParameter");
+//PROPERTY_SEARCHTYPEPARAMETER->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_SEARCHTYPEPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#SearchActivityParameter"); 
+PROPERTY_SEARCHTYPEPARAMETER->maxcardinality = -1;
+PROPERTY_SEARCHTYPEPARAMETER->mincardinality = -1;
+PROPERTY_SEARCHTYPEPARAMETER->subpropertyof = NULL;
+PROPERTY_SEARCHTYPEPARAMETER->oneof = list_get_new_list();  
+PROPERTY_SEARCHTYPEPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_SEARCHTYPEPARAMETER->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SEARCHTYPEPARAMETER);
 
 #endif
 #if INCLUDE_PROPERTY_IMG
@@ -1837,6 +2369,25 @@ PROPERTY_IMG->type = DATATYPEPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_IMG);
+
+#endif
+#if INCLUDE_PROPERTY_PRESENTSOCIALPROGRAM
+
+PROPERTY_PRESENTSOCIALPROGRAM =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PRESENTSOCIALPROGRAM->name = strdup("http://www.cs.karelia.ru/smartroom#presentSocialProgram");
+PROPERTY_PRESENTSOCIALPROGRAM->about = strdup("presentSocialProgram");
+//PROPERTY_PRESENTSOCIALPROGRAM->range = "http://www.cs.karelia.ru/smartroom#SocialProgram"; //getRange
+PROPERTY_PRESENTSOCIALPROGRAM->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgramService"); 
+PROPERTY_PRESENTSOCIALPROGRAM->maxcardinality = -1;
+PROPERTY_PRESENTSOCIALPROGRAM->mincardinality = -1;
+PROPERTY_PRESENTSOCIALPROGRAM->subpropertyof = NULL;
+PROPERTY_PRESENTSOCIALPROGRAM->oneof = list_get_new_list();  
+PROPERTY_PRESENTSOCIALPROGRAM->rtti = RTTI_PROPERTY;
+PROPERTY_PRESENTSOCIALPROGRAM->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_PRESENTSOCIALPROGRAM);
 
 #endif
 #if INCLUDE_PROPERTY_HASAGENDASERVICEURL
@@ -1877,6 +2428,25 @@ PROPERTY_PLACELATITUDECOORDINATE->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_PLACELATITUDECOORDINATE);
 
 #endif
+#if INCLUDE_PROPERTY_PLACESLOTPRESENTPLACE
+
+PROPERTY_PLACESLOTPRESENTPLACE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_PLACESLOTPRESENTPLACE->name = strdup("http://www.cs.karelia.ru/smartroom#placeslotPresentPlace");
+PROPERTY_PLACESLOTPRESENTPLACE->about = strdup("placeslotPresentPlace");
+//PROPERTY_PLACESLOTPRESENTPLACE->range = "http://www.cs.karelia.ru/smartroom#Place"; //getRange
+PROPERTY_PLACESLOTPRESENTPLACE->domain = strdup("http://www.cs.karelia.ru/smartroom#Placeslot"); 
+PROPERTY_PLACESLOTPRESENTPLACE->maxcardinality = -1;
+PROPERTY_PLACESLOTPRESENTPLACE->mincardinality = -1;
+PROPERTY_PLACESLOTPRESENTPLACE->subpropertyof = NULL;
+PROPERTY_PLACESLOTPRESENTPLACE->oneof = list_get_new_list();  
+PROPERTY_PLACESLOTPRESENTPLACE->rtti = RTTI_PROPERTY;
+PROPERTY_PLACESLOTPRESENTPLACE->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_PLACESLOTPRESENTPLACE);
+
+#endif
 #if INCLUDE_PROPERTY_LANGUAGE
 
 PROPERTY_LANGUAGE =  (property_t *) malloc(sizeof(property_t));
@@ -1894,6 +2464,25 @@ PROPERTY_LANGUAGE->type = DATATYPEPROPERTY;
 
 
 sslog_repo_add_entity((void *) PROPERTY_LANGUAGE);
+
+#endif
+#if INCLUDE_PROPERTY_SERVICEINFORMATIONPARAMETER
+
+PROPERTY_SERVICEINFORMATIONPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SERVICEINFORMATIONPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#serviceInformationParameter");
+PROPERTY_SERVICEINFORMATIONPARAMETER->about = strdup("serviceInformationParameter");
+//PROPERTY_SERVICEINFORMATIONPARAMETER->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_SERVICEINFORMATIONPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#DSNotificationParameter"); 
+PROPERTY_SERVICEINFORMATIONPARAMETER->maxcardinality = -1;
+PROPERTY_SERVICEINFORMATIONPARAMETER->mincardinality = -1;
+PROPERTY_SERVICEINFORMATIONPARAMETER->subpropertyof = NULL;
+PROPERTY_SERVICEINFORMATIONPARAMETER->oneof = list_get_new_list();  
+PROPERTY_SERVICEINFORMATIONPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_SERVICEINFORMATIONPARAMETER->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SERVICEINFORMATIONPARAMETER);
 
 #endif
 #if INCLUDE_PROPERTY_PLACETITLE
@@ -2010,6 +2599,63 @@ PROPERTY_SERVICESTATUS->type = DATATYPEPROPERTY;
 sslog_repo_add_entity((void *) PROPERTY_SERVICESTATUS);
 
 #endif
+#if INCLUDE_PROPERTY_FROMSERVICEPARAMETER
+
+PROPERTY_FROMSERVICEPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_FROMSERVICEPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#fromServiceParameter");
+PROPERTY_FROMSERVICEPARAMETER->about = strdup("fromServiceParameter");
+//PROPERTY_FROMSERVICEPARAMETER->range = "http://www.cs.karelia.ru/smartroom#Service"; //getRange
+PROPERTY_FROMSERVICEPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#SearchActivityParameter"); 
+PROPERTY_FROMSERVICEPARAMETER->maxcardinality = -1;
+PROPERTY_FROMSERVICEPARAMETER->mincardinality = -1;
+PROPERTY_FROMSERVICEPARAMETER->subpropertyof = NULL;
+PROPERTY_FROMSERVICEPARAMETER->oneof = list_get_new_list();  
+PROPERTY_FROMSERVICEPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_FROMSERVICEPARAMETER->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_FROMSERVICEPARAMETER);
+
+#endif
+#if INCLUDE_PROPERTY_STOPUPDATESERVICEPAGE
+
+PROPERTY_STOPUPDATESERVICEPAGE =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_STOPUPDATESERVICEPAGE->name = strdup("http://www.cs.karelia.ru/smartroom#stopUpdateServicePage");
+PROPERTY_STOPUPDATESERVICEPAGE->about = strdup("stopUpdateServicePage");
+//PROPERTY_STOPUPDATESERVICEPAGE->range = "http://www.cs.karelia.ru/smartroom#WebServerNotification"; //getRange
+PROPERTY_STOPUPDATESERVICEPAGE->domain = strdup("http://www.cs.karelia.ru/smartroom#SocialProgramNotification"); 
+PROPERTY_STOPUPDATESERVICEPAGE->maxcardinality = -1;
+PROPERTY_STOPUPDATESERVICEPAGE->mincardinality = -1;
+PROPERTY_STOPUPDATESERVICEPAGE->subpropertyof = NULL;
+PROPERTY_STOPUPDATESERVICEPAGE->oneof = list_get_new_list();  
+PROPERTY_STOPUPDATESERVICEPAGE->rtti = RTTI_PROPERTY;
+PROPERTY_STOPUPDATESERVICEPAGE->type = OBJECTPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_STOPUPDATESERVICEPAGE);
+
+#endif
+#if INCLUDE_PROPERTY_SEARCHVARIABLEPARAMETER
+
+PROPERTY_SEARCHVARIABLEPARAMETER =  (property_t *) malloc(sizeof(property_t));
+PROPERTY_SEARCHVARIABLEPARAMETER->name = strdup("http://www.cs.karelia.ru/smartroom#searchVariableParameter");
+PROPERTY_SEARCHVARIABLEPARAMETER->about = strdup("searchVariableParameter");
+//PROPERTY_SEARCHVARIABLEPARAMETER->range = "http://www.w3.org/2001/XMLSchema#string"; //getRange
+PROPERTY_SEARCHVARIABLEPARAMETER->domain = strdup("http://www.cs.karelia.ru/smartroom#SearchActivityParameter"); 
+PROPERTY_SEARCHVARIABLEPARAMETER->maxcardinality = -1;
+PROPERTY_SEARCHVARIABLEPARAMETER->mincardinality = -1;
+PROPERTY_SEARCHVARIABLEPARAMETER->subpropertyof = NULL;
+PROPERTY_SEARCHVARIABLEPARAMETER->oneof = list_get_new_list();  
+PROPERTY_SEARCHVARIABLEPARAMETER->rtti = RTTI_PROPERTY;
+PROPERTY_SEARCHVARIABLEPARAMETER->type = DATATYPEPROPERTY;
+
+
+
+sslog_repo_add_entity((void *) PROPERTY_SEARCHVARIABLEPARAMETER);
+
+#endif
 #if INCLUDE_PROPERTY_PLACEDESCRIPTION
 
 PROPERTY_PLACEDESCRIPTION =  (property_t *) malloc(sizeof(property_t));
@@ -2109,6 +2755,28 @@ sslog_repo_add_entity((void *) PROPERTY_CURRENTSECTION);
 
 
 
+#if INCLUDE_CLASS_SEARCHACTIVITY
+
+CLASS_SEARCHACTIVITY = (class_t *) malloc(sizeof(class_t));
+CLASS_SEARCHACTIVITY->rtti = RTTI_CLASS;
+CLASS_SEARCHACTIVITY->classtype =  strdup("http://www.cs.karelia.ru/smartroom#SearchActivity");
+CLASS_SEARCHACTIVITY->properties = list_get_new_list();  
+CLASS_SEARCHACTIVITY->instances = NULL;
+CLASS_SEARCHACTIVITY->superclasses = list_get_new_list();  
+CLASS_SEARCHACTIVITY->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_SEARCHACTIVITY);
+
+#if INCLUDE_PROPERTY_STOPSEARCH
+tmp_node = list_get_new_node(PROPERTY_STOPSEARCH);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITY->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTSEARCH
+tmp_node = list_get_new_node(PROPERTY_STARTSEARCH);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITY->properties);
+#endif
+
+#endif
 #if INCLUDE_CLASS_PROFILE
 
 CLASS_PROFILE = (class_t *) malloc(sizeof(class_t));
@@ -2137,10 +2805,6 @@ list_add_node(tmp_node, CLASS_PROFILE->properties);
 tmp_node = list_get_new_node(PROPERTY_PASSWORD);
 list_add_node(tmp_node, CLASS_PROFILE->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_PROFILE->properties);
-#endif
 
 #endif
 #if INCLUDE_CLASS_TIMESLOT
@@ -2155,6 +2819,14 @@ CLASS_TIMESLOT->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_TIMESLOT);
 
+#if INCLUDE_PROPERTY_NEXTTIMESLOT
+tmp_node = list_get_new_node(PROPERTY_NEXTTIMESLOT);
+list_add_node(tmp_node, CLASS_TIMESLOT->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTSPEAKERNAME
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTSPEAKERNAME);
+list_add_node(tmp_node, CLASS_TIMESLOT->properties);
+#endif
 #if INCLUDE_PROPERTY_TIMESLOTPERSON
 tmp_node = list_get_new_node(PROPERTY_TIMESLOTPERSON);
 list_add_node(tmp_node, CLASS_TIMESLOT->properties);
@@ -2173,18 +2845,6 @@ list_add_node(tmp_node, CLASS_TIMESLOT->properties);
 #endif
 #if INCLUDE_PROPERTY_TIMESLOTACTUALDURATION
 tmp_node = list_get_new_node(PROPERTY_TIMESLOTACTUALDURATION);
-list_add_node(tmp_node, CLASS_TIMESLOT->properties);
-#endif
-#if INCLUDE_PROPERTY_NEXTTIMESLOT
-tmp_node = list_get_new_node(PROPERTY_NEXTTIMESLOT);
-list_add_node(tmp_node, CLASS_TIMESLOT->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_TIMESLOT->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTSPEAKERNAME
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTSPEAKERNAME);
 list_add_node(tmp_node, CLASS_TIMESLOT->properties);
 #endif
 
@@ -2209,6 +2869,10 @@ list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
 list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
 #endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
+#endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
 tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
 list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
@@ -2221,67 +2885,9 @@ list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
 list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
 list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_CURRENTSECTION
-tmp_node = list_get_new_node(PROPERTY_CURRENTSECTION);
-list_add_node(tmp_node, CLASS_CONFERENCESERVICE->properties);
-#endif
-
-#endif
-#if INCLUDE_CLASS_CONTENTSERVICE
-
-CLASS_CONTENTSERVICE = (class_t *) malloc(sizeof(class_t));
-CLASS_CONTENTSERVICE->rtti = RTTI_CLASS;
-CLASS_CONTENTSERVICE->classtype =  strdup("http://www.cs.karelia.ru/smartroom#ContentService");
-CLASS_CONTENTSERVICE->properties = list_get_new_list();  
-CLASS_CONTENTSERVICE->instances = NULL;
-CLASS_CONTENTSERVICE->superclasses = list_get_new_list();  
-CLASS_CONTENTSERVICE->oneof = list_get_new_list();  
-
-sslog_repo_add_entity((void *) CLASS_CONTENTSERVICE);
-
-#if INCLUDE_PROPERTY_HASPRESENTATIONSERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_SERVICESTATUS
-tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_SERVICEDESCRIPTION
-tmp_node = list_get_new_node(PROPERTY_SERVICEDESCRIPTION);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_SERVICENAME
-tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_HASCLIENTURL
-tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_CONTENTURL
-tmp_node = list_get_new_node(PROPERTY_CONTENTURL);
-list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
 #endif
 
 #endif
@@ -2305,9 +2911,47 @@ list_add_node(tmp_node, CLASS_CONTROLLREQUEST->properties);
 tmp_node = list_get_new_node(PROPERTY_TYPE);
 list_add_node(tmp_node, CLASS_CONTROLLREQUEST->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_CONTROLLREQUEST->properties);
+
+#endif
+#if INCLUDE_CLASS_CONTENTSERVICE
+
+CLASS_CONTENTSERVICE = (class_t *) malloc(sizeof(class_t));
+CLASS_CONTENTSERVICE->rtti = RTTI_CLASS;
+CLASS_CONTENTSERVICE->classtype =  strdup("http://www.cs.karelia.ru/smartroom#ContentService");
+CLASS_CONTENTSERVICE->properties = list_get_new_list();  
+CLASS_CONTENTSERVICE->instances = NULL;
+CLASS_CONTENTSERVICE->superclasses = list_get_new_list();  
+CLASS_CONTENTSERVICE->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_CONTENTSERVICE);
+
+#if INCLUDE_PROPERTY_HASPRESENTATIONSERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICESTATUS
+tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICEDESCRIPTION
+tmp_node = list_get_new_node(PROPERTY_SERVICEDESCRIPTION);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICENAME
+tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASCLIENTURL
+tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_CONTENTURL
+tmp_node = list_get_new_node(PROPERTY_CONTENTURL);
+list_add_node(tmp_node, CLASS_CONTENTSERVICE->properties);
 #endif
 
 #endif
@@ -2323,14 +2967,6 @@ CLASS_NOTHING->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_NOTHING);
 
-#if INCLUDE_PROPERTY_CURRENTSLIDECOUNT
-tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDECOUNT);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_IMG
-tmp_node = list_get_new_node(PROPERTY_IMG);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_REQUESTUSERNAME
 tmp_node = list_get_new_node(PROPERTY_REQUESTUSERNAME);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
@@ -2339,44 +2975,44 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_SECTIONDATE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
+#if INCLUDE_PROPERTY_PLACESLOTRATING
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTRATING);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
 #if INCLUDE_PROPERTY_HOLDSACTIVITY
 tmp_node = list_get_new_node(PROPERTY_HOLDSACTIVITY);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_STOPVIDEO
-tmp_node = list_get_new_node(PROPERTY_STOPVIDEO);
+#if INCLUDE_PROPERTY_NOTIFICATIONNUMBERPARAMETER
+tmp_node = list_get_new_node(PROPERTY_NOTIFICATIONNUMBERPARAMETER);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_ARGS
 tmp_node = list_get_new_node(PROPERTY_ARGS);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_SHOWSUMMARYSLIDE
-tmp_node = list_get_new_node(PROPERTY_SHOWSUMMARYSLIDE);
+#if INCLUDE_PROPERTY_STOPVIDEO
+tmp_node = list_get_new_node(PROPERTY_STOPVIDEO);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_SECTIONSTARTTIME
-tmp_node = list_get_new_node(PROPERTY_SECTIONSTARTTIME);
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_IP
 tmp_node = list_get_new_node(PROPERTY_IP);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_MBOX
-tmp_node = list_get_new_node(PROPERTY_MBOX);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_HASPRESENTATIONSERVICEURL
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_PHOTOMEDIUMURL
-tmp_node = list_get_new_node(PROPERTY_PHOTOMEDIUMURL);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_NAME
-tmp_node = list_get_new_node(PROPERTY_NAME);
+#if INCLUDE_PROPERTY_MBOX
+tmp_node = list_get_new_node(PROPERTY_MBOX);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_USERNAME
@@ -2387,48 +3023,24 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_FIRSTTIMESLOT);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_SECTIONACTUALSTARTTIME
-tmp_node = list_get_new_node(PROPERTY_SECTIONACTUALSTARTTIME);
+#if INCLUDE_PROPERTY_NAME
+tmp_node = list_get_new_node(PROPERTY_NAME);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_HASCONTEXT
 tmp_node = list_get_new_node(PROPERTY_HASCONTEXT);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_STARTCONFERENCEFROM
-tmp_node = list_get_new_node(PROPERTY_STARTCONFERENCEFROM);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTPERSON
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTPERSON);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_HASVIDEO
-tmp_node = list_get_new_node(PROPERTY_HASVIDEO);
+#if INCLUDE_PROPERTY_CURRENTSLIDEIMG
+tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDEIMG);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_PHOTOTHUMBNAILURL
 tmp_node = list_get_new_node(PROPERTY_PHOTOTHUMBNAILURL);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_CURRENTSLIDEIMG
-tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDEIMG);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTPARAMETER
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTPARAMETER);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_LANGUAGE
-tmp_node = list_get_new_node(PROPERTY_LANGUAGE);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_STOPSERVICEMODE
-tmp_node = list_get_new_node(PROPERTY_STOPSERVICEMODE);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_WLANMAC
-tmp_node = list_get_new_node(PROPERTY_WLANMAC);
+#if INCLUDE_PROPERTY_SEARCHVARIABLEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SEARCHVARIABLEPARAMETER);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_STARTPRESENTATION
@@ -2439,32 +3051,24 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_LASTREQ);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_PRESENTATIONTAGS
-tmp_node = list_get_new_node(PROPERTY_PRESENTATIONTAGS);
+#if INCLUDE_PROPERTY_STOPSEARCH
+tmp_node = list_get_new_node(PROPERTY_STOPSEARCH);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_UPDATESERVICEINFORMATION
+tmp_node = list_get_new_node(PROPERTY_UPDATESERVICEINFORMATION);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_PHOTOLATITUDECOORDINATE
 tmp_node = list_get_new_node(PROPERTY_PHOTOLATITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_SERVICESTATUS
-tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_HASPRESENTATION
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATION);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_ENDPRESENTATION
-tmp_node = list_get_new_node(PROPERTY_ENDPRESENTATION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_PERSONINFORMATION
 tmp_node = list_get_new_node(PROPERTY_PERSONINFORMATION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_ISBUSY
-tmp_node = list_get_new_node(PROPERTY_ISBUSY);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_PRESENTATIONTITLE
@@ -2475,10 +3079,6 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_AGE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_SERVICEDESCRIPTION
-tmp_node = list_get_new_node(PROPERTY_SERVICEDESCRIPTION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_ACTIVITYTITLE
 tmp_node = list_get_new_node(PROPERTY_ACTIVITYTITLE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
@@ -2487,40 +3087,20 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_PLACELONGITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_PORT
-tmp_node = list_get_new_node(PROPERTY_PORT);
+#if INCLUDE_PROPERTY_FROMSERVICEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_FROMSERVICEPARAMETER);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_PASSWORD
-tmp_node = list_get_new_node(PROPERTY_PASSWORD);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTTITLE
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTTITLE);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTPRESENTATION
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTPRESENTATION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_PHOTODESCRIPTION
-tmp_node = list_get_new_node(PROPERTY_PHOTODESCRIPTION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_PHOTOLONGITUDECOORDINATE
-tmp_node = list_get_new_node(PROPERTY_PHOTOLONGITUDECOORDINATE);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTDURATION
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTDURATION);
+#if INCLUDE_PROPERTY_SEARCHTYPEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SEARCHTYPEPARAMETER);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_PHONE
 tmp_node = list_get_new_node(PROPERTY_PHONE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_TYPE
-tmp_node = list_get_new_node(PROPERTY_TYPE);
+#if INCLUDE_PROPERTY_PLACESLOTMINUSRATING
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTMINUSRATING);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_PHOTOURL
@@ -2531,36 +3111,12 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_PLACEHASPHOTO);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_TIMESLOTACTUALDURATION
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTACTUALDURATION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_CURRENTTIMESLOT
-tmp_node = list_get_new_node(PROPERTY_CURRENTTIMESLOT);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_SECTIONPARAMETER
-tmp_node = list_get_new_node(PROPERTY_SECTIONPARAMETER);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TOPIC_INTEREST
-tmp_node = list_get_new_node(PROPERTY_TOPIC_INTEREST);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_SERVICENAME
-tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_PLACETITLE
 tmp_node = list_get_new_node(PROPERTY_PLACETITLE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_HASAGENDASERVICEURL
 tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_CURRENTPRESENTATION
-tmp_node = list_get_new_node(PROPERTY_CURRENTPRESENTATION);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_NEXTTIMESLOT
@@ -2579,6 +3135,230 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_STARTVIDEO);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
+#if INCLUDE_PROPERTY_HASSERVICE
+tmp_node = list_get_new_node(PROPERTY_HASSERVICE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_HASSTATE
+tmp_node = list_get_new_node(PROPERTY_HASSTATE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSECTION
+tmp_node = list_get_new_node(PROPERTY_CURRENTSECTION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACEHASRELATION
+tmp_node = list_get_new_node(PROPERTY_PLACEHASRELATION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_PLACEPARAMETER);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTSPEAKERNAME
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTSPEAKERNAME);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PRESENTATIONURL
+tmp_node = list_get_new_node(PROPERTY_PRESENTATIONURL);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSLIDENUM
+tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDENUM);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACELATITUDECOORDINATE
+tmp_node = list_get_new_node(PROPERTY_PLACELATITUDECOORDINATE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_HASSECTION
+tmp_node = list_get_new_node(PROPERTY_HASSECTION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMTITLE
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMTITLE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_ACCOUNT
+tmp_node = list_get_new_node(PROPERTY_ACCOUNT);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTSERVICEMODE
+tmp_node = list_get_new_node(PROPERTY_STARTSERVICEMODE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSOCIALPROGRAM
+tmp_node = list_get_new_node(PROPERTY_CURRENTSOCIALPROGRAM);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSLIDECOUNT
+tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDECOUNT);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_IMG
+tmp_node = list_get_new_node(PROPERTY_IMG);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_VOTEUPDATE
+tmp_node = list_get_new_node(PROPERTY_VOTEUPDATE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SECTIONSTARTTIME
+tmp_node = list_get_new_node(PROPERTY_SECTIONSTARTTIME);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SHOWSUMMARYSLIDE
+tmp_node = list_get_new_node(PROPERTY_SHOWSUMMARYSLIDE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTPLUSRATING
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTPLUSRATING);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PHOTOMEDIUMURL
+tmp_node = list_get_new_node(PROPERTY_PHOTOMEDIUMURL);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SECTIONACTUALSTARTTIME
+tmp_node = list_get_new_node(PROPERTY_SECTIONACTUALSTARTTIME);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTCONFERENCEFROM
+tmp_node = list_get_new_node(PROPERTY_STARTCONFERENCEFROM);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_HASVIDEO
+tmp_node = list_get_new_node(PROPERTY_HASVIDEO);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTPERSON
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTPERSON);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTPARAMETER
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTPARAMETER);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTMEETINGFROM
+tmp_node = list_get_new_node(PROPERTY_STARTMEETINGFROM);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_LANGUAGE
+tmp_node = list_get_new_node(PROPERTY_LANGUAGE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STOPSERVICEMODE
+tmp_node = list_get_new_node(PROPERTY_STOPSERVICEMODE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_WLANMAC
+tmp_node = list_get_new_node(PROPERTY_WLANMAC);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTPRESENTPLACE
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTPRESENTPLACE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PRESENTATIONTAGS
+tmp_node = list_get_new_node(PROPERTY_PRESENTATIONTAGS);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICESTATUS
+tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_ENDPRESENTATION
+tmp_node = list_get_new_node(PROPERTY_ENDPRESENTATION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_ISBUSY
+tmp_node = list_get_new_node(PROPERTY_ISBUSY);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICEDESCRIPTION
+tmp_node = list_get_new_node(PROPERTY_SERVICEDESCRIPTION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PORT
+tmp_node = list_get_new_node(PROPERTY_PORT);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PASSWORD
+tmp_node = list_get_new_node(PROPERTY_PASSWORD);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTTITLE
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTTITLE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PHOTOLONGITUDECOORDINATE
+tmp_node = list_get_new_node(PROPERTY_PHOTOLONGITUDECOORDINATE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PHOTODESCRIPTION
+tmp_node = list_get_new_node(PROPERTY_PHOTODESCRIPTION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTPRESENTATION
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTPRESENTATION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTSEARCH
+tmp_node = list_get_new_node(PROPERTY_STARTSEARCH);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_HASSERVICEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_HASSERVICEPARAMETER);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_ENDMEETING
+tmp_node = list_get_new_node(PROPERTY_ENDMEETING);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTDURATION
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTDURATION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TYPE
+tmp_node = list_get_new_node(PROPERTY_TYPE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TIMESLOTACTUALDURATION
+tmp_node = list_get_new_node(PROPERTY_TIMESLOTACTUALDURATION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SECTIONPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SECTIONPARAMETER);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTTIMESLOT
+tmp_node = list_get_new_node(PROPERTY_CURRENTTIMESLOT);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_TOPIC_INTEREST
+tmp_node = list_get_new_node(PROPERTY_TOPIC_INTEREST);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_PRESENTSOCIALPROGRAM
+tmp_node = list_get_new_node(PROPERTY_PRESENTSOCIALPROGRAM);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICENAME
+tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTPRESENTATION
+tmp_node = list_get_new_node(PROPERTY_CURRENTPRESENTATION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTUPDATESERVICEPAGE
+tmp_node = list_get_new_node(PROPERTY_STARTUPDATESERVICEPAGE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_STOPUPDATESERVICEPAGE
+tmp_node = list_get_new_node(PROPERTY_STOPUPDATESERVICEPAGE);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
@@ -2591,16 +3371,8 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_PHOTOTITLE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_HASSERVICE
-tmp_node = list_get_new_node(PROPERTY_HASSERVICE);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_UPDATEAGENDA
 tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_HASSTATE
-tmp_node = list_get_new_node(PROPERTY_HASSTATE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_STARTCONFERENCE
@@ -2611,32 +3383,16 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_CONTENTURL);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_CURRENTSECTION
-tmp_node = list_get_new_node(PROPERTY_CURRENTSECTION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
 #if INCLUDE_PROPERTY_HEADUSERNAME
 tmp_node = list_get_new_node(PROPERTY_HEADUSERNAME);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_PLACEHASRELATION
-tmp_node = list_get_new_node(PROPERTY_PLACEHASRELATION);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_PRESENTATIONURL
-tmp_node = list_get_new_node(PROPERTY_PRESENTATIONURL);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_TIMESLOTSPEAKERNAME
-tmp_node = list_get_new_node(PROPERTY_TIMESLOTSPEAKERNAME);
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_CITY
 tmp_node = list_get_new_node(PROPERTY_CITY);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_CURRENTSLIDENUM
-tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDENUM);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_ORGANIZATION
@@ -2647,24 +3403,20 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 tmp_node = list_get_new_node(PROPERTY_SHOWSLIDE);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_PLACELATITUDECOORDINATE
-tmp_node = list_get_new_node(PROPERTY_PLACELATITUDECOORDINATE);
+#if INCLUDE_PROPERTY_ADDTIMESLOT
+tmp_node = list_get_new_node(PROPERTY_ADDTIMESLOT);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_STATUS
 tmp_node = list_get_new_node(PROPERTY_STATUS);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_HASSECTION
-tmp_node = list_get_new_node(PROPERTY_HASSECTION);
+#if INCLUDE_PROPERTY_SERVICEINFORMATIONPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SERVICEINFORMATIONPARAMETER);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
-#if INCLUDE_PROPERTY_ACCOUNT
-tmp_node = list_get_new_node(PROPERTY_ACCOUNT);
-list_add_node(tmp_node, CLASS_NOTHING->properties);
-#endif
-#if INCLUDE_PROPERTY_STARTSERVICEMODE
-tmp_node = list_get_new_node(PROPERTY_STARTSERVICEMODE);
+#if INCLUDE_PROPERTY_STARTMEETING
+tmp_node = list_get_new_node(PROPERTY_STARTMEETING);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_FIRSTREQ
@@ -2681,6 +3433,10 @@ list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_PLACEDESCRIPTION
 tmp_node = list_get_new_node(PROPERTY_PLACEDESCRIPTION);
+list_add_node(tmp_node, CLASS_NOTHING->properties);
+#endif
+#if INCLUDE_PROPERTY_REMOVETIMESLOT
+tmp_node = list_get_new_node(PROPERTY_REMOVETIMESLOT);
 list_add_node(tmp_node, CLASS_NOTHING->properties);
 #endif
 #if INCLUDE_PROPERTY_VIDEOTITLE
@@ -2701,20 +3457,16 @@ CLASS_PRESENTATION->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_PRESENTATION);
 
-#if INCLUDE_PROPERTY_PRESENTATIONTAGS
-tmp_node = list_get_new_node(PROPERTY_PRESENTATIONTAGS);
-list_add_node(tmp_node, CLASS_PRESENTATION->properties);
-#endif
 #if INCLUDE_PROPERTY_PRESENTATIONTITLE
 tmp_node = list_get_new_node(PROPERTY_PRESENTATIONTITLE);
 list_add_node(tmp_node, CLASS_PRESENTATION->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_PRESENTATION->properties);
-#endif
 #if INCLUDE_PROPERTY_PRESENTATIONURL
 tmp_node = list_get_new_node(PROPERTY_PRESENTATIONURL);
+list_add_node(tmp_node, CLASS_PRESENTATION->properties);
+#endif
+#if INCLUDE_PROPERTY_PRESENTATIONTAGS
+tmp_node = list_get_new_node(PROPERTY_PRESENTATIONTAGS);
 list_add_node(tmp_node, CLASS_PRESENTATION->properties);
 #endif
 
@@ -2735,10 +3487,6 @@ sslog_repo_add_entity((void *) CLASS_SMARTROOM);
 tmp_node = list_get_new_node(PROPERTY_HASSERVICE);
 list_add_node(tmp_node, CLASS_SMARTROOM->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_SMARTROOM->properties);
-#endif
 
 #endif
 #if INCLUDE_CLASS_PERSON
@@ -2753,28 +3501,12 @@ CLASS_PERSON->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_PERSON);
 
-#if INCLUDE_PROPERTY_IMG
-tmp_node = list_get_new_node(PROPERTY_IMG);
-list_add_node(tmp_node, CLASS_PERSON->properties);
-#endif
 #if INCLUDE_PROPERTY_MBOX
 tmp_node = list_get_new_node(PROPERTY_MBOX);
 list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
 #if INCLUDE_PROPERTY_NAME
 tmp_node = list_get_new_node(PROPERTY_NAME);
-list_add_node(tmp_node, CLASS_PERSON->properties);
-#endif
-#if INCLUDE_PROPERTY_HASVIDEO
-tmp_node = list_get_new_node(PROPERTY_HASVIDEO);
-list_add_node(tmp_node, CLASS_PERSON->properties);
-#endif
-#if INCLUDE_PROPERTY_LANGUAGE
-tmp_node = list_get_new_node(PROPERTY_LANGUAGE);
-list_add_node(tmp_node, CLASS_PERSON->properties);
-#endif
-#if INCLUDE_PROPERTY_WLANMAC
-tmp_node = list_get_new_node(PROPERTY_WLANMAC);
 list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
 #if INCLUDE_PROPERTY_HASPRESENTATION
@@ -2789,12 +3521,28 @@ list_add_node(tmp_node, CLASS_PERSON->properties);
 tmp_node = list_get_new_node(PROPERTY_PHONE);
 list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
-#if INCLUDE_PROPERTY_TOPIC_INTEREST
-tmp_node = list_get_new_node(PROPERTY_TOPIC_INTEREST);
+#if INCLUDE_PROPERTY_ACCOUNT
+tmp_node = list_get_new_node(PROPERTY_ACCOUNT);
 list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
+#if INCLUDE_PROPERTY_IMG
+tmp_node = list_get_new_node(PROPERTY_IMG);
+list_add_node(tmp_node, CLASS_PERSON->properties);
+#endif
+#if INCLUDE_PROPERTY_HASVIDEO
+tmp_node = list_get_new_node(PROPERTY_HASVIDEO);
+list_add_node(tmp_node, CLASS_PERSON->properties);
+#endif
+#if INCLUDE_PROPERTY_LANGUAGE
+tmp_node = list_get_new_node(PROPERTY_LANGUAGE);
+list_add_node(tmp_node, CLASS_PERSON->properties);
+#endif
+#if INCLUDE_PROPERTY_WLANMAC
+tmp_node = list_get_new_node(PROPERTY_WLANMAC);
+list_add_node(tmp_node, CLASS_PERSON->properties);
+#endif
+#if INCLUDE_PROPERTY_TOPIC_INTEREST
+tmp_node = list_get_new_node(PROPERTY_TOPIC_INTEREST);
 list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
 #if INCLUDE_PROPERTY_CITY
@@ -2807,10 +3555,6 @@ list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
 #if INCLUDE_PROPERTY_STATUS
 tmp_node = list_get_new_node(PROPERTY_STATUS);
-list_add_node(tmp_node, CLASS_PERSON->properties);
-#endif
-#if INCLUDE_PROPERTY_ACCOUNT
-tmp_node = list_get_new_node(PROPERTY_ACCOUNT);
 list_add_node(tmp_node, CLASS_PERSON->properties);
 #endif
 
@@ -2831,13 +3575,65 @@ sslog_repo_add_entity((void *) CLASS_ACTIVITY);
 tmp_node = list_get_new_node(PROPERTY_ACTIVITYTITLE);
 list_add_node(tmp_node, CLASS_ACTIVITY->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_ACTIVITY->properties);
-#endif
 #if INCLUDE_PROPERTY_HASSECTION
 tmp_node = list_get_new_node(PROPERTY_HASSECTION);
 list_add_node(tmp_node, CLASS_ACTIVITY->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_PLACESLOT
+
+CLASS_PLACESLOT = (class_t *) malloc(sizeof(class_t));
+CLASS_PLACESLOT->rtti = RTTI_CLASS;
+CLASS_PLACESLOT->classtype =  strdup("http://www.cs.karelia.ru/smartroom#Placeslot");
+CLASS_PLACESLOT->properties = list_get_new_list();  
+CLASS_PLACESLOT->instances = NULL;
+CLASS_PLACESLOT->superclasses = list_get_new_list();  
+CLASS_PLACESLOT->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_PLACESLOT);
+
+#if INCLUDE_PROPERTY_PLACESLOTRATING
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTRATING);
+list_add_node(tmp_node, CLASS_PLACESLOT->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTMINUSRATING
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTMINUSRATING);
+list_add_node(tmp_node, CLASS_PLACESLOT->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTPLUSRATING
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTPLUSRATING);
+list_add_node(tmp_node, CLASS_PLACESLOT->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACESLOTPRESENTPLACE
+tmp_node = list_get_new_node(PROPERTY_PLACESLOTPRESENTPLACE);
+list_add_node(tmp_node, CLASS_PLACESLOT->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_DSNOTIFICATIONPARAMETER
+
+CLASS_DSNOTIFICATIONPARAMETER = (class_t *) malloc(sizeof(class_t));
+CLASS_DSNOTIFICATIONPARAMETER->rtti = RTTI_CLASS;
+CLASS_DSNOTIFICATIONPARAMETER->classtype =  strdup("http://www.cs.karelia.ru/smartroom#DSNotificationParameter");
+CLASS_DSNOTIFICATIONPARAMETER->properties = list_get_new_list();  
+CLASS_DSNOTIFICATIONPARAMETER->instances = NULL;
+CLASS_DSNOTIFICATIONPARAMETER->superclasses = list_get_new_list();  
+CLASS_DSNOTIFICATIONPARAMETER->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_DSNOTIFICATIONPARAMETER);
+
+#if INCLUDE_PROPERTY_NOTIFICATIONNUMBERPARAMETER
+tmp_node = list_get_new_node(PROPERTY_NOTIFICATIONNUMBERPARAMETER);
+list_add_node(tmp_node, CLASS_DSNOTIFICATIONPARAMETER->properties);
+#endif
+#if INCLUDE_PROPERTY_HASSERVICEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_HASSERVICEPARAMETER);
+list_add_node(tmp_node, CLASS_DSNOTIFICATIONPARAMETER->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICEINFORMATIONPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SERVICEINFORMATIONPARAMETER);
+list_add_node(tmp_node, CLASS_DSNOTIFICATIONPARAMETER->properties);
 #endif
 
 #endif
@@ -2865,14 +3661,6 @@ list_add_node(tmp_node, CLASS_PLACE->properties);
 tmp_node = list_get_new_node(PROPERTY_PLACETITLE);
 list_add_node(tmp_node, CLASS_PLACE->properties);
 #endif
-#if INCLUDE_PROPERTY_PLACEFOUNDINGDATE
-tmp_node = list_get_new_node(PROPERTY_PLACEFOUNDINGDATE);
-list_add_node(tmp_node, CLASS_PLACE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_PLACE->properties);
-#endif
 #if INCLUDE_PROPERTY_PLACEHASRELATION
 tmp_node = list_get_new_node(PROPERTY_PLACEHASRELATION);
 list_add_node(tmp_node, CLASS_PLACE->properties);
@@ -2881,9 +3669,31 @@ list_add_node(tmp_node, CLASS_PLACE->properties);
 tmp_node = list_get_new_node(PROPERTY_PLACELATITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_PLACE->properties);
 #endif
+#if INCLUDE_PROPERTY_PLACEFOUNDINGDATE
+tmp_node = list_get_new_node(PROPERTY_PLACEFOUNDINGDATE);
+list_add_node(tmp_node, CLASS_PLACE->properties);
+#endif
 #if INCLUDE_PROPERTY_PLACEDESCRIPTION
 tmp_node = list_get_new_node(PROPERTY_PLACEDESCRIPTION);
 list_add_node(tmp_node, CLASS_PLACE->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_WEBSERVERNOTIFICATION
+
+CLASS_WEBSERVERNOTIFICATION = (class_t *) malloc(sizeof(class_t));
+CLASS_WEBSERVERNOTIFICATION->rtti = RTTI_CLASS;
+CLASS_WEBSERVERNOTIFICATION->classtype =  strdup("http://www.cs.karelia.ru/smartroom#WebServerNotification");
+CLASS_WEBSERVERNOTIFICATION->properties = list_get_new_list();  
+CLASS_WEBSERVERNOTIFICATION->instances = NULL;
+CLASS_WEBSERVERNOTIFICATION->superclasses = list_get_new_list();  
+CLASS_WEBSERVERNOTIFICATION->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_WEBSERVERNOTIFICATION);
+
+#if INCLUDE_PROPERTY_STARTUPDATESERVICEPAGE
+tmp_node = list_get_new_node(PROPERTY_STARTUPDATESERVICEPAGE);
+list_add_node(tmp_node, CLASS_WEBSERVERNOTIFICATION->properties);
 #endif
 
 #endif
@@ -2903,6 +3713,10 @@ sslog_repo_add_entity((void *) CLASS_DISCUSSIONSERVICE);
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
 list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
 #endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
+#endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
 tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
 list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
@@ -2915,17 +3729,55 @@ list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
 list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
 list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->properties);
+
+#endif
+#if INCLUDE_CLASS_SOCIALPROGRAMSERVICE
+
+CLASS_SOCIALPROGRAMSERVICE = (class_t *) malloc(sizeof(class_t));
+CLASS_SOCIALPROGRAMSERVICE->rtti = RTTI_CLASS;
+CLASS_SOCIALPROGRAMSERVICE->classtype =  strdup("http://www.cs.karelia.ru/smartroom#SocialProgramService");
+CLASS_SOCIALPROGRAMSERVICE->properties = list_get_new_list();  
+CLASS_SOCIALPROGRAMSERVICE->instances = NULL;
+CLASS_SOCIALPROGRAMSERVICE->superclasses = list_get_new_list();  
+CLASS_SOCIALPROGRAMSERVICE->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_SOCIALPROGRAMSERVICE);
+
+#if INCLUDE_PROPERTY_HASPRESENTATIONSERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSOCIALPROGRAM
+tmp_node = list_get_new_node(PROPERTY_CURRENTSOCIALPROGRAM);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICESTATUS
+tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICEDESCRIPTION
+tmp_node = list_get_new_node(PROPERTY_SERVICEDESCRIPTION);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_PRESENTSOCIALPROGRAM
+tmp_node = list_get_new_node(PROPERTY_PRESENTSOCIALPROGRAM);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICENAME
+tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASCLIENTURL
+tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->properties);
 #endif
 
 #endif
@@ -2941,16 +3793,24 @@ CLASS_PRESENTATIONSERVICE->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_PRESENTATIONSERVICE);
 
-#if INCLUDE_PROPERTY_CURRENTSLIDECOUNT
-tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDECOUNT);
-list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_HASPRESENTATIONSERVICEURL
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
 list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
 #endif
 #if INCLUDE_PROPERTY_CURRENTSLIDEIMG
 tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDEIMG);
+list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSLIDENUM
+tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDENUM);
+list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_CURRENTSLIDECOUNT
+tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDECOUNT);
 list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
 #endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
@@ -2965,24 +3825,12 @@ list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
 list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_CURRENTPRESENTATION
 tmp_node = list_get_new_node(PROPERTY_CURRENTPRESENTATION);
 list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
 #endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
-list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_CURRENTSLIDENUM
-tmp_node = list_get_new_node(PROPERTY_CURRENTSLIDENUM);
 list_add_node(tmp_node, CLASS_PRESENTATIONSERVICE->properties);
 #endif
 
@@ -2999,10 +3847,6 @@ CLASS_VIDEO->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_VIDEO);
 
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_VIDEO->properties);
-#endif
 #if INCLUDE_PROPERTY_VIDEOURL
 tmp_node = list_get_new_node(PROPERTY_VIDEOURL);
 list_add_node(tmp_node, CLASS_VIDEO->properties);
@@ -3029,6 +3873,10 @@ sslog_repo_add_entity((void *) CLASS_SERVICE);
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
 list_add_node(tmp_node, CLASS_SERVICE->properties);
 #endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_SERVICE->properties);
+#endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
 tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
 list_add_node(tmp_node, CLASS_SERVICE->properties);
@@ -3041,16 +3889,8 @@ list_add_node(tmp_node, CLASS_SERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
 list_add_node(tmp_node, CLASS_SERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_SERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
-list_add_node(tmp_node, CLASS_SERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
 list_add_node(tmp_node, CLASS_SERVICE->properties);
 #endif
 
@@ -3067,10 +3907,6 @@ CLASS_PHOTO->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_PHOTO);
 
-#if INCLUDE_PROPERTY_PHOTOMEDIUMURL
-tmp_node = list_get_new_node(PROPERTY_PHOTOMEDIUMURL);
-list_add_node(tmp_node, CLASS_PHOTO->properties);
-#endif
 #if INCLUDE_PROPERTY_PHOTOTHUMBNAILURL
 tmp_node = list_get_new_node(PROPERTY_PHOTOTHUMBNAILURL);
 list_add_node(tmp_node, CLASS_PHOTO->properties);
@@ -3079,24 +3915,24 @@ list_add_node(tmp_node, CLASS_PHOTO->properties);
 tmp_node = list_get_new_node(PROPERTY_PHOTOLATITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_PHOTO->properties);
 #endif
-#if INCLUDE_PROPERTY_PHOTODESCRIPTION
-tmp_node = list_get_new_node(PROPERTY_PHOTODESCRIPTION);
+#if INCLUDE_PROPERTY_PHOTOURL
+tmp_node = list_get_new_node(PROPERTY_PHOTOURL);
+list_add_node(tmp_node, CLASS_PHOTO->properties);
+#endif
+#if INCLUDE_PROPERTY_PHOTOMEDIUMURL
+tmp_node = list_get_new_node(PROPERTY_PHOTOMEDIUMURL);
 list_add_node(tmp_node, CLASS_PHOTO->properties);
 #endif
 #if INCLUDE_PROPERTY_PHOTOLONGITUDECOORDINATE
 tmp_node = list_get_new_node(PROPERTY_PHOTOLONGITUDECOORDINATE);
 list_add_node(tmp_node, CLASS_PHOTO->properties);
 #endif
-#if INCLUDE_PROPERTY_PHOTOURL
-tmp_node = list_get_new_node(PROPERTY_PHOTOURL);
+#if INCLUDE_PROPERTY_PHOTODESCRIPTION
+tmp_node = list_get_new_node(PROPERTY_PHOTODESCRIPTION);
 list_add_node(tmp_node, CLASS_PHOTO->properties);
 #endif
 #if INCLUDE_PROPERTY_PHOTOTITLE
 tmp_node = list_get_new_node(PROPERTY_PHOTOTITLE);
-list_add_node(tmp_node, CLASS_PHOTO->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
 list_add_node(tmp_node, CLASS_PHOTO->properties);
 #endif
 
@@ -3121,6 +3957,10 @@ list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_LASTREQ);
 list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
 #endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
+#endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
 tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
 list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
@@ -3133,16 +3973,8 @@ list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
 list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
-list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
 list_add_node(tmp_node, CLASS_QUEUESERVICE->properties);
 #endif
 #if INCLUDE_PROPERTY_FIRSTREQ
@@ -3171,9 +4003,95 @@ list_add_node(tmp_node, CLASS_NOTIFICATIONPARAMETER->properties);
 tmp_node = list_get_new_node(PROPERTY_SECTIONPARAMETER);
 list_add_node(tmp_node, CLASS_NOTIFICATIONPARAMETER->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_NOTIFICATIONPARAMETER->properties);
+
+#endif
+#if INCLUDE_CLASS_SOCIALPROGRAM
+
+CLASS_SOCIALPROGRAM = (class_t *) malloc(sizeof(class_t));
+CLASS_SOCIALPROGRAM->rtti = RTTI_CLASS;
+CLASS_SOCIALPROGRAM->classtype =  strdup("http://www.cs.karelia.ru/smartroom#SocialProgram");
+CLASS_SOCIALPROGRAM->properties = list_get_new_list();  
+CLASS_SOCIALPROGRAM->instances = NULL;
+CLASS_SOCIALPROGRAM->superclasses = list_get_new_list();  
+CLASS_SOCIALPROGRAM->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_SOCIALPROGRAM);
+
+#if INCLUDE_PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMPRESENTPLACESLOT);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAM->properties);
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMLATITUDECOORDINATE);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAM->properties);
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMTITLE
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMTITLE);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAM->properties);
+#endif
+#if INCLUDE_PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE
+tmp_node = list_get_new_node(PROPERTY_SOCIALPROGRAMLONGITUDECOORDINATE);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAM->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_MEETINGNOTIFICATION
+
+CLASS_MEETINGNOTIFICATION = (class_t *) malloc(sizeof(class_t));
+CLASS_MEETINGNOTIFICATION->rtti = RTTI_CLASS;
+CLASS_MEETINGNOTIFICATION->classtype =  strdup("http://www.cs.karelia.ru/smartroom#MeetingNotification");
+CLASS_MEETINGNOTIFICATION->properties = list_get_new_list();  
+CLASS_MEETINGNOTIFICATION->instances = NULL;
+CLASS_MEETINGNOTIFICATION->superclasses = list_get_new_list();  
+CLASS_MEETINGNOTIFICATION->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_MEETINGNOTIFICATION);
+
+#if INCLUDE_PROPERTY_STARTMEETINGFROM
+tmp_node = list_get_new_node(PROPERTY_STARTMEETINGFROM);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_ENDPRESENTATION
+tmp_node = list_get_new_node(PROPERTY_ENDPRESENTATION);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_ENDMEETING
+tmp_node = list_get_new_node(PROPERTY_ENDMEETING);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_ADDTIMESLOT
+tmp_node = list_get_new_node(PROPERTY_ADDTIMESLOT);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_STARTMEETING
+tmp_node = list_get_new_node(PROPERTY_STARTMEETING);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_REMOVETIMESLOT
+tmp_node = list_get_new_node(PROPERTY_REMOVETIMESLOT);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_REQUEST
+
+CLASS_REQUEST = (class_t *) malloc(sizeof(class_t));
+CLASS_REQUEST->rtti = RTTI_CLASS;
+CLASS_REQUEST->classtype =  strdup("http://www.cs.karelia.ru/smartroom#Request");
+CLASS_REQUEST->properties = list_get_new_list();  
+CLASS_REQUEST->instances = NULL;
+CLASS_REQUEST->superclasses = list_get_new_list();  
+CLASS_REQUEST->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_REQUEST);
+
+#if INCLUDE_PROPERTY_REQUESTUSERNAME
+tmp_node = list_get_new_node(PROPERTY_REQUESTUSERNAME);
+list_add_node(tmp_node, CLASS_REQUEST->properties);
+#endif
+#if INCLUDE_PROPERTY_HASSTATE
+tmp_node = list_get_new_node(PROPERTY_HASSTATE);
+list_add_node(tmp_node, CLASS_REQUEST->properties);
 #endif
 
 #endif
@@ -3197,6 +4115,10 @@ list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
 list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
 #endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
+#endif
 #if INCLUDE_PROPERTY_SERVICESTATUS
 tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
 list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
@@ -3213,43 +4135,9 @@ list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
 tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
 list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
 #endif
-#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
-tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
-list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
-#endif
 #if INCLUDE_PROPERTY_HASCLIENTURL
 tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
 list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_MICROPHONESERVICE->properties);
-#endif
-
-#endif
-#if INCLUDE_CLASS_REQUEST
-
-CLASS_REQUEST = (class_t *) malloc(sizeof(class_t));
-CLASS_REQUEST->rtti = RTTI_CLASS;
-CLASS_REQUEST->classtype =  strdup("http://www.cs.karelia.ru/smartroom#Request");
-CLASS_REQUEST->properties = list_get_new_list();  
-CLASS_REQUEST->instances = NULL;
-CLASS_REQUEST->superclasses = list_get_new_list();  
-CLASS_REQUEST->oneof = list_get_new_list();  
-
-sslog_repo_add_entity((void *) CLASS_REQUEST);
-
-#if INCLUDE_PROPERTY_REQUESTUSERNAME
-tmp_node = list_get_new_node(PROPERTY_REQUESTUSERNAME);
-list_add_node(tmp_node, CLASS_REQUEST->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_REQUEST->properties);
-#endif
-#if INCLUDE_PROPERTY_HASSTATE
-tmp_node = list_get_new_node(PROPERTY_HASSTATE);
-list_add_node(tmp_node, CLASS_REQUEST->properties);
 #endif
 
 #endif
@@ -3265,6 +4153,10 @@ CLASS_AGENDANOTIFICATION->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_AGENDANOTIFICATION);
 
+#if INCLUDE_PROPERTY_STARTSERVICEMODE
+tmp_node = list_get_new_node(PROPERTY_STARTSERVICEMODE);
+list_add_node(tmp_node, CLASS_AGENDANOTIFICATION->properties);
+#endif
 #if INCLUDE_PROPERTY_STOPSERVICEMODE
 tmp_node = list_get_new_node(PROPERTY_STOPSERVICEMODE);
 list_add_node(tmp_node, CLASS_AGENDANOTIFICATION->properties);
@@ -3277,9 +4169,39 @@ list_add_node(tmp_node, CLASS_AGENDANOTIFICATION->properties);
 tmp_node = list_get_new_node(PROPERTY_STARTCONFERENCE);
 list_add_node(tmp_node, CLASS_AGENDANOTIFICATION->properties);
 #endif
-#if INCLUDE_PROPERTY_STARTSERVICEMODE
-tmp_node = list_get_new_node(PROPERTY_STARTSERVICEMODE);
+#if INCLUDE_PROPERTY_STARTMEETING
+tmp_node = list_get_new_node(PROPERTY_STARTMEETING);
 list_add_node(tmp_node, CLASS_AGENDANOTIFICATION->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_SEARCHACTIVITYPARAMETER
+
+CLASS_SEARCHACTIVITYPARAMETER = (class_t *) malloc(sizeof(class_t));
+CLASS_SEARCHACTIVITYPARAMETER->rtti = RTTI_CLASS;
+CLASS_SEARCHACTIVITYPARAMETER->classtype =  strdup("http://www.cs.karelia.ru/smartroom#SearchActivityParameter");
+CLASS_SEARCHACTIVITYPARAMETER->properties = list_get_new_list();  
+CLASS_SEARCHACTIVITYPARAMETER->instances = NULL;
+CLASS_SEARCHACTIVITYPARAMETER->superclasses = list_get_new_list();  
+CLASS_SEARCHACTIVITYPARAMETER->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_SEARCHACTIVITYPARAMETER);
+
+#if INCLUDE_PROPERTY_SEARCHVARIABLEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SEARCHVARIABLEPARAMETER);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITYPARAMETER->properties);
+#endif
+#if INCLUDE_PROPERTY_FROMSERVICEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_FROMSERVICEPARAMETER);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITYPARAMETER->properties);
+#endif
+#if INCLUDE_PROPERTY_SEARCHTYPEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_SEARCHTYPEPARAMETER);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITYPARAMETER->properties);
+#endif
+#if INCLUDE_PROPERTY_PLACEPARAMETER
+tmp_node = list_get_new_node(PROPERTY_PLACEPARAMETER);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITYPARAMETER->properties);
 #endif
 
 #endif
@@ -3299,20 +4221,8 @@ sslog_repo_add_entity((void *) CLASS_PRESENTATIONNOTIFICATION);
 tmp_node = list_get_new_node(PROPERTY_STOPVIDEO);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
 #endif
-#if INCLUDE_PROPERTY_SHOWSUMMARYSLIDE
-tmp_node = list_get_new_node(PROPERTY_SHOWSUMMARYSLIDE);
-list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
-#endif
-#if INCLUDE_PROPERTY_STOPSERVICEMODE
-tmp_node = list_get_new_node(PROPERTY_STOPSERVICEMODE);
-list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
-#endif
 #if INCLUDE_PROPERTY_STARTPRESENTATION
 tmp_node = list_get_new_node(PROPERTY_STARTPRESENTATION);
-list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
-#endif
-#if INCLUDE_PROPERTY_ENDPRESENTATION
-tmp_node = list_get_new_node(PROPERTY_ENDPRESENTATION);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
 #endif
 #if INCLUDE_PROPERTY_ENDCONFERENCE
@@ -3323,21 +4233,51 @@ list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
 tmp_node = list_get_new_node(PROPERTY_STARTVIDEO);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
+#if INCLUDE_PROPERTY_STARTSERVICEMODE
+tmp_node = list_get_new_node(PROPERTY_STARTSERVICEMODE);
+list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_SHOWSUMMARYSLIDE
+tmp_node = list_get_new_node(PROPERTY_SHOWSUMMARYSLIDE);
+list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_STOPSERVICEMODE
+tmp_node = list_get_new_node(PROPERTY_STOPSERVICEMODE);
+list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_ENDPRESENTATION
+tmp_node = list_get_new_node(PROPERTY_ENDPRESENTATION);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
 #endif
 #if INCLUDE_PROPERTY_SHOWSLIDE
 tmp_node = list_get_new_node(PROPERTY_SHOWSLIDE);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
 #endif
-#if INCLUDE_PROPERTY_STARTSERVICEMODE
-tmp_node = list_get_new_node(PROPERTY_STARTSERVICEMODE);
-list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
-#endif
 #if INCLUDE_PROPERTY_UPDATEPRESENTATION
 tmp_node = list_get_new_node(PROPERTY_UPDATEPRESENTATION);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_SOCIALPROGRAMNOTIFICATION
+
+CLASS_SOCIALPROGRAMNOTIFICATION = (class_t *) malloc(sizeof(class_t));
+CLASS_SOCIALPROGRAMNOTIFICATION->rtti = RTTI_CLASS;
+CLASS_SOCIALPROGRAMNOTIFICATION->classtype =  strdup("http://www.cs.karelia.ru/smartroom#SocialProgramNotification");
+CLASS_SOCIALPROGRAMNOTIFICATION->properties = list_get_new_list();  
+CLASS_SOCIALPROGRAMNOTIFICATION->instances = NULL;
+CLASS_SOCIALPROGRAMNOTIFICATION->superclasses = list_get_new_list();  
+CLASS_SOCIALPROGRAMNOTIFICATION->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_SOCIALPROGRAMNOTIFICATION);
+
+#if INCLUDE_PROPERTY_VOTEUPDATE
+tmp_node = list_get_new_node(PROPERTY_VOTEUPDATE);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_STOPUPDATESERVICEPAGE
+tmp_node = list_get_new_node(PROPERTY_STOPUPDATESERVICEPAGE);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMNOTIFICATION->properties);
 #endif
 
 #endif
@@ -3357,13 +4297,47 @@ sslog_repo_add_entity((void *) CLASS_QUEUEHEAD);
 tmp_node = list_get_new_node(PROPERTY_ISBUSY);
 list_add_node(tmp_node, CLASS_QUEUEHEAD->properties);
 #endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_QUEUEHEAD->properties);
-#endif
 #if INCLUDE_PROPERTY_HEADUSERNAME
 tmp_node = list_get_new_node(PROPERTY_HEADUSERNAME);
 list_add_node(tmp_node, CLASS_QUEUEHEAD->properties);
+#endif
+
+#endif
+#if INCLUDE_CLASS_MEETINGSERVICE
+
+CLASS_MEETINGSERVICE = (class_t *) malloc(sizeof(class_t));
+CLASS_MEETINGSERVICE->rtti = RTTI_CLASS;
+CLASS_MEETINGSERVICE->classtype =  strdup("http://www.cs.karelia.ru/smartroom#MeetingService");
+CLASS_MEETINGSERVICE->properties = list_get_new_list();  
+CLASS_MEETINGSERVICE->instances = NULL;
+CLASS_MEETINGSERVICE->superclasses = list_get_new_list();  
+CLASS_MEETINGSERVICE->oneof = list_get_new_list();  
+
+sslog_repo_add_entity((void *) CLASS_MEETINGSERVICE);
+
+#if INCLUDE_PROPERTY_HASPRESENTATIONSERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASPRESENTATIONSERVICEURL);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASAGENDASERVICEURL
+tmp_node = list_get_new_node(PROPERTY_HASAGENDASERVICEURL);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICESTATUS
+tmp_node = list_get_new_node(PROPERTY_SERVICESTATUS);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICEDESCRIPTION
+tmp_node = list_get_new_node(PROPERTY_SERVICEDESCRIPTION);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_SERVICENAME
+tmp_node = list_get_new_node(PROPERTY_SERVICENAME);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->properties);
+#endif
+#if INCLUDE_PROPERTY_HASCLIENTURL
+tmp_node = list_get_new_node(PROPERTY_HASCLIENTURL);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->properties);
 #endif
 
 #endif
@@ -3379,10 +4353,6 @@ CLASS_THING->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_THING);
 
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_THING->properties);
-#endif
 
 #endif
 #if INCLUDE_CLASS_CONTEXT
@@ -3397,10 +4367,6 @@ CLASS_CONTEXT->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_CONTEXT);
 
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_CONTEXT->properties);
-#endif
 
 #endif
 #if INCLUDE_CLASS_CLIENTNOTIFICATION
@@ -3417,6 +4383,10 @@ sslog_repo_add_entity((void *) CLASS_CLIENTNOTIFICATION);
 
 #if INCLUDE_PROPERTY_STARTPRESENTATION
 tmp_node = list_get_new_node(PROPERTY_STARTPRESENTATION);
+list_add_node(tmp_node, CLASS_CLIENTNOTIFICATION->properties);
+#endif
+#if INCLUDE_PROPERTY_UPDATESERVICEINFORMATION
+tmp_node = list_get_new_node(PROPERTY_UPDATESERVICEINFORMATION);
 list_add_node(tmp_node, CLASS_CLIENTNOTIFICATION->properties);
 #endif
 #if INCLUDE_PROPERTY_ENDPRESENTATION
@@ -3441,10 +4411,6 @@ CLASS_ONLINEACCOUNT->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_ONLINEACCOUNT);
 
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
-list_add_node(tmp_node, CLASS_ONLINEACCOUNT->properties);
-#endif
 
 #endif
 #if INCLUDE_CLASS_SECTION
@@ -3463,12 +4429,16 @@ sslog_repo_add_entity((void *) CLASS_SECTION);
 tmp_node = list_get_new_node(PROPERTY_SECTIONDATE);
 list_add_node(tmp_node, CLASS_SECTION->properties);
 #endif
-#if INCLUDE_PROPERTY_SECTIONSTARTTIME
-tmp_node = list_get_new_node(PROPERTY_SECTIONSTARTTIME);
-list_add_node(tmp_node, CLASS_SECTION->properties);
-#endif
 #if INCLUDE_PROPERTY_FIRSTTIMESLOT
 tmp_node = list_get_new_node(PROPERTY_FIRSTTIMESLOT);
+list_add_node(tmp_node, CLASS_SECTION->properties);
+#endif
+#if INCLUDE_PROPERTY_SECTIONTITLE
+tmp_node = list_get_new_node(PROPERTY_SECTIONTITLE);
+list_add_node(tmp_node, CLASS_SECTION->properties);
+#endif
+#if INCLUDE_PROPERTY_SECTIONSTARTTIME
+tmp_node = list_get_new_node(PROPERTY_SECTIONSTARTTIME);
 list_add_node(tmp_node, CLASS_SECTION->properties);
 #endif
 #if INCLUDE_PROPERTY_SECTIONACTUALSTARTTIME
@@ -3477,14 +4447,6 @@ list_add_node(tmp_node, CLASS_SECTION->properties);
 #endif
 #if INCLUDE_PROPERTY_CURRENTTIMESLOT
 tmp_node = list_get_new_node(PROPERTY_CURRENTTIMESLOT);
-list_add_node(tmp_node, CLASS_SECTION->properties);
-#endif
-#if INCLUDE_PROPERTY_SECTIONTITLE
-tmp_node = list_get_new_node(PROPERTY_SECTIONTITLE);
-list_add_node(tmp_node, CLASS_SECTION->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
 list_add_node(tmp_node, CLASS_SECTION->properties);
 #endif
 
@@ -3501,20 +4463,16 @@ CLASS_CONFERENCENOTIFICATION->oneof = list_get_new_list();
 
 sslog_repo_add_entity((void *) CLASS_CONFERENCENOTIFICATION);
 
+#if INCLUDE_PROPERTY_ENDCONFERENCE
+tmp_node = list_get_new_node(PROPERTY_ENDCONFERENCE);
+list_add_node(tmp_node, CLASS_CONFERENCENOTIFICATION->properties);
+#endif
 #if INCLUDE_PROPERTY_STARTCONFERENCEFROM
 tmp_node = list_get_new_node(PROPERTY_STARTCONFERENCEFROM);
 list_add_node(tmp_node, CLASS_CONFERENCENOTIFICATION->properties);
 #endif
 #if INCLUDE_PROPERTY_ENDPRESENTATION
 tmp_node = list_get_new_node(PROPERTY_ENDPRESENTATION);
-list_add_node(tmp_node, CLASS_CONFERENCENOTIFICATION->properties);
-#endif
-#if INCLUDE_PROPERTY_ENDCONFERENCE
-tmp_node = list_get_new_node(PROPERTY_ENDCONFERENCE);
-list_add_node(tmp_node, CLASS_CONFERENCENOTIFICATION->properties);
-#endif
-#if INCLUDE_PROPERTY_UPDATEAGENDA
-tmp_node = list_get_new_node(PROPERTY_UPDATEAGENDA);
 list_add_node(tmp_node, CLASS_CONFERENCENOTIFICATION->properties);
 #endif
 #if INCLUDE_PROPERTY_STARTCONFERENCE
@@ -3525,6 +4483,12 @@ list_add_node(tmp_node, CLASS_CONFERENCENOTIFICATION->properties);
 #endif
 
 
+#if INCLUDE_CLASS_SEARCHACTIVITY
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITY->superclasses);
+#endif
+#endif
 #if INCLUDE_CLASS_PROFILE
 #if INCLUDE_CLASS_THING
 tmp_node = list_get_new_node(CLASS_THING);
@@ -3543,16 +4507,22 @@ tmp_node = list_get_new_node(CLASS_SERVICE);
 list_add_node(tmp_node, CLASS_CONFERENCESERVICE->superclasses);
 #endif
 #endif
+#if INCLUDE_CLASS_CONTROLLREQUEST
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_CONTROLLREQUEST->superclasses);
+#endif
+#endif
 #if INCLUDE_CLASS_CONTENTSERVICE
 #if INCLUDE_CLASS_SERVICE
 tmp_node = list_get_new_node(CLASS_SERVICE);
 list_add_node(tmp_node, CLASS_CONTENTSERVICE->superclasses);
 #endif
 #endif
-#if INCLUDE_CLASS_CONTROLLREQUEST
-#if INCLUDE_CLASS_THING
-tmp_node = list_get_new_node(CLASS_THING);
-list_add_node(tmp_node, CLASS_CONTROLLREQUEST->superclasses);
+#if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_SEARCHACTIVITY
+tmp_node = list_get_new_node(CLASS_SEARCHACTIVITY);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
@@ -3574,14 +4544,14 @@ list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
-#if INCLUDE_CLASS_CONTROLLREQUEST
-tmp_node = list_get_new_node(CLASS_CONTROLLREQUEST);
+#if INCLUDE_CLASS_CONTENTSERVICE
+tmp_node = list_get_new_node(CLASS_CONTENTSERVICE);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
-#if INCLUDE_CLASS_CONTENTSERVICE
-tmp_node = list_get_new_node(CLASS_CONTENTSERVICE);
+#if INCLUDE_CLASS_CONTROLLREQUEST
+tmp_node = list_get_new_node(CLASS_CONTROLLREQUEST);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
@@ -3610,14 +4580,38 @@ list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_PLACESLOT
+tmp_node = list_get_new_node(CLASS_PLACESLOT);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_DSNOTIFICATIONPARAMETER
+tmp_node = list_get_new_node(CLASS_DSNOTIFICATIONPARAMETER);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
 #if INCLUDE_CLASS_PLACE
 tmp_node = list_get_new_node(CLASS_PLACE);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_WEBSERVERNOTIFICATION
+tmp_node = list_get_new_node(CLASS_WEBSERVERNOTIFICATION);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
 #if INCLUDE_CLASS_DISCUSSIONSERVICE
 tmp_node = list_get_new_node(CLASS_DISCUSSIONSERVICE);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_SOCIALPROGRAMSERVICE
+tmp_node = list_get_new_node(CLASS_SOCIALPROGRAMSERVICE);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
@@ -3652,6 +4646,12 @@ list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_SOCIALPROGRAM
+tmp_node = list_get_new_node(CLASS_SOCIALPROGRAM);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
 #if INCLUDE_CLASS_MICROPHONESERVICE
 tmp_node = list_get_new_node(CLASS_MICROPHONESERVICE);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
@@ -3660,6 +4660,18 @@ list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #if INCLUDE_CLASS_NOTHING
 #if INCLUDE_CLASS_REQUEST
 tmp_node = list_get_new_node(CLASS_REQUEST);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_MEETINGNOTIFICATION
+tmp_node = list_get_new_node(CLASS_MEETINGNOTIFICATION);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_SEARCHACTIVITYPARAMETER
+tmp_node = list_get_new_node(CLASS_SEARCHACTIVITYPARAMETER);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
@@ -3676,8 +4688,20 @@ list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_SOCIALPROGRAMNOTIFICATION
+tmp_node = list_get_new_node(CLASS_SOCIALPROGRAMNOTIFICATION);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
 #if INCLUDE_CLASS_QUEUEHEAD
 tmp_node = list_get_new_node(CLASS_QUEUEHEAD);
+list_add_node(tmp_node, CLASS_NOTHING->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_NOTHING
+#if INCLUDE_CLASS_MEETINGSERVICE
+tmp_node = list_get_new_node(CLASS_MEETINGSERVICE);
 list_add_node(tmp_node, CLASS_NOTHING->superclasses);
 #endif
 #endif
@@ -3735,16 +4759,40 @@ tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_ACTIVITY->superclasses);
 #endif
 #endif
+#if INCLUDE_CLASS_PLACESLOT
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_PLACESLOT->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_DSNOTIFICATIONPARAMETER
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_DSNOTIFICATIONPARAMETER->superclasses);
+#endif
+#endif
 #if INCLUDE_CLASS_PLACE
 #if INCLUDE_CLASS_THING
 tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_PLACE->superclasses);
 #endif
 #endif
+#if INCLUDE_CLASS_WEBSERVERNOTIFICATION
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_WEBSERVERNOTIFICATION->superclasses);
+#endif
+#endif
 #if INCLUDE_CLASS_DISCUSSIONSERVICE
 #if INCLUDE_CLASS_SERVICE
 tmp_node = list_get_new_node(CLASS_SERVICE);
 list_add_node(tmp_node, CLASS_DISCUSSIONSERVICE->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_SOCIALPROGRAMSERVICE
+#if INCLUDE_CLASS_SERVICE
+tmp_node = list_get_new_node(CLASS_SERVICE);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMSERVICE->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_PRESENTATIONSERVICE
@@ -3783,10 +4831,16 @@ tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_NOTIFICATIONPARAMETER->superclasses);
 #endif
 #endif
-#if INCLUDE_CLASS_MICROPHONESERVICE
-#if INCLUDE_CLASS_SERVICE
-tmp_node = list_get_new_node(CLASS_SERVICE);
-list_add_node(tmp_node, CLASS_MICROPHONESERVICE->superclasses);
+#if INCLUDE_CLASS_SOCIALPROGRAM
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAM->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_MEETINGNOTIFICATION
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_MEETINGNOTIFICATION->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_REQUEST
@@ -3795,10 +4849,22 @@ tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_REQUEST->superclasses);
 #endif
 #endif
+#if INCLUDE_CLASS_MICROPHONESERVICE
+#if INCLUDE_CLASS_SERVICE
+tmp_node = list_get_new_node(CLASS_SERVICE);
+list_add_node(tmp_node, CLASS_MICROPHONESERVICE->superclasses);
+#endif
+#endif
 #if INCLUDE_CLASS_AGENDANOTIFICATION
 #if INCLUDE_CLASS_THING
 tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_AGENDANOTIFICATION->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_SEARCHACTIVITYPARAMETER
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_SEARCHACTIVITYPARAMETER->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_PRESENTATIONNOTIFICATION
@@ -3807,10 +4873,22 @@ tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_PRESENTATIONNOTIFICATION->superclasses);
 #endif
 #endif
+#if INCLUDE_CLASS_SOCIALPROGRAMNOTIFICATION
+#if INCLUDE_CLASS_THING
+tmp_node = list_get_new_node(CLASS_THING);
+list_add_node(tmp_node, CLASS_SOCIALPROGRAMNOTIFICATION->superclasses);
+#endif
+#endif
 #if INCLUDE_CLASS_QUEUEHEAD
 #if INCLUDE_CLASS_THING
 tmp_node = list_get_new_node(CLASS_THING);
 list_add_node(tmp_node, CLASS_QUEUEHEAD->superclasses);
+#endif
+#endif
+#if INCLUDE_CLASS_MEETINGSERVICE
+#if INCLUDE_CLASS_SERVICE
+tmp_node = list_get_new_node(CLASS_SERVICE);
+list_add_node(tmp_node, CLASS_MEETINGSERVICE->superclasses);
 #endif
 #endif
 #if INCLUDE_CLASS_CONTEXT

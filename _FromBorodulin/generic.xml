@@ -282,7 +282,17 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
 </owl:DatatypeProperty>
 
-<!-- Class Agenda Service (subclass of Service) -->
+<!-- Class MeetingService (subclass of Service) -->
+<owl:Class rdf:ID="MeetingService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:ID="currentSection">
+    <rdfs:domain rdf:resource="#MeetingService"/>
+    <rdfs:range rdf:resource="#Section"/>
+</owl:ObjectProperty>
+
+<!-- Class ConferenceService (subclass of Service) -->
 <owl:Class rdf:ID="ConferenceService">
     <rdfs:subClassOf rdf:resource="#Service"/>
 </owl:Class>
@@ -292,7 +302,7 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:range rdf:resource="#Section"/>
 </owl:ObjectProperty>
 
-<!-- AgendaService properties -->
+<!-- ConferenceService properties -->
 <owl:ObjectProperty rdf:ID="holdsActivity">
     <rdfs:domain rdf:resource="#ConferenceService"/>
     <rdfs:range rdf:resource="#Activity"/>
@@ -480,6 +490,42 @@ foaf:Person, foaf:account, foaf:OnlineAccount
     <rdfs:range rdf:resource="#Section"/>
 </owl:ObjectProperty>
 
+<!-- Meeting-service -->
+
+<owl:Class rdf:ID="MeetingNotification" />
+
+<owl:ObjectProperty rdf:ID="addTimeslot">
+    <rdfs:domain rdf:resource="#MeetingNotification"/>
+    <rdfs:range rdf:resource="#NotificationParameter"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="removeTimeslot">
+    <rdfs:domain rdf:resource="#MeetingNotification"/>
+    <rdfs:range rdf:resource="#NotificationParameter"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="startMeeting">
+    <rdfs:domain>     
+    <owl:Class>    
+        <owl:unionOf rdf:parseType="Collection">
+            <owl:Class rdf:about="#MeetingNotification"/>
+            <owl:Class rdf:about="#AgendaNotification"/>
+        </owl:unionOf>
+    </owl:Class>    
+    </rdfs:domain> 
+    <rdfs:range rdf:resource="#Section"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="startMeetingFrom">
+    <rdfs:domain rdf:resource="#MeetingNotification"/>
+    <rdfs:range rdf:resource="#NotificationParameter"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="endMeeting">
+    <rdfs:domain rdf:resource="#MeetingNotification"/>
+    <rdfs:range rdf:resource="#Section"/>
+</owl:ObjectProperty>
+
 <!-- TODO: notifications of order, name and other speaker properties changing -->
 
 <!-- Presentation-service notifications class -->
@@ -533,6 +579,7 @@ foaf:Person, foaf:account, foaf:OnlineAccount
         <owl:unionOf rdf:parseType="Collection">
             <owl:Class rdf:about="#ConferenceNotification"/>
             <owl:Class rdf:about="#PresentationNotification"/>
+            <owl:Class rdf:about="#MeetingNotification"/>
             <owl:Class rdf:about="#ClientNotification"/>
         </owl:unionOf>
     </owl:Class>    
@@ -543,12 +590,14 @@ foaf:Person, foaf:account, foaf:OnlineAccount
 <!-- Agenda Notifications class -->
 
 <owl:ObjectProperty rdf:ID="updateAgenda">
+    <rdfs:domain>
     <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
             <owl:Class rdf:about="#AgendaNotification"/>
             <owl:Class rdf:about="#ClientNotification"/>
-        </owl:unionOf>
+        </owl:unionOf> 
     </owl:Class>
+    </rdfs:domain>
     <rdfs:range rdf:resource="#Section"/>
 </owl:ObjectProperty>
 
@@ -581,120 +630,4 @@ foaf:Person, foaf:account, foaf:OnlineAccount
 
 
 
-
-
-
-
-
-
-
-
-
-<!-- Class Microphone Service (subclass of Service) -->
-
-<owl:Class rdf:ID="MicrophoneService">
-    <rdfs:subClassOf rdf:resource="#Service"/>
-</owl:Class>
-
-<owl:DatatypeProperty rdf:ID="ip">
-    <rdfs:domain rdf:resource="#MicrophoneService"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-<owl:DatatypeProperty rdf:ID="port">
-    <rdfs:domain rdf:resource="#MicrophoneService"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-
-
-
-<!-- Сlass QueueService (subclass of Service)-->
-<owl:Class rdf:ID="QueueService">
-    <rdfs:subClassOf rdf:resource="#Service"/>
-</owl:Class>
-
-<!-- QueueService properties -->
-<owl:DatatypeProperty rdf:ID="firstReq">
-    <rdfs:domain rdf:resource="#QueueService"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-
-<owl:DatatypeProperty rdf:ID="lastReq">
-    <rdfs:domain rdf:resource="#QueueService"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-
-
-<!-- Сlass Request -->
-<owl:Class rdf:ID="Request"/>
-
-<!-- Request properties -->
-<owl:DatatypeProperty rdf:ID="hasState">
-    <rdfs:domain rdf:resource="#Request"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-<!-- Request properties -->
-<owl:DatatypeProperty rdf:ID="requestUsername">
-    <rdfs:domain rdf:resource="#Request"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-
-
-
-
-
-<!-- Сlass ControllRequest -->
-<owl:Class rdf:ID="ControllRequest"/>
-
-<!-- Request properties -->
-<owl:DatatypeProperty rdf:ID="type">
-    <rdfs:domain rdf:resource="#ControllRequest"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-<!-- Request properties -->
-<owl:DatatypeProperty rdf:ID="args">
-    <rdfs:domain rdf:resource="#ControllRequest"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-
-
-
-
-
-<!-- Сlass QueueHead -->
-<owl:Class rdf:ID="QueueHead"/>
-
-<!-- Request properties -->
-<owl:DatatypeProperty rdf:ID="isBusy">
-    <rdfs:domain rdf:resource="#QueueHead"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
-
-
-<!-- Request properties -->
-<owl:DatatypeProperty rdf:ID="headUsername">
-    <rdfs:domain rdf:resource="#QueueHead"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-</owl:DatatypeProperty>
 </rdf:RDF>
-
-
-
-
-
-
-

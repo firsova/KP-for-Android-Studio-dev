@@ -1,0 +1,236 @@
+<!DOCTYPE rdf:RDF [
+   <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+]>
+
+<rdf:RDF xml:base="http://www.cs.karelia.ru/smartroom#"
+    xmlns="http://www.cs.karelia.ru/smartroom#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+<!-- Class Photo -->	
+	
+<owl:Class rdf:ID="Photo"/>
+  
+<owl:DatatypeProperty rdf:ID="photoTitle">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="photoUrl">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="photoThumbnailUrl">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="photoMediumUrl">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="photoDescription">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="photoLatitudeCoordinate">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="photoLongitudeCoordinate">
+    <rdfs:domain rdf:resource="#Photo"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+	
+<!-- Class Place -->
+	
+<owl:Class rdf:ID="Place"/>
+
+<owl:DatatypeProperty rdf:ID="placeTitle">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="placeDescription">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="placeLatitudeCoordinate">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="placeLongitudeCoordinate">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:ObjectProperty rdf:ID="placeHasPhoto">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="#Photo"/>
+</owl:ObjectProperty> 
+  
+<owl:ObjectProperty rdf:ID="placeHasRelation">
+    <rdfs:domain rdf:resource="#Place"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+</owl:ObjectProperty> 
+
+<!-- Class Placeslot -->
+<owl:Class rdf:ID="Placeslot"/>
+
+<owl:ObjectProperty rdf:ID="placeslotPlusRating">
+    <rdfs:domain rdf:resource="#Placeslot"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="placeslotMinusRating">
+    <rdfs:domain rdf:resource="#Placeslot"/>
+    <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="placeslotRating">
+    <rdfs:domain rdf:resource="#Placeslot"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:ObjectProperty rdf:ID="placeslotPresentPlace">
+    <rdfs:domain rdf:resource="#Placeslot"/>
+    <rdfs:range rdf:resource="#Place"/>
+</owl:ObjectProperty> 
+
+<!-- Class SocialProgram -->
+<owl:Class rdf:ID="SocialProgram"/>
+
+<owl:DatatypeProperty rdf:ID="socialProgramTitle">
+    <rdfs:domain rdf:resource="#SocialProgram"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="socialProgramLatitudeCoordinate">
+    <rdfs:domain rdf:resource="#SocialProgram"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:DatatypeProperty rdf:ID="socialProgramLongitudeCoordinate">
+    <rdfs:domain rdf:resource="#SocialProgram"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>	
+
+<owl:ObjectProperty rdf:ID="socialProgramPresentPlaceslot">
+    <rdfs:domain rdf:resource="#SocialProgram"/>
+    <rdfs:range rdf:resource="#Placeslot"/>
+</owl:ObjectProperty> 
+
+<!-- Class SocialProgram service -->
+
+<owl:Class rdf:ID="SocialProgramService">
+    <rdfs:subClassOf rdf:resource="#Service"/>
+</owl:Class>
+
+<owl:ObjectProperty rdf:ID="presentSocialProgram">
+    <rdfs:domain rdf:resource="#SocialProgramService"/>
+    <rdfs:range rdf:resource="#SocialProgram"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="currentSocialProgram">
+    <rdfs:domain rdf:resource="#SocialProgramService"/>
+    <rdfs:range rdf:resource="#SocialProgram"/>
+</owl:ObjectProperty>
+
+
+<!-- Class Dynamic service notification -->
+<owl:Class rdf:ID="DSNotificationParameter"/>
+
+<!-- проблемное место -->
+<owl:ObjectProperty rdf:ID="hasServiceParameter">
+    <rdfs:domain rdf:resource="#DSNotificationParameter"/>
+    <rdfs:range rdf:resource="#Service"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="serviceInformationParameter">
+    <rdfs:domain rdf:resource="#DSNotificationParameter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="notificationNumberParameter">
+    <rdfs:domain rdf:resource="#DSNotificationParameter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<!-- Class Search notification -->
+<owl:Class rdf:ID="SearchActivityParameter"/>
+
+<owl:ObjectProperty rdf:ID="placeParameter">
+    <rdfs:domain rdf:resource="#SearchActivityParameter"/>
+    <rdfs:range rdf:resource="#Place"/>
+</owl:ObjectProperty>
+
+<!-- проблемное место -->
+<owl:ObjectProperty rdf:ID="fromServiceParameter">
+    <rdfs:domain rdf:resource="#SearchActivityParameter"/>
+    <rdfs:range rdf:resource="#Service"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="searchTypeParameter">
+    <rdfs:domain rdf:resource="#SearchActivityParameter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="searchVariableParameter">
+    <rdfs:domain rdf:resource="#SearchActivityParameter"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<!-- Search notifications class -->
+
+<owl:Class rdf:ID="SearchActivity" />
+
+<owl:ObjectProperty rdf:ID="startSearch">
+    <rdfs:domain rdf:resource="#SearchActivity"/>
+    <rdfs:range rdf:resource="#SearchActivityParameter"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:ID="stopSearch">
+    <rdfs:domain rdf:resource="#SearchActivity"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<!-- WebServer notifications class -->
+
+<owl:Class rdf:ID="WebServerNotification" />
+
+<owl:ObjectProperty rdf:ID="startUpdateServicePage">
+    <rdfs:domain rdf:resource="#WebServerNotification"/>
+    <rdfs:range rdf:resource="#Service"/>
+</owl:ObjectProperty>
+
+<!-- SocialProgram-service notifications class -->
+
+<owl:Class rdf:ID="SocialProgramNotification" />
+
+<owl:ObjectProperty rdf:ID="stopUpdateServicePage">
+    <rdfs:domain rdf:resource="#SocialProgramNotification"/>
+    <rdfs:range rdf:resource="#WebServerNotification"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="voteUpdate">
+    <rdfs:domain rdf:resource="#SocialProgramNotification"/>
+    <rdfs:range rdf:resource="#Placeslot"/>
+</owl:ObjectProperty>
+
+<!-- ClientServiceNotification added new notification --> 
+
+<owl:ObjectProperty rdf:ID="updateServiceInformation">
+    <rdfs:domain rdf:resource="#ClientNotification"/>
+    <rdfs:range rdf:resource="#DSNotificationParameter"/>
+</owl:ObjectProperty>
+
+</rdf:RDF>
