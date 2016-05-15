@@ -1,6 +1,7 @@
 package petrsu.smartroom.android.srcli;
 
 
+import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -113,7 +114,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
     public static native int justNumber();
 	public static native String justString();
 	public static native int registerRequest(String username, String state);
-	
+	public static native String getRequestState(QueueService obj);
+
 	/* Loading of shared library */
 	static {
 		System.loadLibrary("sslog");

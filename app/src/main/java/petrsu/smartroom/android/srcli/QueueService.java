@@ -8,7 +8,9 @@ public class QueueService {
 
         System.out.println(KP.justNumber());
         System.out.println(KP.justString());
-        System.out.println(KP.registerRequest(r_username,state));
+        System.out.println(KP.registerRequest(r_username, state));
+        //System.out.println(KP.getRequestState(this));
+
     }
 }
 

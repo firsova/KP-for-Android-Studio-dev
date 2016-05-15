@@ -2365,8 +2365,8 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIE
  */
 individual_t* createRequest(const char *r_username,const char *r_state) {
     
-    char *username = "";
-    char *state = "";
+    char *username = "native";
+    char *state = "native";
     
     individual_t *request = sslog_new_individual(CLASS_REQUEST);
     
@@ -2385,7 +2385,6 @@ individual_t* createRequest(const char *r_username,const char *r_state) {
     
     return request;
 }
-
 
 
 
@@ -2412,3 +2411,26 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
     }
 
 }
+
+
+
+//JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState(JNIEnv *env, jobject obj,  jobject requestClassObj) {
+
+    
+   // requestClassObject = (jobject *)(*env)->NewGlobalRef(env,requestClassObj);
+    
+  //  if(requestClassObj == NULL)return -1;
+    
+    
+ //   prop_val_t *requestState = sslog_ss_get_property (requestClassObj, PROPERTY_HASSTATE);
+
+ //   if(requestState != NULL) {
+       // return (*env)->NewStringUTF(env, (char *)requestState->prop_value);
+//        return (*env)->NewStringUTF(env, "Hello");
+ //   } else {
+ //       return 0;
+ //   }
+
+//}
+
+

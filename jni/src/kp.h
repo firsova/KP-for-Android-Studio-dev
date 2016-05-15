@@ -24,6 +24,7 @@ jclass *classKP;
 
 jobject *agendaClassObject;
 jobject *presentationClassObject;
+jobject *requestClassObject;
 
 subscription_t *conferenceSubscriptionContainer;
 subscription_t *presentationSubscriptionContainer;
@@ -67,5 +68,6 @@ list_t* getVideoList();
 
 
 individual_t* createRequest(const char *, const char *);
+
 
 #endif
