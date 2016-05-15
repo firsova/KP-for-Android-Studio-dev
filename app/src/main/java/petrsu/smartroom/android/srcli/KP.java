@@ -111,6 +111,7 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
     
     
     public static native int justNumber();
+	public static native String justString();
 	
 	/* Loading of shared library */
 	static {

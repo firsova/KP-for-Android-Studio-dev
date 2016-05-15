@@ -2345,5 +2345,12 @@ JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srcli_KP_stopVideo
 
 JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_justNumber()
 {
-    return 5;
+    return 6;
+}
+
+
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIEnv *env, jobject obj)
+{
+    char *just_string = (*env)->NewStringUTF(env, "Hello");
+    return just_string;
 }
