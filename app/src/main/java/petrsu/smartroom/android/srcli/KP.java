@@ -114,7 +114,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
     public static native int justNumber();
 	public static native String justString();
 	public static native int registerRequest(String username, String state);
-	public static native String getRequestState(QueueService obj);
+	public static native String getAllRequests();
+	//public static native String getRequestState(QueueService obj);
 
 	/* Loading of shared library */
 	static {

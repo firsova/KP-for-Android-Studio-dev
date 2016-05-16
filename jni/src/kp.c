@@ -2342,13 +2342,17 @@ JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srcli_KP_stopVideo
 
 
 
-
+/**
+ * @brief Пробная функция вывода числа
+ */
 JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_justNumber()
 {
     return 6;
 }
 
-
+/**
+ * @brief Пробная функция вывода строки
+ */
 JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIEnv *env, jobject obj)
 {
     char *just_string = (*env)->NewStringUTF(env, "Hello");
@@ -2390,9 +2394,7 @@ individual_t* createRequest(const char *r_username,const char *r_state) {
 
 /**
  * @brief Creates new request in Smart Space
- * @param userName - user name
- * @param phone - user phone number
- * @param email - user email
+ * @param
  * @return 0 in success and -1 otherwise
  */
 JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
@@ -2411,6 +2413,18 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
     }
 
 }
+
+
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(JNIEnv *env, jobject obj){
+    
+    list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+    if (requestList != NULL){
+        return (*env)->NewStringUTF(env, "Удалось получить все объекты класса Request");;
+    } else {
+        return (*env)->NewStringUTF(env, "В классе Request нет объектов");
+    }
+}
+
 
 
 
