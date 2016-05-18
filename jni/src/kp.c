@@ -737,6 +737,28 @@ jfieldID getFieldID(JNIEnv *env, jclass class, char *fieldName,
 }
 
 
+/**
+ * @brief Initializes subscription to conference activities
+ *
+ * @return 0 in success, -1 if fail
+ */
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initSubscription(
+		JNIEnv *env, jobject obj) {
+
+	jclass *classAgendaObj = getJClassObject(env, "Agenda");
+	jclass *classProjectorObj = getJClassObject(env, "Projector");
+
+	classAgenda = (jclass *)(*env)->NewGlobalRef(env, classAgendaObj);
+	classProjector = (jclass *)(*env)->NewGlobalRef(env, classProjectorObj);
+
+	if(subscribeConferenceService() != 0)
+		return -1;
+	if(subscribePresentationService() != 0)
+		return -1;
+
+	return 0;
+}
+
 
 /**
  * @brief Subscribes to conference-service events and properties
@@ -2392,7 +2414,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
 
 }
 
-/** Получение списка реквестов в формате list_t* */
+
 JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(JNIEnv *env, jobject obj){
     
     list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
@@ -2403,102 +2425,6 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(
     }
 }
 
-/**
- * @brief Initializes subscription to conference activities
- * JUST CHANGED
- * @return 0 in success, -1 if fail
- */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initSubscription(
-                                                                               JNIEnv *env, jobject obj) {
-    
-    jclass *classAgendaObj = getJClassObject(env, "Agenda");
-    jclass *classProjectorObj = getJClassObject(env, "Projector");
-    jclass *classQueueServiceObj = getJClassObject(env, "QueueService");
-    
-    classAgenda = (jclass *)(*env)->NewGlobalRef(env, classAgendaObj);
-    classProjector = (jclass *)(*env)->NewGlobalRef(env, classProjectorObj);
-    classQueueService = (jclass *)(*env)->NewGlobalRef(env, classQueueServiceObj);
-    
-    if(subscribeConferenceService() != 0)
-        return -1;
-    if(subscribePresentationService() != 0)
-        return -1;
-    if(subscribeQueueService() != 0)
-        return -1;
-    
-    return 0;
-}
-
-/**
- * @brief Subscribes to queue-service events and properties
- *
- * @return 0 in success and -1 otherwise
- */
-int subscribeQueueService() {
-    extern void queueServiceNotificationHandler(subscription_t *);
-    void (*pQueueServiceHandler)(subscription_t *) =
-    &queueServiceNotificationHandler;
-    
-    individual_t *queueService;
-    list_t *queueServiceList =
-    sslog_ss_get_individual_by_class_all(CLASS_QUEUESERVICE);
-    list_t *listPropertiesQueueService = list_get_new_list();
-    list_t *listProperties = list_get_new_list();
-    
-    queueServiceClassSubscriptionContainer = sslog_new_subscription(true);
-    queueServiceSubscriptionContainer = sslog_new_subscription(true);
-    
-    if(queueServiceList != NULL) {
-        list_head_t* pos = NULL;
-        
-        list_for_each(pos, &queueServiceList->links) {
-            list_t* node = list_entry(pos, list_t, links);
-            queueService = (individual_t *)(node->data);
-            break;
-        }
-        
-        list_add_data(PROPERTY_FIRSTREQ, listPropertiesQueueService);
-        list_add_data(PROPERTY_LASTREQ, listPropertiesQueueService);
-        sslog_sbcr_add_individual(queueServiceSubscriptionContainer,
-                                  queueService, listPropertiesQueueService);
-        
-        /* If subscribed to queue service class */
-        if(sslog_sbcr_is_active(queueServiceClassSubscriptionContainer))
-            sslog_sbcr_unsubscribe(queueServiceClassSubscriptionContainer);
-        
-    } else {
-        /* If conference service does not exist in SIB */
-        sslog_sbcr_add_class(queueServiceClassSubscriptionContainer,
-                             CLASS_QUEUESERVICE);
-   //     sslog_sbcr_add_class(conferenceClassSubscriptionContainer,
-  //                           CLASS_AGENDANOTIFICATION);
-   //     sslog_sbcr_set_changed_handler(conferenceClassSubscriptionContainer,
-  //                                     pConferenceHandler);
-        
-        if(sslog_sbcr_subscribe(queueServiceClassSubscriptionContainer)
-           != SSLOG_ERROR_NO) {
-            
-            __android_log_print(ANDROID_LOG_ERROR, "Queue service", "%s",
-                                sslog_get_error_text());
-            return -1;
-        }
-    }
-    
-//    list_add_data(PROPERTY_CURRENTTIMESLOT, listPropertiesSection);
- //   sslog_sbcr_add_individual(conferenceSubscriptionContainer, currentSection,
- //                             listPropertiesSection);
- 
-  //  sslog_sbcr_set_changed_handler(conferenceSubscriptionContainer,
-  //                                 pConferenceHandler);
-    
- //   if(sslog_sbcr_subscribe(conferenceSubscriptionContainer) != SSLOG_ERROR_NO) {
- //       __android_log_print(ANDROID_LOG_ERROR, "Conference service", "%s",
- //                           sslog_get_error_text());
-//        return -1;
- //   }
-    
-    return 0;
-}
 
 
 

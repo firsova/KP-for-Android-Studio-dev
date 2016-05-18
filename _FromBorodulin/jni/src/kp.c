@@ -838,7 +838,7 @@ int subscribeConferenceService() {
  * @return 0 in success and -1 otherwise
  */
 int subscribePresentationService() {
-	extern void presentationNotificationHandler(subsciption_t *);
+	extern void presentationNotificationHandler(subscription_t *);
 	void (*pPresentationHandler)(subscription_t *) =
 			&presentationNotificationHandler;
 
