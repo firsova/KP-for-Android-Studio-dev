@@ -10,8 +10,8 @@ public class QueueService {
         //System.out.println(KP.justString());
         //System.out.println(KP.registerRequest(r_username, state));
         //System.out.println(KP.getAllRequests());
-        System.out.println(KP.initQueueSubscription());
-
+        //System.out.println(KP.initQueueSubscription());
+        System.out.println(KP.getRequestState());
 
 
         //System.out.println(KP.getRequestState(this));

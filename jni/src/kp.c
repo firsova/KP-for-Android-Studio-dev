@@ -2369,18 +2369,18 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIE
  */
 individual_t* createRequest(const char *r_username,const char *r_state) {
     
-    char *username = "native";
-    char *state = "native";
+    //char *username = "native";
+    //char *state = "native";
     
     individual_t *request = sslog_new_individual(CLASS_REQUEST);
     
    	sslog_set_individual_uuid(request,
                               generateUuid("http://www.cs.karelia.ru/smartroom#Request"));
     
-    if(sslog_ss_add_property(request, PROPERTY_HASSTATE, (void *)state) == -1)
+    if(sslog_ss_add_property(request, PROPERTY_HASSTATE, (void *)r_state) == -1)
         return NULL;
     
-    if(sslog_ss_add_property(request, PROPERTY_REQUESTUSERNAME, (void *)username) == -1)
+    if(sslog_ss_add_property(request, PROPERTY_REQUESTUSERNAME, (void *)r_username) == -1)
         return NULL;
 
     
@@ -2564,23 +2564,30 @@ int subscribeQueueHead() {
 }
 
 
-//JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState(JNIEnv *env, jobject obj,  jobject requestClassObj) {
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState(JNIEnv *env, jclass clazz) {
 
+    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     
-   // requestClassObject = (jobject *)(*env)->NewGlobalRef(env,requestClassObj);
+    individual_t *individual;
     
-  //  if(requestClassObj == NULL)return -1;
+    if(list != NULL) {
+        list_head_t* pos = NULL;
+        list_for_each(pos, &list->links) {
+            list_t* node = list_entry(pos, list_t, links);
+            individual = (individual_t*)(node->data);
+            sslog_ss_populate_individual(individual);
+        }
+    } else {
+        return NULL;
+    }
     
+    prop_val_t *state_value = sslog_ss_get_property(individual, PROPERTY_HASSTATE);
     
- //   prop_val_t *requestState = sslog_ss_get_property (requestClassObj, PROPERTY_HASSTATE);
-
- //   if(requestState != NULL) {
-       // return (*env)->NewStringUTF(env, (char *)requestState->prop_value);
-//        return (*env)->NewStringUTF(env, "Hello");
- //   } else {
- //       return 0;
- //   }
-
-//}
+    if(state_value == NULL) {
+        return NULL;
+    }
+    
+    return (*env)->NewStringUTF(env, (char *)state_value->prop_value);
+}
 
 
