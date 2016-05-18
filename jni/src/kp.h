@@ -21,15 +21,21 @@ list_t *hasVideoPropList;
 jclass *classAgenda;
 jclass *classProjector;
 jclass *classKP;
+jclass *classQueueService;  //queue
+jclass *classQueueHead;  //queue
 
 jobject *agendaClassObject;
 jobject *presentationClassObject;
-jobject *requestClassObject;
+//jobject *requestClassObject;  //queue
 
 subscription_t *conferenceSubscriptionContainer;
 subscription_t *presentationSubscriptionContainer;
+subscription_t *queueServiceSubscriptionContainer;  //queue
+subscription_t *queueHeadSubscriptionContainer;  //queue
 subscription_t *conferenceClassSubscriptionContainer;
 subscription_t *presentationClassSubscriptionContainer;
+subscription_t *queueServiceClassSubscriptionContainer; //queue
+subscription_t *queueHeadClassSubscriptionContainer; //queue
 
 char *startedVideoUuid;
 
@@ -45,6 +51,8 @@ void logout();
 int getListSize(list_t*);
 int subscribeConferenceService();
 int subscribePresentationService();
+int subscribeQueueService();    //queue
+int subscribeQueueHead();    //queue
 int calculateTimeslotIndex(prop_val_t *);
 int searchPerson(individual_t *, const char *, const char *);
 int activatePerson(individual_t *);
@@ -67,7 +75,7 @@ individual_t* createPlace(const char *);
 list_t* getVideoList();
 
 
-individual_t* createRequest(const char *, const char *);
+individual_t* createRequest(const char *, const char *);    //queue
 
 
 #endif

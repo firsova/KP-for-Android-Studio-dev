@@ -2425,7 +2425,143 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(
     }
 }
 
+/**
+ * @brief Initializes subscription to queue activities
+ *
+ * @return 0 in success, -1 if fail
+ */
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initQueueSubscription(
+                                                                               JNIEnv *env, jobject obj) {
+    
+    jclass *classQueueServiceObj = getJClassObject(env, "QueueService");
+//    jclass *classQueueHeadObj = getJClassObject(env, "QueueHead");
+    
+    classQueueService = (jclass *)(*env)->NewGlobalRef(env, classQueueServiceObj);
+//    classQueueHead = (jclass *)(*env)->NewGlobalRef(env, classQueueHeadObj);
+    
+   if(subscribeQueueService() != 0)
+        return -1;
+ //   if(subscribeQueueHead() != 0)
+ //       return -1;
+    
+    return 0;
+}
 
+/**
+ * @brief Subscribes to queue-service events and properties
+ *
+ * @return 0 in success and -1 otherwise
+ */
+
+int subscribeQueueService() {
+    extern void queueServiceNotificationHandler(subscription_t *);
+    void (*pQueueServiceHandler)(subscription_t *) =
+    &queueServiceNotificationHandler;
+    
+    individual_t *queueService;
+    list_t *queueServiceList =
+    sslog_ss_get_individual_by_class_all(CLASS_QUEUESERVICE);
+    list_t *listPropertiesQueueService = list_get_new_list();
+    list_t *listProperties = list_get_new_list();
+    
+    queueServiceClassSubscriptionContainer = sslog_new_subscription(true);
+    queueServiceSubscriptionContainer = sslog_new_subscription(true);
+    
+    if(queueServiceList != NULL) {
+        list_head_t* pos = NULL;
+        
+        list_for_each(pos, &queueServiceList->links) {
+            list_t* node = list_entry(pos, list_t, links);
+            queueService = (individual_t *)(node->data);
+            break;
+        }
+        
+        list_add_data(PROPERTY_FIRSTREQ, listPropertiesQueueService);
+        list_add_data(PROPERTY_LASTREQ, listPropertiesQueueService);
+        sslog_sbcr_add_individual(queueServiceSubscriptionContainer,
+                                  queueService, listPropertiesQueueService);
+        
+        // If subscribed to queue service class
+        if(sslog_sbcr_is_active(queueServiceClassSubscriptionContainer))
+            sslog_sbcr_unsubscribe(queueServiceClassSubscriptionContainer);
+        
+    } else {
+        // If conference service does not exist in SIB
+        sslog_sbcr_add_class(queueServiceClassSubscriptionContainer,
+                             CLASS_QUEUESERVICE);
+        
+        
+        if(sslog_sbcr_subscribe(queueServiceClassSubscriptionContainer)
+           != SSLOG_ERROR_NO) {
+            
+            __android_log_print(ANDROID_LOG_ERROR, "Queue service", "%s",
+                                sslog_get_error_text());
+            return -1;
+        }
+    }
+    
+    
+    
+    return 0;
+}
+
+/**
+ * @brief Subscribes to queue-head events and properties
+ *
+ * @return 0 in success and -1 otherwise
+ */
+
+int subscribeQueueHead() {
+    extern void queueHeadNotificationHandler(subscription_t *);
+    void (*pQueueHeadHandler)(subscription_t *) =
+    &queueHeadNotificationHandler;
+    
+    individual_t *queueHead;
+    list_t *queueHeadList =
+    sslog_ss_get_individual_by_class_all(CLASS_QUEUEHEAD);
+    list_t *listPropertiesQueueHead = list_get_new_list();
+    list_t *listProperties = list_get_new_list();
+    
+    queueHeadClassSubscriptionContainer = sslog_new_subscription(true);
+    queueHeadSubscriptionContainer = sslog_new_subscription(true);
+    
+    if(queueHeadList != NULL) {
+        list_head_t* pos = NULL;
+        
+        list_for_each(pos, &queueHeadList->links) {
+            list_t* node = list_entry(pos, list_t, links);
+            queueHead = (individual_t *)(node->data);
+            break;
+        }
+        
+        list_add_data(PROPERTY_HEADUSERNAME, listPropertiesQueueHead);
+        list_add_data(PROPERTY_ISBUSY, listPropertiesQueueHead);
+        sslog_sbcr_add_individual(queueHeadSubscriptionContainer,
+                                  queueHead, listPropertiesQueueHead);
+        
+        //If subscribed to queue service class
+        if(sslog_sbcr_is_active(queueHeadClassSubscriptionContainer))
+            sslog_sbcr_unsubscribe(queueHeadClassSubscriptionContainer);
+        
+    } else {
+        //If conference service does not exist in SIB
+        sslog_sbcr_add_class(queueHeadClassSubscriptionContainer,
+                             CLASS_QUEUEHEAD);
+        
+        
+        if(sslog_sbcr_subscribe(queueHeadClassSubscriptionContainer)
+           != SSLOG_ERROR_NO) {
+            
+            __android_log_print(ANDROID_LOG_ERROR, "QueueHead ", "%s",
+                                sslog_get_error_text());
+            return -1;
+        }
+    }
+    
+ 
+    
+    return 0;
+}
 
 
 //JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState(JNIEnv *env, jobject obj,  jobject requestClassObj) {
