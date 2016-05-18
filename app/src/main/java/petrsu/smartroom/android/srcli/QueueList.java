@@ -69,7 +69,8 @@ public class QueueList extends ActionBarActivity {
 
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close),
-                        new PrimaryDrawerItem().withName("QueueActivity").withIcon(FontAwesome.Icon.faw_globe)
+                        new PrimaryDrawerItem().withName("QueueActivity").withIcon(FontAwesome.Icon.faw_globe),
+                        new PrimaryDrawerItem().withName("QueueList").withIcon(FontAwesome.Icon.faw_globe)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
@@ -90,7 +91,8 @@ public class QueueList extends ActionBarActivity {
                         startActivity(Navigation.getManIntent(getApplicationContext()));            break;
                     case 12:
                         startActivity(Navigation.exitApp());                                        break;
-                    case 13:                                                                        break;
+                    case 13: startActivity(Navigation.getQueueActIntent(getApplicationContext()));  break;
+                    case 14:                                                                        break;
                     default:                                                                        break;
                 }
                 return true;
