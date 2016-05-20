@@ -18,8 +18,6 @@ import java.io.IOException;
 //import org.xiph.speex.SpeexEncoder;
 import android.util.Log;
 
-import net.tomp2p.opuswrapper.Opus;
-
 /**
  * 
  * @author pavlin
@@ -40,7 +38,6 @@ public class MicService extends Service {
 	private final int samples = 320;
 	private final int quality = 10;
 	//private SpeexEncoder encoder;
-	private Opus.OpusEncoder encoder;
 
 	@Override
 	public IBinder onBind(Intent intent) {
