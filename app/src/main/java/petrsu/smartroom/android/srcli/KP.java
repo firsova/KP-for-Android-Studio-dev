@@ -69,6 +69,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	private static EditText editPort;	
 	private ArrayList<String> timeslotList;
 	private String lastState;
+
+	public static String gettingUsername;
 	
 	public static native int connectSmartSpace(String hostname, String ip,  int port);
 	public static native int loadTimeslotList(Agenda obj);
@@ -117,6 +119,11 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native String getAllRequests();
 	public static native int initQueueSubscription();
 	public static native String getRequestState();
+	public static native int registerHead(String username);
+	public static native String getHeadUuid();
+	public static native String getHeadUsername();
+	public static native CharSequence[] getHeadTitleList();
+	public static native int existingRequest(String username);
 
 	/* Loading of shared library */
 	static {
@@ -277,6 +284,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 		final String password = editPassword.getText().toString();
 		ip = editIP.getText().toString();
 
+		 gettingUsername = name;
+
 		switch(view.getId()) {
 			case R.id.advModeImg:
 			case R.id.advModeText:
@@ -351,7 +360,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 		String name = KP.editName.getText().toString();
 		String password = KP.editPassword.getText().toString();
 		int port = Integer.parseInt(KP.editPort.getText().toString());
-		
+
+
 		disconnectSmartSpace();
 		
 		if(connectSmartSpace("X", KP.ip, port) != 0) {

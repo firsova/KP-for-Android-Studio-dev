@@ -1,22 +1,52 @@
 package petrsu.smartroom.android.srcli;
 
-
-public class QueueService {
-    public static String r_username = "User";
-    public static String state = "Ok";
-    public static void hi(){
-
-        //System.out.println(KP.justNumber());
-        //System.out.println(KP.justString());
-        //System.out.println(KP.registerRequest(r_username, state));
-        //System.out.println(KP.getAllRequests());
-        //System.out.println(KP.initQueueSubscription());
-        System.out.println(KP.getRequestState());
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
 
 
-        //System.out.println(KP.getRequestState(this));
+public class QueueService extends Service{
+
+    private static String uuidHead;
+    public static CharSequence[] titleArray ;
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+
 
     }
+
+    public static void hi(){
+      //  titleArray = KP.getHeadTitleList();
+        System.out.println(KP.getPersonUuid());
+
+    }
+
+    public static void createRequest() {
+
+        if (KP.existingRequest(KP.gettingUsername) == 0)
+        {
+                System.out.println("Такого реквеста еще не было");
+                System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
+        }
+                else {System.out.println("Такой реквест уже был");}
+    }
+
+
+    public static void deleteRequest() {
+
+        System.out.println("Удаление своей заявки");
+
+    }
+
 }
 
 
