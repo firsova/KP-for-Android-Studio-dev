@@ -114,7 +114,7 @@ public class MicService extends Service {
 					//dataBuffer.flip();
 					//shortBuffer.flip();
 
-					//перегнать bytebuffer в bute[] и отправить
+					//перегнать bytebuffer в byte[] и отправить
 					
 					/*Log.i("encoded data size", String.valueOf(
 						encoder.getProcessedData(encData, 0)));*/
