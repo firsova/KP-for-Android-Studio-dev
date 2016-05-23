@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.app.ListActivity;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -24,6 +26,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by user on 14.05.16.
  */
@@ -35,6 +41,15 @@ public class QueueList extends ActionBarActivity {
         setContentView(R.layout.queuelist);
 
         qlistView = (ListView) findViewById(R.id.qlistView);
+        /* List <String> q = new ArrayList<>();
+        q.add("foo");
+        q.add("bar"); */
+        final String[] catnames = new String[] {
+                "Рыжик", "Барсик", "Мурзик"
+        };
+        ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, catnames);
+        qlistView.setAdapter(arr);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
