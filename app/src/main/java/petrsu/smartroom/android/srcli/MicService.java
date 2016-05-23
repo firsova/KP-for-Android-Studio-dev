@@ -115,11 +115,13 @@ public class MicService extends Service {
 					//shortBuffer.flip();
 
 					//перегнать bytebuffer в byte[] и отправить
-					
+
+					byte[] encData = new byte[dataBuffer.remaining()];
+					dataBuffer.get(encData);
 					/*Log.i("encoded data size", String.valueOf(
 						encoder.getProcessedData(encData, 0)));*/
 					
-					//sendEncodedBytes(encData);
+					sendEncodedBytes(encData);
 				}
 				mActiveMic = false;
 				stopRecording();
