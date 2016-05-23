@@ -122,18 +122,21 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
 			/* toQueue button */
             case R.id.toQueue:
-                QueueService queue;
-                queue = new QueueService();
-                KP.registerRequest("Nastya", "IT WORKS!");
-                KP.registerRequest("Nastya", "IT WORKS!TWO");
-                System.out.println(KP.getRequestState());
 
-                QueueService.hi();
+                QueueService queue1;
+                queue1 = new QueueService();
+
+                queue1.createRequest();
 
                 break;
 
 			/* exitQueue button */
             case R.id.exitQueue:
+
+                QueueService queue2;
+                queue2 = new QueueService();
+
+                queue2.deleteRequest();
 
                 break;
         }

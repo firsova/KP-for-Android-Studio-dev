@@ -16,17 +16,22 @@ JavaVM* JVM;
 individual_t *personProfile;
 individual_t *currentSection;
 
+individual_t *queueHead;    //queue
+
 list_t *hasVideoPropList;
+list_t *hasHeadPropList;     //queue
+list_t* getHeadList();  //queue
 
 jclass *classAgenda;
 jclass *classProjector;
 jclass *classKP;
 jclass *classQueueService;  //queue
 jclass *classQueueHead;  //queue
+jclass *classMicService;
 
 jobject *agendaClassObject;
 jobject *presentationClassObject;
-//jobject *requestClassObject;  //queue
+
 
 subscription_t *conferenceSubscriptionContainer;
 subscription_t *presentationSubscriptionContainer;
@@ -41,6 +46,7 @@ char *startedVideoUuid;
 
 int currentTimeslotIndex;
 int hasVideoPropListLen;
+int hasHeadPropListLen;     //queue
 
 void addTimeslotToJavaList(JNIEnv *, individual_t *, jobject);
 void subscriptionHandler(subscription_t *);
@@ -58,7 +64,8 @@ int searchPerson(individual_t *, const char *, const char *);
 int activatePerson(individual_t *);
 char* generateUuid(char*);
 bool personExists(const char *);
-bool placeExists(const char *); 
+bool placeExists(const char *);
+bool requestExists(const char *);   //queue
 
 jclass getJClassObject(JNIEnv *, char *);
 jfieldID getFieldID(JNIEnv *, jclass, char *, char *);
@@ -76,6 +83,6 @@ list_t* getVideoList();
 
 
 individual_t* createRequest(const char *, const char *);    //queue
-
+individual_t* createHead(const char *);     //queue
 
 #endif
