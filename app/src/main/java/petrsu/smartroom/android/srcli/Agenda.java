@@ -167,6 +167,8 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 						new PrimaryDrawerItem().withName(R.string.agenda).withIcon(FontAwesome.Icon.faw_server),
 						new PrimaryDrawerItem().withName(R.string.presentation).withIcon(FontAwesome.Icon.faw_image),
                         new PrimaryDrawerItem().withName("SocialProgram").withIcon(FontAwesome.Icon.faw_globe),
+						new PrimaryDrawerItem().withName("QueueActivity").withIcon(FontAwesome.Icon.faw_globe),
+						new PrimaryDrawerItem().withName("QueueList").withIcon(FontAwesome.Icon.faw_globe),
 
                         new SectionDrawerItem().withName(R.string.discussion),
 
@@ -183,14 +185,12 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 
 						new DividerDrawerItem(),
 						//new PrimaryDrawerItem().withName("City gallery *WIP*").withIcon(FontAwesome.Icon.faw_globe),
-						new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close),
-						new PrimaryDrawerItem().withName("QueueActivity").withIcon(FontAwesome.Icon.faw_globe),
-						new PrimaryDrawerItem().withName("QueueList").withIcon(FontAwesome.Icon.faw_globe)
+						new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-            @Override
-            public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
-                //Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
-                switch ((int) id) {
+			@Override
+			public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
+				//Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
+				switch ((int) id) {
 					case 1:
 						break;
 					case 2:
@@ -199,41 +199,42 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 					case 3:
 						startActivity(Navigation.getSocialProgramIntent(getApplicationContext()));
 						break;
+					case 4:
+						startActivity(Navigation.getQueueActIntent(getApplicationContext()));
+						break;
 					case 5:
+						startActivity(Navigation.getQueueActListIntent(getApplicationContext()));
+						break;
+					case 7:
 						startActivity(Navigation.getCurDisqIntent(getApplicationContext()));
 						break;
-					case 6:
+					case 8:
 						startActivity(Navigation.getDisqListIntent(getApplicationContext()));
 						break;
-					case 8:
+					case 10:
 						startActivity(Navigation.getSettingsIntent(getApplicationContext()));
 						break;
-                    case 9:
-                        updateCurTimeslot();
-                        break;
-                    case 11:
-                        openHelp();
-                        break;
-                    case 12:
+					case 11:
+						updateCurTimeslot();
+						break;
+					case 13:
+						openHelp();
+						break;
+					case 14:
 						startActivity(Navigation.getManIntent(getApplicationContext()));
-                        break;
+						break;
                     /*case 14:
 						startActivity(Navigation.getGalleryIntent(getApplicationContext()));
                         break;*/
-                    case 14:
-						startActivity(Navigation.exitApp());
-                        break;
-					case 15:
-						startActivity(Navigation.getQueueActIntent(getApplicationContext()));
-						break;
 					case 16:
-						startActivity(Navigation.getQueueActListIntent(getApplicationContext()));
-                    default:
-                        break;
-                }
-                return true;
-            }
-        }).build();
+						startActivity(Navigation.exitApp());
+						break;
+					default:
+						break;
+				}
+				return true;
+			}
+		}).build();
 
 		
 		/* Initialize context menu */
