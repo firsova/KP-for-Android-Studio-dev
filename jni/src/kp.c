@@ -2475,15 +2475,6 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_existingRequest(
 
 
 
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(JNIEnv *env, jobject obj){
-    
-    list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
-    if (requestList != NULL){
-        return (*env)->NewStringUTF(env, "Удалось получить все объекты класса Request");
-    } else {
-        return (*env)->NewStringUTF(env, "В классе Request нет объектов");
-    }
-}
 
 
 
@@ -2621,7 +2612,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState
         return NULL;
     }
     
-    prop_val_t *state_value = sslog_ss_get_property(individual, PROPERTY_HASSTATE);
+    prop_val_t *state_value = sslog_ss_get_property(individual, PROPERTY_REQUESTUSERNAME);
     
     if(state_value == NULL) {
         return NULL;
@@ -2631,75 +2622,29 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * @brief Creates request in SmartSpace
- *
- * @param person
- *        state
- * @return Request individual in success and NULL otherwise
- */
-individual_t* createHead(const char *r_username) {
-
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(JNIEnv *env, jobject obj){
     
-    individual_t *head = sslog_new_individual(CLASS_QUEUEHEAD);
-    
-   	sslog_set_individual_uuid(head,
-                              generateUuid("http://www.cs.karelia.ru/smartroom#QueueHead"));
-    
-    if(sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, (void *)r_username) == -1)
-        return NULL;
-    
-    if(sslog_ss_insert_individual(head) == -1)
-        return NULL;
-    
-    return head;
+    list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+    if (requestList != NULL){
+        return (*env)->NewStringUTF(env, "Удалось получить все объекты класса Request");
+    } else {
+        return (*env)->NewStringUTF(env, "В классе Request нет объектов");
+    }
 }
 
 
 
-/**
- * @brief Creates new request in Smart Space
- * @param
- * @return 0 in success and -1 otherwise
- */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerHead(
-                                                                              JNIEnv *env, jclass clazz, jstring username) {
+JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_deleteRequest(JNIEnv *env, jclass clazz, jstring username) {
     
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
-    
-    individual_t *head= createHead(p_username);
-    
-    if(head == NULL) {
-        return -1;
-    }
-    else {
-        return 0;
-    }
-    
+    return requestDeleted(p_username);
 }
 
 
 
-
-/*Получает значение свойства класса*/
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getHeadUsername(JNIEnv *env, jclass clazz) {
+int requestDeleted(const char *username) {
     
-    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_QUEUEHEAD);
+    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     
     individual_t *individual;
     
@@ -2709,96 +2654,24 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getHeadUsername
             list_t* node = list_entry(pos, list_t, links);
             individual = (individual_t*)(node->data);
             sslog_ss_populate_individual(individual);
+            
         }
     } else {
-        return NULL;
+        return -1;
     }
     
-    prop_val_t *username_value = sslog_ss_get_property(individual, PROPERTY_HEADUSERNAME);
+    
+    prop_val_t *username_value = sslog_ss_get_property(individual, PROPERTY_REQUESTUSERNAME);
     
     if(username_value == NULL) {
-        return NULL;
+        return 2;
     }
     
-    return (*env)->NewStringUTF(env, (char *)username_value->prop_value);
-}
-
-
-
-/**
- * @brief Make an array of videos titles of the user
- *
- * @return Array of video titles
- */
-JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srcli_KP_getHeadTitleList(
-                                                                                        JNIEnv *env, jclass clazz) {
-    
-    hasHeadPropList = getHeadList();
-    hasHeadPropListLen = getListSize(hasHeadPropList);
-    
-    if(hasHeadPropListLen == 0)
-        return  (*env)->NewStringUTF(env, "Список пуст");
-    
-    jclass charSeqClass = (*env)->FindClass(env, "java/lang/CharSequence");
-    jobjectArray titleArray = (*env)->NewObjectArray(env, hasHeadPropListLen,
-                                                     charSeqClass, NULL);
-    
-    list_head_t* pos = NULL;
-    int index = 0;
-    
-    list_for_each(pos, &hasHeadPropList->links) {
-        list_t* node = list_entry(pos, list_t, links);
-        prop_val_t *hasHeadProp = (prop_val_t *)(node->data);
-        individual_t *hasHeadInd = NULL;
-        
-        if(hasHeadProp != NULL) {
-            hasHeadInd = (individual_t*) hasHeadProp->prop_value;
-        } else {
-            continue;
-        }
-        
-        const prop_val_t *propTitle = sslog_ss_get_property(hasHeadInd,
-                                                            PROPERTY_HEADUSERNAME);
-        char *charTitle;
-        
-        if(propTitle != NULL) {
-            charTitle = (char*) propTitle->prop_value;
-        } else {
-            continue;
-        }
-        
-        jstring stringTitle = (*env)->NewStringUTF(env, charTitle);
-        
-        (*env)->SetObjectArrayElement(env, titleArray, index, stringTitle);
-        
-        ++index;
+    if(strcmp(username, (char *)username_value->prop_value) == 0) {
+        if (sslog_ss_remove_individual(individual) != 0)
+        return 5;
     }
     
-    __android_log_print(ANDROID_LOG_ERROR, "getHeadTitleList()", "DONE");
+    return 0;
     
-    return titleArray;
 }
-
-
-/**
- * @brief Extracts videos of a user
- *
- * @return List of hasVideo properties
- */
-list_t* getHeadList() {
-    
-    individual_t *person = NULL;
-    prop_val_t *propPerson = sslog_ss_get_property(
-                                                   queueHead, PROPERTY_HEADUSERNAME);
-    
-    if(propPerson != NULL) {
-        person = (individual_t *) propPerson->prop_value;
-    } else {
-        return NULL;
-    }
-    
-    return sslog_ss_get_property_max(person, PROPERTY_HEADUSERNAME,
-                                     MAX_PROPERTIES);
-}
-
-

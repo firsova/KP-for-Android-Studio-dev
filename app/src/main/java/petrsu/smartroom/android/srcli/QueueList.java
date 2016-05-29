@@ -40,14 +40,19 @@ public class QueueList extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.queuelist);
 
+
         qlistView = (ListView) findViewById(R.id.qlistView);
-        /* List <String> q = new ArrayList<>();
+
+        List <String> q = new ArrayList<>();
         q.add("foo");
-        q.add("bar"); */
-        final String[] catnames = new String[] {
-                "Рыжик", "Барсик", "Мурзик"
-        };
-        ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, catnames);
+        q.add("bar");
+
+
+
+      //  final String[] catnames = new String[] {
+       //         "Рыжик", "Барсик", "Мурзик"
+       // };
+        ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
 
 

@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 public class QueueService extends Service{
 
     private static String uuidHead;
-    public static CharSequence[] titleArray ;
+    public static CharSequence[] titleArray;
 
     @Nullable
     @Override
@@ -21,12 +21,6 @@ public class QueueService extends Service{
     @Override
     public void onStart(Intent intent, int startId) {
 
-
-    }
-
-    public static void hi(){
-      //  titleArray = KP.getHeadTitleList();
-        System.out.println(KP.getPersonUuid());
 
     }
 
@@ -43,8 +37,15 @@ public class QueueService extends Service{
 
     public static void deleteRequest() {
 
-        System.out.println("Удаление своей заявки");
+        if (KP.existingRequest(KP.gettingUsername) == 0)
+        {
+            System.out.println("Данный пользователь еще не посылал реквест");
+        }
+        else {
+            System.out.println("Реквест от данного пользователя удален");
+            System.out.println(KP.deleteRequest(KP.gettingUsername));
 
+        }
     }
 
 }

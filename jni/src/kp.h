@@ -21,6 +21,7 @@ individual_t *queueHead;    //queue
 list_t *hasVideoPropList;
 list_t *hasHeadPropList;     //queue
 list_t* getHeadList();  //queue
+list_t* qetRequestList();   //queue
 
 jclass *classAgenda;
 jclass *classProjector;

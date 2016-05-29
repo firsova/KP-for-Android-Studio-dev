@@ -113,17 +113,11 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native void stopVideo();
     
     
-    public static native int justNumber();
-	public static native String justString();
 	public static native int registerRequest(String username, String state);
-	public static native String getAllRequests();
-	public static native int initQueueSubscription();
-	public static native String getRequestState();
-	public static native int registerHead(String username);
-	public static native String getHeadUuid();
-	public static native String getHeadUsername();
-	public static native CharSequence[] getHeadTitleList();
 	public static native int existingRequest(String username);
+	public static native int deleteRequest(String username);
+	public static native String getAllRequests();
+	public static native String getRequestState();
 
 	/* Loading of shared library */
 	static {
