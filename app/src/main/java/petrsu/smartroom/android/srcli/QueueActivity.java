@@ -128,6 +128,9 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
                 queue1.createRequest();
 
+
+                //System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
+
                 break;
 
 			/* exitQueue button */

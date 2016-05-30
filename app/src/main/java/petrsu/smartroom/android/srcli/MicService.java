@@ -15,7 +15,7 @@ import java.lang.Thread;
 import java.net.InetSocketAddress;
 
 import java.io.IOException;
-//import org.xiph.speex.SpeexEncoder;
+import org.xiph.speex.SpeexEncoder;
 import android.util.Log;
 
 import net.tomp2p.opuswrapper.Opus;
@@ -45,9 +45,8 @@ public class MicService extends Service {
 	private final int mode = 0;
 	private final int samples = 320;
 	private final int quality = 10;
-	//private SpeexEncoder encoder;
-	private Opus.OpusEncoder encoder;
-	private PointerByReference penc;
+	private SpeexEncoder encoder;
+	//private PointerByReference penc;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -99,27 +98,37 @@ public class MicService extends Service {
 					/* Read data from smartphone mike */
 					int numBytesRead = mInputData.read(audioData, 0, samples);
 
-					ShortBuffer shortBuffer = ShortBuffer.allocate(1024 * 1024);//откуда кодирует
+					/*ShortBuffer shortBuffer = ShortBuffer.allocate(1024 * 1024);//откуда кодирует
 					for (int i = 0; i < numBytesRead; i += 2) {
 						int b1 = audioData[i + 1] & 0xff;
 						int b2 = audioData[i] << 8;
 						shortBuffer.put((short) (b1 | b2));
 					}
 
-          			/* Encode data with opus */
+          			// Encode data with opus
 					ByteBuffer dataBuffer = ByteBuffer.allocate(1024);//куда кодирует
 					int toRead = Math.min(shortBuffer.remaining(), dataBuffer.remaining());
 					int read = Opus.INSTANCE.opus_encode(penc, shortBuffer, 80, dataBuffer, toRead);
 					//dataBuffer.position(dataBuffer.position() + read);
 					//dataBuffer.flip();
 					//shortBuffer.flip();
-
-					//перегнать bytebuffer в byte[] и отправить
-
 					byte[] encData = new byte[dataBuffer.remaining()];
-					dataBuffer.get(encData);
+					dataBuffer.get(encData);*/
+
+					/* Encode data with Speex */
+					if(!encoder.processData(audioData, 0, samples))
+						Log.i("encoding", "failed");
+
+					int encDataLen = encoder.getProcessedDataByteSize();
+					byte[] encData = new byte[encDataLen];
+
+					/* Load processed data to byte array */
+					encoder.getProcessedData(encData, 0);
+
 					/*Log.i("encoded data size", String.valueOf(
 						encoder.getProcessedData(encData, 0)));*/
+
+					sendEncodedBytes(encData);
 					
 					sendEncodedBytes(encData);
 				}
@@ -151,10 +160,10 @@ public class MicService extends Service {
 	 * Initializes Speex encoder
 	 */
 	public void initEncoder() {
-		IntBuffer error = IntBuffer.allocate(4);
-		penc = Opus.INSTANCE.opus_encoder_create(8000, channels, Opus.OPUS_APPLICATION_RESTRICTED_LOWDELAY, error);
-		//encoder = new SpeexEncoder();
-		// encoder.init(mode, quality, mSampleRate, channels);
+		//IntBuffer error = IntBuffer.allocate(4);
+		//penc = Opus.INSTANCE.opus_encoder_create(8000, channels, Opus.OPUS_APPLICATION_RESTRICTED_LOWDELAY, error);
+		encoder = new SpeexEncoder();
+		encoder.init(mode, quality, mSampleRate, channels);
 	}
 
 	/**
