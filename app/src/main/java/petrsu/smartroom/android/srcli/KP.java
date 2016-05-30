@@ -54,6 +54,9 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static int port;					// SIB port
 	public static int personIndex = -1;		// Time slot index of a person
 	public static boolean isRegistered;		// User was registered in SS
+
+	public static boolean chSpeaker;
+
     public static String dqAddr = "null";
     public static String spAddr = "null";
 	private ImageView advancedModeImg;		// Advance mode trigger
@@ -116,8 +119,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native int registerRequest(String username, String state);
 	public static native int existingRequest(String username);
 	public static native int deleteRequest(String username);
-	public static native String getAllRequests();
-	public static native String getRequestState();
+	public static native String getRequestList(int i);
+	public static native int getRequestCount();
 
 	/* Loading of shared library */
 	static {

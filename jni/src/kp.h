@@ -1,3 +1,4 @@
+
 #ifndef _KP_H_
 #define _KP_H_
 
@@ -21,7 +22,7 @@ individual_t *queueHead;    //queue
 list_t *hasVideoPropList;
 list_t *hasHeadPropList;     //queue
 list_t* getHeadList();  //queue
-list_t* qetRequestList();   //queue
+list_t* getRequestList();   //queue
 
 jclass *classAgenda;
 jclass *classProjector;

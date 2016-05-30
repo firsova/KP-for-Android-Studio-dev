@@ -41,11 +41,19 @@ public class QueueList extends ActionBarActivity {
         setContentView(R.layout.queuelist);
 
 
+        if (KP.chSpeaker) KP.deleteRequest(KP.gettingUsername);
+
         qlistView = (ListView) findViewById(R.id.qlistView);
 
         List <String> q = new ArrayList<>();
-        q.add("foo");
-        q.add("bar");
+
+        for (int x = 1; x < 3; x = x + 1) {
+            q.add(KP.getRequestList(x));
+        }
+
+        for (int x = 4; x < KP.getRequestCount(); x = x + 1) {
+            q.add(KP.getRequestList(x));
+        }
 
 
 

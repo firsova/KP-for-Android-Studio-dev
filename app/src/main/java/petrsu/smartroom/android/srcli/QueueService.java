@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 
 public class QueueService extends Service{
 
-    private static String uuidHead;
     public static CharSequence[] titleArray;
 
     @Nullable
@@ -31,7 +30,17 @@ public class QueueService extends Service{
                 System.out.println("Такого реквеста еще не было");
                 System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
         }
-                else {System.out.println("Такой реквест уже был");}
+                else {
+                    System.out.println("Такой реквест уже был");
+
+                    System.out.print(KP.getRequestCount());
+
+                    final String titles = KP.getRequestList(1);
+                    System.out.print(titles);
+
+
+                // System.out.print(KP.getRequestList());
+        }
     }
 
 

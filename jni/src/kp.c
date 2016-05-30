@@ -755,19 +755,6 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initSubscription(
 		return -1;
 	if(subscribePresentationService() != 0)
 		return -1;
-    
-    
-    
-    jclass *classQueueServiceObj = getJClassObject(env, "QueueService");
- //   jclass *classQueueHeadObj = getJClassObject(env, "QueueHead");
-    
-    classQueueService = (jclass *)(*env)->NewGlobalRef(env, classQueueServiceObj);
-  //  classQueueHead = (jclass *)(*env)->NewGlobalRef(env, classQueueHeadObj);
-    
-    if(subscribeQueueService() != 0)
-        return -1;
-    if(subscribeQueueHead() != 0)
-        return -1;
 
 	return 0;
 }
@@ -2371,20 +2358,16 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIE
     char *just_string = (*env)->NewStringUTF(env, "Hello");
     return just_string;
 }
-
-/**=============================================================================================================*/
-/**
- * @brief Creates request in SmartSpace
- *
- * @param person 
- *        state
- * @return Request individual in success and NULL otherwise
- */
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+/**======================================== СОЗДАНИЕ РЕКВЕСТА ============================================================**/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
 individual_t* createRequest(const char *r_username,const char *r_state) {
     
 
     
-    individual_t *request = sslog_new_individual(CLASS_REQUEST);
+    individual_t* request = sslog_new_individual(CLASS_REQUEST);
     
    	sslog_set_individual_uuid(request,
                               generateUuid("http://www.cs.karelia.ru/smartroom#Request"));
@@ -2402,20 +2385,13 @@ individual_t* createRequest(const char *r_username,const char *r_state) {
     return request;
 }
 /**=============================================================================================================*/
-
-/**=============================================================================================================*/
-/**
- * @brief Creates new request in Smart Space
- * @param
- * @return 0 in success and -1 otherwise
- */
 JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
                                                     JNIEnv *env, jclass clazz, jstring username, jstring state) {
     
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
     const char *p_state = (*env)->GetStringUTFChars(env, state, NULL);
     
-    individual_t *request = createRequest(p_username, p_state);
+    individual_t* request = createRequest(p_username, p_state);
     
     if(request == NULL) {
             return -1;
@@ -2425,15 +2401,11 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
     }
 
 }
-/**=============================================================================================================*/
-
-/**=============================================================================================================*/
-/**
- * @brief Checks whether request in Smart Space exists
- *
- * @param username -
- * @return TRUE if exists and FALSE otherwise
- */
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+/**=================================== ПРОВЕРКА СУЩЕСТВОВАНИЯ РЕКВЕСТА ===================================================**/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
 bool requestExists(const char *username) {
     list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     
@@ -2455,13 +2427,6 @@ bool requestExists(const char *username) {
     return JNI_FALSE;
 }
 /**=============================================================================================================*/
-
-/**=============================================================================================================*/
-/**
-* @brief
-* @param
-* @return
-*/
 JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_existingRequest(
                                                                               JNIEnv *env, jclass clazz, jstring username) {
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
@@ -2469,132 +2434,123 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_existingRequest(
     if(!requestExists(p_username)) {return 0;} else {return 1;}
     
 }
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+/**======================================== УДАЛЕНИЕ РЕКВЕСТА ============================================================**/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_deleteRequest(JNIEnv *env, jclass clazz, jstring username) {
+    
+    const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
+    return requestDeleted(p_username);
+}
 /**=============================================================================================================*/
-
-
-
-
-
-
-
-
-/**
- * @brief Subscribes to queue-service events and properties
- *
- * @return 0 in success and -1 otherwise
- */
-
-int subscribeQueueService() {
-    extern void queueServiceNotificationHandler(subscription_t *);
-    void (*pQueueServiceHandler)(subscription_t *) =
-    &queueServiceNotificationHandler;
+int requestDeleted(const char *username) {
     
-    individual_t *queueService;
-    list_t *queueServiceList =
-    sslog_ss_get_individual_by_class_all(CLASS_QUEUESERVICE);
-    list_t *listPropertiesQueueService = list_get_new_list();
-    list_t *listProperties = list_get_new_list();
+    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+    individual_t* request;
     
-    queueServiceClassSubscriptionContainer = sslog_new_subscription(true);
-    queueServiceSubscriptionContainer = sslog_new_subscription(true);
-    
-    if(queueServiceList != NULL) {
+    if(list != NULL) {
         list_head_t* pos = NULL;
-        
-        list_for_each(pos, &queueServiceList->links) {
+        list_for_each(pos, &list->links) {
             list_t* node = list_entry(pos, list_t, links);
-            queueService = (individual_t *)(node->data);
-            break;
+            request = (individual_t*)(node->data);
+            sslog_ss_populate_individual(request);
         }
-        
-        list_add_data(PROPERTY_FIRSTREQ, listPropertiesQueueService);
-        list_add_data(PROPERTY_LASTREQ, listPropertiesQueueService);
-        sslog_sbcr_add_individual(queueServiceSubscriptionContainer,
-                                  queueService, listPropertiesQueueService);
-        
-        // If subscribed to queue service class
-        if(sslog_sbcr_is_active(queueServiceClassSubscriptionContainer))
-            sslog_sbcr_unsubscribe(queueServiceClassSubscriptionContainer);
-        
     } else {
-        // If conference service does not exist in SIB
-        sslog_sbcr_add_class(queueServiceClassSubscriptionContainer,
-                             CLASS_QUEUESERVICE);
-        
-        
-        if(sslog_sbcr_subscribe(queueServiceClassSubscriptionContainer)
-           != SSLOG_ERROR_NO) {
-            
-            __android_log_print(ANDROID_LOG_ERROR, "Queue service", "%s",
-                                sslog_get_error_text());
-            return -1;
-        }
+        return -1;
     }
     
+    prop_val_t *username_value = sslog_ss_get_property(request, PROPERTY_REQUESTUSERNAME);
     
-    
-    return 0;
-}
-
-/**
- * @brief Subscribes to queue-head events and properties
- *
- * @return 0 in success and -1 otherwise
- */
-
-int subscribeQueueHead() {
-    extern void queueHeadNotificationHandler(subscription_t *);
-    void (*pQueueHeadHandler)(subscription_t *) =
-    &queueHeadNotificationHandler;
-    
-    individual_t *queueHead;
-    list_t *queueHeadList =
-    sslog_ss_get_individual_by_class_all(CLASS_QUEUEHEAD);
-    list_t *listPropertiesQueueHead = list_get_new_list();
-    list_t *listProperties = list_get_new_list();
-    
-    queueHeadClassSubscriptionContainer = sslog_new_subscription(true);
-    queueHeadSubscriptionContainer = sslog_new_subscription(true);
-    
-    if(queueHeadList != NULL) {
-        list_head_t* pos = NULL;
-        
-        list_for_each(pos, &queueHeadList->links) {
-            list_t* node = list_entry(pos, list_t, links);
-            queueHead = (individual_t *)(node->data);
-            break;
-        }
-        
-        list_add_data(PROPERTY_HEADUSERNAME, listPropertiesQueueHead);
-        list_add_data(PROPERTY_ISBUSY, listPropertiesQueueHead);
-        sslog_sbcr_add_individual(queueHeadSubscriptionContainer,
-                                  queueHead, listPropertiesQueueHead);
-        
-        //If subscribed to queue service class
-        if(sslog_sbcr_is_active(queueHeadClassSubscriptionContainer))
-            sslog_sbcr_unsubscribe(queueHeadClassSubscriptionContainer);
-        
-    } else {
-        //If conference service does not exist in SIB
-        sslog_sbcr_add_class(queueHeadClassSubscriptionContainer,
-                             CLASS_QUEUEHEAD);
-        
-        
-        if(sslog_sbcr_subscribe(queueHeadClassSubscriptionContainer)
-           != SSLOG_ERROR_NO) {
-            
-            __android_log_print(ANDROID_LOG_ERROR, "QueueHead ", "%s",
-                                sslog_get_error_text());
-            return -1;
-        }
+    if(username_value == NULL) {
+        return 2;
     }
     
- 
+    if(strcmp(username, (char *)username_value->prop_value) == 0) {
+        if (sslog_ss_remove_individual(request) != 0)
+            return 5;
+    }
     
     return 0;
+    
 }
 
-/*Получает значение свойства класса*/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+/**================================= ПОДСЧЕТ КОЛИЧЕСТВА РЕКВЕСТОВ ========================================================**/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestCount(JNIEnv *env,jobject object){
+    
+    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+    
+    return getListSize(list);
+}
+
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+/**===================================== ВЫВОД РЕКВЕСТОВ ПО ОДНОМУ =======================================================**/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestList(JNIEnv *env,jobject object, int i){
+    
+    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+    
+    int size = getListSize(list);
+    if (size == 0) {return NULL;}
+    prop_val_t *mas[2][size];
+    
+    int index = 0;
+    list_head_t* pos = NULL;
+    
+    list_for_each(pos, &list->links) {
+        list_t* node = list_entry(pos, list_t, links);
+        individual_t* ind = (individual_t*)(node->data);
+        
+        prop_val_t *hasUsername = sslog_ss_get_property(ind,PROPERTY_REQUESTUSERNAME);
+        prop_val_t *hasPlace =  sslog_ss_get_property(ind,PROPERTY_REQUESTPLACE);
+        
+        if (index >=size) break;
+        
+        if (hasUsername != NULL) {
+            mas[0][index] = hasUsername;
+        } else mas[0][index] = NULL;
+        
+        mas[1][index] = hasPlace;
+        
+        index++;
+    }
+    
+    return (*env)->NewStringUTF(env, (char *)mas[0][i]->prop_value);
+}
+
+
+
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+/**============================================= ПОДПИСКА ================================================================**/
+/**=======================================================================================================================**/
+/**=======================================================================================================================**/
+
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getReqSub(JNIEnv *env, jclass clazz) {
+  
+    subscription_t *reqsub = sslog_new_subscription(true);
+    sslog_sbcr_add_class(reqsub, CLASS_REQUEST);
+    sslog_sbcr_subscribe(reqsub);
+    if(!sslog_sbcr_is_active(reqsub)){
+        return (*env)->NewStringUTF(env, "Подписка не активна");
+    }
+    return (*env)->NewStringUTF(env, "Подписка работает");
+}
+
+
+
+
+
+
+
+
 JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState(JNIEnv *env, jclass clazz) {
 
     list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
@@ -2622,6 +2578,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState
 }
 
 
+
 JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(JNIEnv *env, jobject obj){
     
     list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
@@ -2634,44 +2591,11 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(
 
 
 
-JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_deleteRequest(JNIEnv *env, jclass clazz, jstring username) {
-    
-    const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
-    return requestDeleted(p_username);
-}
 
 
 
-int requestDeleted(const char *username) {
-    
-    list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
-    
-    individual_t *individual;
-    
-    if(list != NULL) {
-        list_head_t* pos = NULL;
-        list_for_each(pos, &list->links) {
-            list_t* node = list_entry(pos, list_t, links);
-            individual = (individual_t*)(node->data);
-            sslog_ss_populate_individual(individual);
-            
-        }
-    } else {
-        return -1;
-    }
-    
-    
-    prop_val_t *username_value = sslog_ss_get_property(individual, PROPERTY_REQUESTUSERNAME);
-    
-    if(username_value == NULL) {
-        return 2;
-    }
-    
-    if(strcmp(username, (char *)username_value->prop_value) == 0) {
-        if (sslog_ss_remove_individual(individual) != 0)
-        return 5;
-    }
-    
-    return 0;
-    
-}
+
+
+
+
+

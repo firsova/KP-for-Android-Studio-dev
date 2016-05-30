@@ -233,9 +233,10 @@ public class Projector extends ActionBarActivity implements View.OnClickListener
     private void updateProjector() {
         speakerName = KP.getSpeakerName();
         isSpeaker = KP.checkSpeakerState();
-
+		KP.chSpeaker = true;
         if(!isSpeaker && !KP.isChairman && micIsActive) {
             micIsActive = false;
+			KP.chSpeaker = false;
             stopService(new Intent(this, MicService.class));
         }
         new updatePresentationAsync().execute();
