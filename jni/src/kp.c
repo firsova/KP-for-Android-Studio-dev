@@ -2529,20 +2529,66 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestList(
 
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
-/**============================================= ПОДПИСКА ================================================================**/
+/**======================================= ИНИЦИАЛИЗАЦИЯ ПОДПИСКИ ========================================================**/
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
 
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getReqSub(JNIEnv *env, jclass clazz) {
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initHeadSub(JNIEnv *env, jclass clazz, jstring username) {
   
-    subscription_t *reqsub = sslog_new_subscription(true);
-    sslog_sbcr_add_class(reqsub, CLASS_REQUEST);
-    sslog_sbcr_subscribe(reqsub);
-    if(!sslog_sbcr_is_active(reqsub)){
-        return (*env)->NewStringUTF(env, "Подписка не активна");
+    headsub = sslog_new_subscription(false);
+    sslog_sbcr_add_class(headsub, CLASS_QUEUEHEAD);
+
+    sslog_sbcr_subscribe(headsub);
+    if(!sslog_sbcr_is_active(headsub)){
+        return -1;
     }
-    return (*env)->NewStringUTF(env, "Подписка работает");
+    
+    return 0;
 }
+
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv *env, jclass clazz, jstring username) {
+    
+    const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
+    GlobalUsername = p_username;
+    subscription_changes_data_t* head_ch_data = NULL;
+    SSLOG_EXTERN list_t* head_ch_list = NULL;
+    SSLOG_EXTERN list_t* uphead_ch_list = NULL;
+    const char *name;
+    
+    
+    sslog_sbcr_wait(headsub);
+    head_ch_data = sslog_sbcr_get_changes_last(headsub);
+    uphead_ch_list = sslog_sbcr_ch_get_individual_by_action(head_ch_data, ACTION_UPDATE);
+    
+    if(!list_is_empty(uphead_ch_list)){
+        list_head_t* pos = NULL;
+        list_for_each(pos, &uphead_ch_list->links ){
+            list_t* node = list_entry(pos, list_t, links);
+            
+            individual_t* ind = (individual_t*)(node->data);
+            prop_val_t *temp_name = sslog_ss_get_property(ind,PROPERTY_HEADUSERNAME);
+            name = (char *)temp_name->prop_value;
+            
+            if(name != NULL ){
+                if(strcmp(name,GlobalUsername) == 0){
+                    return 0;
+                }
+            }
+        }
+    }
+    return -1;
+
+
+    
+}
+
+
+
+
+
+
+
+
 
 
 

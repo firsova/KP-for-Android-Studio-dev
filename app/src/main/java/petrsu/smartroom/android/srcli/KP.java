@@ -121,6 +121,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native int deleteRequest(String username);
 	public static native String getRequestList(int i);
 	public static native int getRequestCount();
+	public static native int initHeadSub();
+	public static native int headChanged();
 
 	/* Loading of shared library */
 	static {
@@ -373,7 +375,14 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 			KP.connectionState = -1;
 			return -1;
 		}
-		
+
+		if(initHeadSub() != 0) {
+			System.out.println("Sbcr init failed");
+			KP.disconnectSmartSpace();
+			KP.connectionState = -1;
+			return -1;
+		}
+
 		/* If user joined as a guest */
 		if(name.equals("") && password.equals("")) {
 			/* TODO: it is might be that after loosing connection
@@ -434,6 +443,13 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 				Log.e("Java KP", "Init subscription failed");
 				KP.disconnectSmartSpace();
 				connectionState = -1;
+				return -1;
+			}
+
+			if(initHeadSub() != 0) {
+				System.out.println("Sbcr init failed");
+				KP.disconnectSmartSpace();
+				KP.connectionState = -1;
 				return -1;
 			}
 		}
@@ -622,6 +638,13 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 					
 					if(initSubscription() != 0) {
 						System.out.println("Sbcr failed");
+						KP.disconnectSmartSpace();
+						KP.connectionState = -1;
+						return;
+					}
+
+					if(initHeadSub() != 0) {
+						System.out.println("Sbcr  failed");
 						KP.disconnectSmartSpace();
 						KP.connectionState = -1;
 						return;

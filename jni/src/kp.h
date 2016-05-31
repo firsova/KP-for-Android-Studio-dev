@@ -37,19 +37,18 @@ jobject *presentationClassObject;
 
 subscription_t *conferenceSubscriptionContainer;
 subscription_t *presentationSubscriptionContainer;
-subscription_t *queueServiceSubscriptionContainer;  //queue
-subscription_t *queueHeadSubscriptionContainer;  //queue
 subscription_t *conferenceClassSubscriptionContainer;
 subscription_t *presentationClassSubscriptionContainer;
-subscription_t *queueServiceClassSubscriptionContainer; //queue
-subscription_t *queueHeadClassSubscriptionContainer; //queue
+subscription_t *headsub;
 
 char *startedVideoUuid;
+const char *GlobalUsername;
 
 int currentTimeslotIndex;
 int hasVideoPropListLen;
 int hasHeadPropListLen;     //queue
 
+bool headHandler(subscription_t *);
 void addTimeslotToJavaList(JNIEnv *, individual_t *, jobject);
 void subscriptionHandler(subscription_t *);
 void projectorNotificationHandler(subscription_t *);

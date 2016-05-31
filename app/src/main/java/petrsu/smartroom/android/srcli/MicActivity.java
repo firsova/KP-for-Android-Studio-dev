@@ -103,6 +103,7 @@ public class MicActivity extends ActionBarActivity implements View.OnClickListen
 
 			/* micButton button */
             case R.id.micButton:
+                System.out.print("Здесь микрофон нужно закрыть");
                 break;
         }
     }

@@ -127,6 +127,8 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 queue1 = new QueueService();
 
                 queue1.createRequest();
+              //  Intent intent = new Intent(getApplicationContext(), MicActivity.class);
+             //   startActivity(intent);
 
 
                 //System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
@@ -149,6 +151,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
     public void onStart() {
         super.onStart();
 
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -163,6 +166,15 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
+
+        while (true){
+            if (KP.headChanged() == 0)
+            {
+                System.out.print("Здесь включается микрофон");
+                break;
+            }
+        }
+
     }
 
     @Override
