@@ -129,6 +129,9 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 queue1.createRequest();
 
 
+                toQueue.setText("Зачем ты нажал?");
+                toQueue.setBackgroundColor(getResources().getColor(R.color.blue));
+
                 break;
 
 			/* exitQueue button */
@@ -138,6 +141,9 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 queue2 = new QueueService();
 
                 queue2.deleteRequest();
+
+                exitQueue.setText("Зачем ты нажал?");
+                exitQueue.setBackgroundColor(getResources().getColor(R.color.white));
 
                 break;
         }
