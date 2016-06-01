@@ -121,8 +121,8 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native int deleteRequest(String username);
 	public static native String getRequestList(int i);
 	public static native int getRequestCount();
-	public static native int initHeadSub();
-	public static native int headChanged();
+	//public static native int initHeadSub();
+	public static native int headChanged(String username);
 
 	/* Loading of shared library */
 	static {
@@ -375,14 +375,14 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 			KP.connectionState = -1;
 			return -1;
 		}
-
+/*
 		if(initHeadSub() != 0) {
 			System.out.println("Sbcr init failed");
 			KP.disconnectSmartSpace();
 			KP.connectionState = -1;
 			return -1;
 		}
-
+*/
 		/* If user joined as a guest */
 		if(name.equals("") && password.equals("")) {
 			/* TODO: it is might be that after loosing connection
@@ -445,14 +445,14 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 				connectionState = -1;
 				return -1;
 			}
-
+/*
 			if(initHeadSub() != 0) {
 				System.out.println("Sbcr init failed");
 				KP.disconnectSmartSpace();
 				KP.connectionState = -1;
 				return -1;
 			}
-		}
+*/		}
 
 		if(!isRegistered) {
 			/* TODO: password is open! */
@@ -642,14 +642,14 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 						KP.connectionState = -1;
 						return;
 					}
-
+/*
 					if(initHeadSub() != 0) {
 						System.out.println("Sbcr  failed");
 						KP.disconnectSmartSpace();
 						KP.connectionState = -1;
 						return;
 					}
-					
+*/
 					ret_value = registerGuest(name, phone, email);
 					
 					if(ret_value == -1) {

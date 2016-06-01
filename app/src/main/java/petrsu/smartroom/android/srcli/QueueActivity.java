@@ -127,11 +127,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 queue1 = new QueueService();
 
                 queue1.createRequest();
-              //  Intent intent = new Intent(getApplicationContext(), MicActivity.class);
-             //   startActivity(intent);
 
-
-                //System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
 
                 break;
 
@@ -167,13 +163,14 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
         );
         AppIndex.AppIndexApi.start(client, viewAction);
 
-        while (true){
-            if (KP.headChanged() == 0)
-            {
+
+        //    if (KP.headChanged(KP.gettingUsername) == 0)
+       //     {
+                startService(new Intent(getApplicationContext(), MicActivity.class));
                 System.out.print("Здесь включается микрофон");
-                break;
-            }
-        }
+
+        //    }
+
 
     }
 

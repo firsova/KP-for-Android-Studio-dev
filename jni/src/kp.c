@@ -2545,7 +2545,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initHeadSub(JNIEnv
     
     return 0;
 }
-
+/*
 JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv *env, jclass clazz, jstring username) {
     
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
@@ -2585,9 +2585,45 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv
 
 
 
+*/
 
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv *env, jclass clazz, jstring username){
 
+    const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
+    GlobalUsername = p_username;
+    
+    individual_t *head = sslog_new_individual(CLASS_QUEUEHEAD);
 
+sslog_ss_init_individual_with_uuid(head, "QueueHead");
+
+subscription_t *subscription = sslog_new_subscription(false);
+
+list_t *properties = list_get_new_list();
+list_add_data(PROPERTY_HEADUSERNAME, properties);
+
+sslog_sbcr_add_individual(subscription, head, properties);
+
+if (sslog_sbcr_subscribe(subscription) != 0) {
+  //  printf("\nCan't subscribe\n");
+    return 0;
+}
+
+while (true) {
+    const prop_val_t *p_val = sslog_get_property(head, PROPERTY_HEADUSERNAME->name);
+    if (p_val != NULL) {
+        char *username = strdup((char *) p_val->prop_value);
+       // printf("LOG: HEAD WAS CHANGED, NEW HEADUSERNAME IS: %s\n", username);
+        if(GlobalUsername == username){
+            return 0;
+        }
+    }//else{
+       // printf("LOG: HEAD IS EMPTY\n");
+   // }
+    sslog_sbcr_wait(subscription);
+}
+return 1;
+
+}
 
 
 

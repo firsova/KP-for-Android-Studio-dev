@@ -3,14 +3,14 @@ package petrsu.smartroom.android.srcli;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+
 
 
 public class QueueService extends Service{
 
     public static CharSequence[] titleArray;
 
-    @Nullable
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -32,14 +32,6 @@ public class QueueService extends Service{
         }
                 else {
                     System.out.println("Такой реквест уже был");
-
-                    System.out.print(KP.getRequestCount());
-
-                    final String titles = KP.getRequestList(1);
-                    System.out.print(titles);
-
-
-                // System.out.print(KP.getRequestList());
         }
     }
 
