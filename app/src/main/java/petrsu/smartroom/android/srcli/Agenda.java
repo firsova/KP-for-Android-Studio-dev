@@ -39,6 +39,9 @@ import java.net.URLConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -51,15 +54,14 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.lang.Thread;
 
 /**
- *
  * @author pavlin
  * @author remediassance
- *
- * Agenda class shows activity program and
- * handles events like start conference, end
- * presentation, etc.
- *
- * TODO: обрабатывать вылет при попытке залогиниться, когда секция пустая
+ *         <p/>
+ *         Agenda class shows activity program and
+ *         handles events like start conference, end
+ *         presentation, etc.
+ *         <p/>
+ *         TODO: обрабатывать вылет при попытке залогиниться, когда секция пустая
  */
 public class Agenda extends AppCompatActivity {// implements  View.OnClickListener{
 
@@ -67,15 +69,15 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	private final int PERSON_PROFILE = 1;
 	private final int START_CONFERENCE_FROM = 2;
 	private final String CUR_TIMESLOT_KEY = "curTimeslot";
-	private final String absentImg;				// Absent image constant
-	private final String noImage;				// No image constant
-	private final String contentUrl;			// Content service URL
-	public final String presentationPath;		// Presentation local directory
+	private final String absentImg;                // Absent image constant
+	private final String noImage;                // No image constant
+	private final String contentUrl;            // Content service URL
+	public final String presentationPath;        // Presentation local directory
 
-	private static ArrayList<Timeslot> list;	// Agenda program
+	private static ArrayList<Timeslot> list;    // Agenda program
 	private static AgendaAdapter adapter;
 	private static ListView listView;
-	public static int agendaCreated;			// Agenda created indicator
+	public static int agendaCreated;            // Agenda created indicator
 	public static int currentTimeslotIndex;
 
 	private BroadcastReceiver bc;
@@ -84,7 +86,11 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	protected ProgressDialog progressDialog;
 	public boolean conferenceStarted;
 	public boolean conferenceEnded;
-
+	/**
+	 * ATTENTION: This was auto-generated to implement the App Indexing API.
+	 * See https://g.co/AppIndexing/AndroidStudio for more information.
+	 */
+	private GoogleApiClient client;
 
 
 	public Agenda() {
@@ -95,8 +101,8 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		absentImg = "absentImage";
 		noImage = "noImage";
 		presentationPath = "/SmartRoom/Presentations/";
-        KP.dqAddr = KP.getDiscussionServiceIP();
-        KP.spAddr = KP.getSocialProgramServiceIP();
+		KP.dqAddr = KP.getDiscussionServiceIP();
+		KP.spAddr = KP.getSocialProgramServiceIP();
 	}
 
 	@Override
@@ -109,26 +115,58 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	@Override
 	protected void onStop() {
 		super.onStop();
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		Action viewAction = Action.newAction(
+				Action.TYPE_VIEW, // TODO: choose an action type.
+				"Agenda Page", // TODO: Define a title for the content shown.
+				// TODO: If you have web page content that matches this app activity's content,
+				// make sure this auto-generated web page URL is correct.
+				// Otherwise, set the URL to null.
+				Uri.parse("http://host/path"),
+				// TODO: Make sure this auto-generated app URL is correct.
+				Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
+		);
+		AppIndex.AppIndexApi.end(client, viewAction);
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client.disconnect();
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client.connect();
 		int value = KP.getCurrentTimeslotIndex() - 1;
 		
 		/* If section was changed */
-		if(KP.sectionChanged())
+		if (KP.sectionChanged())
 			updateAgenda();
 
 		/* If time slot index was changed */
-		if(value != currentTimeslotIndex)
+		if (value != currentTimeslotIndex)
 			updateCurTimeslot();
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		Action viewAction = Action.newAction(
+				Action.TYPE_VIEW, // TODO: choose an action type.
+				"Agenda Page", // TODO: Define a title for the content shown.
+				// TODO: If you have web page content that matches this app activity's content,
+				// make sure this auto-generated web page URL is correct.
+				// Otherwise, set the URL to null.
+				Uri.parse("http://host/path"),
+				// TODO: Make sure this auto-generated app URL is correct.
+				Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
+		);
+		AppIndex.AppIndexApi.start(client, viewAction);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		SharedPreferences prefs = getSharedPreferences("srclient_conf",Context.MODE_PRIVATE);
+		SharedPreferences prefs = getSharedPreferences("srclient_conf", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = prefs.edit();
 		
 		/* Save the last application state */
@@ -147,12 +185,12 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.agenda_interface);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 		try {
 			setSupportActionBar(toolbar);
-            if(getSupportActionBar() != null)
-			    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		} catch(NullPointerException e){
+			if (getSupportActionBar() != null)
+				getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 
@@ -166,14 +204,14 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 						new SectionDrawerItem().withName(R.string.services),
 						new PrimaryDrawerItem().withName(R.string.agenda).withIcon(FontAwesome.Icon.faw_server),
 						new PrimaryDrawerItem().withName(R.string.presentation).withIcon(FontAwesome.Icon.faw_image),
-                        new PrimaryDrawerItem().withName("SocialProgram").withIcon(FontAwesome.Icon.faw_globe),
+						new PrimaryDrawerItem().withName("SocialProgram").withIcon(FontAwesome.Icon.faw_globe),
 						new PrimaryDrawerItem().withName("QueueActivity").withIcon(FontAwesome.Icon.faw_globe),
 						new PrimaryDrawerItem().withName("QueueList").withIcon(FontAwesome.Icon.faw_globe),
 
-                        new SectionDrawerItem().withName(R.string.discussion),
+						new SectionDrawerItem().withName(R.string.discussion),
 
-                        new PrimaryDrawerItem().withName(R.string.discussionCur).withIcon(FontAwesome.Icon.faw_comment_o),
-                        new PrimaryDrawerItem().withName(R.string.discussionList).withIcon(FontAwesome.Icon.faw_comments_o),
+						new PrimaryDrawerItem().withName(R.string.discussionCur).withIcon(FontAwesome.Icon.faw_comment_o),
+						new PrimaryDrawerItem().withName(R.string.discussionList).withIcon(FontAwesome.Icon.faw_comments_o),
 
 						new SectionDrawerItem().withName(R.string.action_settings),
 						new PrimaryDrawerItem().withName(R.string.action_settings).withIcon(FontAwesome.Icon.faw_cog),
@@ -186,7 +224,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 						new DividerDrawerItem(),
 						//new PrimaryDrawerItem().withName("City gallery *WIP*").withIcon(FontAwesome.Icon.faw_globe),
 						new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close)
-                ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+				).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 			@Override
 			public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
 				//Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
@@ -223,7 +261,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 					case 14:
 						startActivity(Navigation.getManIntent(getApplicationContext()));
 						break;
-                    /*case 14:
+					/*case 14:
 						startActivity(Navigation.getGalleryIntent(getApplicationContext()));
                         break;*/
 					case 16:
@@ -242,25 +280,25 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 1;
-		imgDefault = BitmapFactory.decodeResource(getResources(),R.drawable.crop, options);
-		imgNoImage = BitmapFactory.decodeResource(getResources(),R.drawable.crop, options);
+		imgDefault = BitmapFactory.decodeResource(getResources(), R.drawable.crop, options);
+		imgNoImage = BitmapFactory.decodeResource(getResources(), R.drawable.crop, options);
 		
 		/* Initialize progress dialog for showing download 
 		 * process */
 		progressDialog = createProgressDialog();
 		
 		/* If started the first time */
-		if(list == null) {
-			if(prepareAgendaData() != 0) {
+		if (list == null) {
+			if (prepareAgendaData() != 0) {
 				setContentView(R.layout.agenda_interface_ext);
 
-				ImageView refreshBtn = (ImageView) findViewById (R.id.agendaRefresh);
+				ImageView refreshBtn = (ImageView) findViewById(R.id.agendaRefresh);
 				refreshBtn.setImageDrawable(getResources().getDrawable(R.drawable.refresh));
 				refreshBtn.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						//ImageButton image = (ImageButton) v.findViewById(R.id.agendaRefresh);
-						switch(v.getId()) {
+						switch (v.getId()) {
 							case R.id.agendaRefresh:
 								updateAgenda();
 								break;
@@ -272,34 +310,37 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		}
 		
 		/* If agenda is empty show error window */
-		if(list.isEmpty()) {
-			ArrayList<ErrorView> list = new ArrayList<>();
+		if (list.isEmpty()) {
+			ArrayList<ErrorView> list = new ArrayList<ErrorView>();
 			list.add(new ErrorView(getResources()
 					.getString(R.string.agendaNotAvailable)));
 
 			adapter = new AgendaAdapter(
 					this, list, R.layout.agenda_interface_ext,
-					new String[] {ErrorView.MSG},
-					new int[] {R.id.noAgendaView});
+					new String[]{ErrorView.MSG},
+					new int[]{R.id.noAgendaView});
 		} else {
 			adapter = new AgendaAdapter(
 					this, list, R.layout.agenda_item,
-					new String[] {Timeslot.NAME, Timeslot.TITLE,
+					new String[]{Timeslot.NAME, Timeslot.TITLE,
 							Timeslot.IMG, Timeslot.STATUS},
-					new int[] {R.id.speakerName, R.id.presentationTitle,
+					new int[]{R.id.speakerName, R.id.presentationTitle,
 							R.id.avatar, R.id.speakerStatus});
 		}
 
-        // was cast to SimpleAdapter
+		// was cast to SimpleAdapter
 		(adapter).setViewBinder(new AgendaViewBinder());
 		listView.setAdapter(adapter);
+		// ATTENTION: This was auto-generated to implement the App Indexing API.
+		// See https://g.co/AppIndexing/AndroidStudio for more information.
+		client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 	}
 
 
-
-	/**=========================================================================
+	/**
+	 * =========================================================================
 	 * SHOWS HELP WINDOW
-	 *==========================================================================
+	 * ==========================================================================
 	 */
 	private void openHelp() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -310,10 +351,10 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	}
 
 
-
-	/**========================================================================
+	/**
+	 * ========================================================================
 	 * REFRESH AGENDA PAGE
-	 *=========================================================================
+	 * =========================================================================
 	 */
 	public void updateAgenda() {
 		agendaCreated = 0;
@@ -323,7 +364,6 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		Intent restartIntent = new Intent(this, Agenda.class);
 		startActivity(restartIntent);
 	}
-
 
 
 	/**
@@ -336,19 +376,18 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		/* Update agenda view */
 		try {
 			new updateAgendaAsync(index).execute();
-		} catch(ExceptionInInitializerError e) {
+		} catch (ExceptionInInitializerError e) {
 			e.printStackTrace();
 			updateAgenda();
 		}
 
 		/* Triggers to Projector if user is speaker */
-		if(KP.checkSpeakerState()) {
+		if (KP.checkSpeakerState()) {
 			Intent intent = new Intent();
 			intent.setClass(this, Projector.class);
 			startActivity(intent);
 		}
 	}
-
 
 
 	@Override
@@ -369,25 +408,25 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	}
 
 
-	/**=============================================================================================
+	/**
+	 * =============================================================================================
 	 * Adds time slot item to agenda program list.
 	 *
-	 * @param name Name of participant
-	 * @param title Presentation title
-	 * @param img Participant's avatar
+	 * @param name   Name of participant
+	 * @param title  Presentation title
+	 * @param img    Participant's avatar
 	 * @param status Participant status (online, offline)
-	 * @throws InterruptedException
-     * =============================================================================================
+	 * @throws InterruptedException =============================================================================================
 	 */
 	public void addTimeslotItemToList(final String name, final String title,
 									  final String img, final String status) throws InterruptedException {
-		if(!img.equals(absentImg) && !img.equals(noImage)) {
+		if (!img.equals(absentImg) && !img.equals(noImage)) {
 			Thread t = new Thread() {
 				@Override
 				public void run() {
 					String imageLink = prepareLink(img);
 					Bitmap imgAvatar = loadImage(imageLink);
-					if(imgAvatar == null) {
+					if (imgAvatar == null) {
 						list.add(new Timeslot(name, title, imgNoImage,
 								status));
 					} else {
@@ -399,7 +438,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 			t.start();
 			t.join();
 
-		} else if(img.equals(noImage)) {
+		} else if (img.equals(noImage)) {
 			list.add(new Timeslot(name, title, imgNoImage, status));
 		} else {
 			list.add(new Timeslot(name, title, imgDefault, status));
@@ -440,7 +479,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.agenda_menu, menu);
 
-		if(!KP.isChairman) {
+		if (!KP.isChairman) {
 			menu.findItem(R.id.conferenceStart).setVisible(false);
 			menu.findItem(R.id.conferenceEnd).setVisible(false);
 		}
@@ -457,7 +496,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
+		switch (item.getItemId()) {
 			case R.id.services:
 				Intent intentServices = new Intent();
 				intentServices.setClass(this, ServicesMenu.class);
@@ -471,20 +510,20 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 				break;
 
 			case R.id.conferenceStart:
-				if(!checkConnection())
+				if (!checkConnection())
 					return false;
 
-				if(startConference() != 0)
+				if (startConference() != 0)
 					Toast.makeText(this, "Start conference failed",
 							Toast.LENGTH_SHORT).show();
 				conferenceStarted = true;
 				break;
 
 			case R.id.conferenceEnd:
-				if(!checkConnection())
+				if (!checkConnection())
 					return false;
 
-				if(endConference() != 0)
+				if (endConference() != 0)
 					Toast.makeText(this, "End conference failed",
 							Toast.LENGTH_SHORT).show();
 				conferenceEnded = true;
@@ -492,7 +531,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 				break;
 
 			case R.id.reconnect:
-				if(KP.reconnect() == 0)
+				if (KP.reconnect() == 0)
 					updateAgenda();
 				break;
 
@@ -509,7 +548,6 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 
 		return super.onOptionsItemSelected(item);
 	}
-
 
 
 	/**
@@ -531,7 +569,6 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	}
 
 
-
 	/**
 	 * Loads agenda program
 	 *
@@ -539,10 +576,10 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	 */
 	public int prepareAgendaData() {
 
-		list = new ArrayList<>();
+		list = new ArrayList<Timeslot>();
 		
 		/* If loading program failed */
-		if(KP.loadTimeslotList(this) == -1) {
+		if (KP.loadTimeslotList(this) == -1) {
 			Log.i("Agenda GUI", "Fill agenda fail");
 			return -1;
 		}
@@ -551,7 +588,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)  {
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 			dialog.setTitle(R.string.exitClientTitle);
@@ -608,7 +645,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	public boolean checkConnection() {
 		boolean state = KP.checkConnection();
 
-		if(!state)
+		if (!state)
 			Toast.makeText(this, R.string.connectionLost,
 					Toast.LENGTH_SHORT).show();
 		return state;
@@ -618,7 +655,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	 * Initializes agenda context menu
 	 */
 	public void initListView() {
-		listView = (ListView) findViewById (R.id.agendaListView);
+		listView = (ListView) findViewById(R.id.agendaListView);
 		listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 				final int pos = position;
@@ -679,30 +716,30 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		bc = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				switch(intent.getIntExtra("action", 0)) {
+				switch (intent.getIntExtra("action", 0)) {
 					
 					/* Show dialog if recovering started */
 					case NetworkService.START_RECOVER:
 						agendaCreated = 0;
 						progressDialog = ProgressDialog.show(context,
 								getResources()
-                                        .getString(R.string.connectionRecoverTitle),
+										.getString(R.string.connectionRecoverTitle),
 								getResources()
-                                        .getString(R.string.connectionRecoverMsg),
+										.getString(R.string.connectionRecoverMsg),
 								false, false);
 						break;
 						
 					/* Close dialog if recovering stopped */
 					case NetworkService.STOP_RECOVER:
-						if(progressDialog != null)
-							if(progressDialog.isShowing())
+						if (progressDialog != null)
+							if (progressDialog.isShowing())
 								progressDialog.dismiss();
 						break;
 					
 					/* If recovering failed */
 					case NetworkService.FAIL_RECOVER:
-                        Toast.makeText(context, "Failed to recover",
-                                Toast.LENGTH_LONG).show();
+						Toast.makeText(context, "Failed to recover",
+								Toast.LENGTH_LONG).show();
 						break;
 						
 					/* If recovering successful */
@@ -719,7 +756,6 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	}
 
 
-
 	/**
 	 * Formatting URL as an absolute link
 	 *
@@ -727,14 +763,14 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	 * @return Absolute link
 	 */
 	public String prepareLink(String link) {
-		if(!link.contains("http://"))
-			if(contentUrl != null)
+		if (!link.contains("http://"))
+			if (contentUrl != null)
 				link = contentUrl + link;
 		return link;
 	}
 
 	/**
-	 * Shows dialog of presentation downloading options 
+	 * Shows dialog of presentation downloading options
 	 *
 	 * @param uri - presentation resource identifier
 	 */
@@ -742,7 +778,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		String fileName = uri.toString();
 		fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
 
-		if(fileExists(fileName, presentationPath)) {
+		if (fileExists(fileName, presentationPath)) {
 			showRewriteDialog(uri);
 			return;
 		}
@@ -813,7 +849,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 	 * Checks whether file exists in local storage
 	 *
 	 * @param fileName - name of a file
-	 * @param subPath - local path to presentation
+	 * @param subPath  - local path to presentation
 	 * @return True if file exists and false otherwise
 	 */
 	public static boolean fileExists(String fileName, String subPath) {
@@ -854,7 +890,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 				lastIndexOf('/') + 1);
 		try {
 			File file = new File(Environment.getExternalStorageDirectory()
-                    .getPath() + presentationPath + fileName);
+					.getPath() + presentationPath + fileName);
 			Intent intent = new Intent(Intent.ACTION_VIEW);
 			intent.setDataAndType(Uri.fromFile(file), "application/pdf");
 			startActivity(intent);
@@ -868,13 +904,12 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 
 
 	/**
-	 *
 	 * @author pavlin
-	 *
-	 *	Shows downloading progress dialog.
+	 *         <p/>
+	 *         Shows downloading progress dialog.
 	 */
 	class DownloadFileProgress extends AsyncTask<Uri, Integer, Long> {
-		private String fileName;	// Presentation file name
+		private String fileName;    // Presentation file name
 
 		protected void onPreExecute() {
 			super.onPreExecute();
@@ -882,7 +917,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 			makeDir();
 		}
 
-		protected Long doInBackground(Uri...uris) {
+		protected Long doInBackground(Uri... uris) {
 			byte data[] = new byte[1024];
 			long total = 0;
 			int count;
@@ -892,7 +927,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 				fileName = url.toString().substring(url.toString().
 						lastIndexOf('/') + 1);
 
-				if(Agenda.fileExists(fileName, presentationPath))
+				if (Agenda.fileExists(fileName, presentationPath))
 					return total;
 
 				URLConnection connection = url.openConnection();
@@ -909,7 +944,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		        /* Downloading and updating progress */
 				while ((count = input.read(data)) != -1) {
 					total += count;
-					publishProgress((int)total);
+					publishProgress((int) total);
 					output.write(data, 0, count);
 				}
 
@@ -923,16 +958,16 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 			return total;
 		}
 
-		protected void onProgressUpdate(Integer...progress) {
+		protected void onProgressUpdate(Integer... progress) {
 			progressDialog.setProgress(progress[0]);
-            //prog 0 was cast to int
+			//prog 0 was cast to int
 		}
 
 		protected void onPostExecute(Long result) {
 			progressDialog.dismiss();
 			try {
 				File file = new File(Environment.getExternalStorageDirectory()
-                        .getPath() + presentationPath + fileName);
+						.getPath() + presentationPath + fileName);
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setDataAndType(Uri.fromFile(file), "application/pdf");
 				startActivity(intent);
@@ -947,22 +982,21 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		 */
 		private void makeDir() {
 			File dir = new File(Environment.getExternalStorageDirectory().getPath() + presentationPath);
-            boolean isDirCreated = dir.exists();
-			if(!isDirCreated)
-                isDirCreated = dir.mkdirs();
-            if(isDirCreated)
-                System.out.println("Dirs are already created");
+			boolean isDirCreated = dir.exists();
+			if (!isDirCreated)
+				isDirCreated = dir.mkdirs();
+			if (isDirCreated)
+				System.out.println("Dirs are already created");
 		}
 	}
 
 	/**
-	 *
 	 * @author pavlin
-	 *
-	 *	Updates agenda current time slot view
+	 *         <p/>
+	 *         Updates agenda current time slot view
 	 */
 	class updateAgendaAsync extends AsyncTask<Void, Void, Void> {
-		private int index;	// time slot index value
+		private int index;    // time slot index value
 
 		public updateAgendaAsync(int index) {
 			super();
@@ -970,7 +1004,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 		}
 
 		@Override
-		protected Void doInBackground(Void...empty) {
+		protected Void doInBackground(Void... empty) {
 			return null;
 		}
 

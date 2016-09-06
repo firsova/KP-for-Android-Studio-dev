@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -45,14 +46,12 @@ public class QueueList extends ActionBarActivity {
 
         qlistView = (ListView) findViewById(R.id.qlistView);
 
-        List <String> q = new ArrayList<>();
+        List <String> q = new ArrayList<String>();
 
-        for (int x = 1; x < 3; x = x + 1) {
-            q.add(KP.getRequestList(x));
-        }
 
-        for (int x = 4; x < KP.getRequestCount(); x = x + 1) {
+        for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
+            System.out.println(KP.getRequestList(x));
         }
 
 

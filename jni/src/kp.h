@@ -66,7 +66,7 @@ int activatePerson(individual_t *);
 char* generateUuid(char*);
 bool personExists(const char *);
 bool placeExists(const char *);
-bool requestExists(const char *);   //queue
+bool requestExists(const char *);   //queu
 
 jclass getJClassObject(JNIEnv *, char *);
 jfieldID getFieldID(JNIEnv *, jclass, char *, char *);

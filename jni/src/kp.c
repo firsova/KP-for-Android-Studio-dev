@@ -835,7 +835,7 @@ int subscribeConferenceService() {
 /**
  * @brief Subscribes to presentation-service events and properties
  *
- * @return 0 in success and -1 otherwise
+ * @return 0 in success and -1 otherwis
  */
 int subscribePresentationService() {
 	extern void presentationNotificationHandler(subscription_t *);
@@ -2456,6 +2456,13 @@ int requestDeleted(const char *username) {
             list_t* node = list_entry(pos, list_t, links);
             request = (individual_t*)(node->data);
             sslog_ss_populate_individual(request);
+			prop_val_t *username_value = sslog_ss_get_property(request, PROPERTY_REQUESTUSERNAME);
+    
+			if(username_value == NULL) {return 2;}
+    
+			if(strcmp(username, (char *)username_value->prop_value) == 0) {
+				 if (sslog_ss_remove_individual(request) != 0) return 5;
+			}
         }
     } else {
         return -1;
@@ -2523,6 +2530,8 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestList(
     }
     
     return (*env)->NewStringUTF(env, (char *)mas[0][i]->prop_value);
+    
+    
 }
 
 
@@ -2545,47 +2554,10 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initHeadSub(JNIEnv
     
     return 0;
 }
-/*
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv *env, jclass clazz, jstring username) {
-    
-    const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
-    GlobalUsername = p_username;
-    subscription_changes_data_t* head_ch_data = NULL;
-    SSLOG_EXTERN list_t* head_ch_list = NULL;
-    SSLOG_EXTERN list_t* uphead_ch_list = NULL;
-    const char *name;
-    
-    
-    sslog_sbcr_wait(headsub);
-    head_ch_data = sslog_sbcr_get_changes_last(headsub);
-    uphead_ch_list = sslog_sbcr_ch_get_individual_by_action(head_ch_data, ACTION_UPDATE);
-    
-    if(!list_is_empty(uphead_ch_list)){
-        list_head_t* pos = NULL;
-        list_for_each(pos, &uphead_ch_list->links ){
-            list_t* node = list_entry(pos, list_t, links);
-            
-            individual_t* ind = (individual_t*)(node->data);
-            prop_val_t *temp_name = sslog_ss_get_property(ind,PROPERTY_HEADUSERNAME);
-            name = (char *)temp_name->prop_value;
-            
-            if(name != NULL ){
-                if(strcmp(name,GlobalUsername) == 0){
-                    return 0;
-                }
-            }
-        }
-    }
-    return -1;
-
-
-    
-}
 
 
 
 
-*/
 
 JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv *env, jclass clazz, jstring username){
 
