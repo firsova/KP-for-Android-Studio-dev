@@ -3,6 +3,7 @@ package petrsu.smartroom.android.srcli;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
@@ -30,6 +31,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by user on 14.05.16.
@@ -53,12 +55,10 @@ public class QueueList extends ActionBarActivity {
             q.add(KP.getRequestList(x));
             System.out.println(KP.getRequestList(x));
         }
+        Subscription sub;
+        sub = new Subscription();
+        sub.execute("name1","name2","name3");   //первый тип
 
-
-
-      //  final String[] catnames = new String[] {
-       //         "Рыжик", "Барсик", "Мурзик"
-       // };
         ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
 
@@ -122,5 +122,47 @@ public class QueueList extends ActionBarActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
 
+    }
+}
+
+
+class Subscription extends AsyncTask<String,Integer,Void> {
+
+    @Override
+    protected  void onPreExecute() {
+        super.onPreExecute();
+        System.out.println("BEGIN");
+    }
+
+    @Override
+    protected Void doInBackground(String...names){
+        try {
+            int cnt = 0;
+            for (String name : names) {
+                showName(name);
+                publishProgress(++cnt);     //выводим промежуточный результат (вызов onProgressUpdate)
+                                            //второй тип
+            }
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected  void  onProgressUpdate(Integer...values){
+        super.onProgressUpdate(values);
+        System.out.println("***"+values[0]+"***");
+    }
+
+    @Override
+    protected  void  onPostExecute(Void result) {
+        super.onPostExecute(result);
+        System.out.println("END");
+    }
+
+    private void showName(String name) throws InterruptedException{
+        TimeUnit.SECONDS.sleep(2);
     }
 }
