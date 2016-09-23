@@ -1,2 +1,0 @@
-service memcached status
-sudo netstat -tap | grep memcached

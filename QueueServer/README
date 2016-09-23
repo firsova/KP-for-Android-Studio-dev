@@ -1,0 +1,31 @@
+HelloWorld demo
+
+One KP creates individual, set property with string "Hello world" and insert whole individual.
+Another KP subscribes this property and prints it value.
+
+There are two versions of KPs: projects for Qt Creater and ANSI C versions
+
+----------------------------------------------------------------
+Requirements
+----------------------------------------------------------------
+ * SmartSlog v0.30alpha and heigher
+ * Smart-M3 v0.9.3-beta and heigher
+
+----------------------------------------------------------------
+Installation
+----------------------------------------------------------------
+ * Install SmartSlog library (smartslog_kp_library)
+   See folowing README
+ * Compile all KPs in example.
+   There are common Makefiles for Qt and ANSI C version, type in the folowing folder:
+      make
+
+----------------------------------------------------------------
+Running
+----------------------------------------------------------------
+ * Run sibd. Type:
+      sibd
+ * Run sib-tcp. Type:
+      sib-tcp
+ * Run KPs. Go to KP folder and run executable file.
+
