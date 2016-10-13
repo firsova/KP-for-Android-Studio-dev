@@ -55,6 +55,9 @@ char s_false[10]  = "false";
 bool reqAdded = true;
 
 individual_t *head;
+individual_t* temp_individual;
+
+prop_val_t* new_speaker;
 	
 int main()
 {
@@ -171,128 +174,65 @@ int main()
 		
 		subscription_changes_data_t* cntr_req_ch_data = NULL;
 		SSLOG_EXTERN list_t* cntr_req_ch_list = NULL;
+
 	
-	while (true) {
-		
+	while (true) 
+	{	
+
 		if (getchar() == 'e' )
-		printf("LOG: Exiting");
-				
-		
-		
-		
-		
-		
-		//
-		//Check if server is free and set new speaker if needed
-		//
-		
-		prop_val_t *iB_val = sslog_get_property(head,PROPERTY_ISBUSY->name );
-		char *temp_isBusy = strdup((char *) iB_val->prop_value);
-		if (!strcmp(headisbusy, s_false) && reqAdded){
-			printf("LOG: HEAD IS FREE\n");
-			printf("LOG: SEARCHING FOR NEW REQUESTS\n");
-			individual_t* min_req;
-			int position = 9999999;
-			list_t* candidates = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
-			if(!list_is_empty(candidates)){
-				list_head_t* pos = NULL;
-				list_for_each(pos, &candidates->links ){
-					list_t* node = list_entry(pos, list_t, links);
-					individual_t* temp_individual = (individual_t*)(node->data);
-					
-					prop_val_t* pos = sslog_get_property(temp_individual, PROPERTY_REQUESTPLACE->name);
-				
-					if (pos !=NULL ){
-						
-						char* posstr = strdup((char *) pos->prop_value);
-						int posint = atoi(posstr);
-						if(posint != NULL 
-						&& posint > firstreq
-						&& posint < position){
-							position = posint;
-							min_req = temp_individual;
-							
-						}
-					
-					}
-					
-				}
-				
-				if(min_req!= NULL){
-					printf("LOG: FOUND NEW REQ\n");
-					prop_val_t* new_speaker = sslog_get_property(min_req, PROPERTY_REQUESTUSERNAME->name);
-					printf("LOG: GETTING NEW SPEAKERNAME\n");
-					if(new_speaker!=NULL){
-						char* new_speaker_name = strdup((char *) new_speaker->prop_value);
-						printf("LOG: SETTING NEW SPEAKERNAME\n");
-						set_property_by_name(head,PROPERTY_HEADUSERNAME->name, new_speaker_name );
-						printf("LOG: SETTING NEW HEAD-> isBusy\n");
-						set_property_by_name(head, PROPERTY_ISBUSY->name, s_true);
-						printf("LOG: SETTING NEW ISBUSY\n");
-						headisbusy = s_true;
-						printf("LOG: SETTING NEW FIRST REQ\n");
-						firstreq = position;
-						printf("LOG: SETTING NEW HEAD uuid\n");
-						headuuid = min_req->uuid; 
-					}
-					else{
-						printf("LOG: REQ WITH EMPTY USERNAME\n");
-						if(firstreq != lastreq)
-						firstreq++;
-						else reqAdded = false;
-					}
-				}
-				else{
-					printf("LOG: NO POSSIBLE REQ TO INSERT\n");
-					reqAdded = false;
-				}
-			}
+		{
+			printf("Exiting\n");
+			sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME); 
+			sslog_ss_remove_property_all(head, PROPERTY_ISBUSY);
+			printf("Removing head properties\n");
+			sslog_ss_remove_individual(head);
+			sslog_ss_remove_individual(server);
+			printf("Removing individuals\n");
+			sslog_sbcr_unsubscribe(reqsub);
+			sslog_sbcr_unsubscribe(cnreqsub);
+			printf("Unsubscription\n");
+			ss_leave(sslog_get_ss_info());
+			sslog_ss_leave_session_all();
+			sslog_repo_clean_all();
+			printf("GoodBye\n");
+			return 0;
 		}
 		
-		/*
-		printf("LOG: Initializing req");
-		individual_t *req = sslog_new_individual(CLASS_REQUEST);
-		if (req == NULL) {
-		printf("\nError: get_error_text()\n");
-		return 0;
-		}*/
+	}
+		
+		
+		//printf("LOG: Initializing req");
+		//individual_t *req = sslog_new_individual(CLASS_REQUEST);
+		//if (req == NULL) {
+		//printf("\nError: get_error_text()\n");
+		//return 0;
+		//}
 		
 		
 		
-		system("sleep 2");
+		
 		//sslog_ss_init_individual_with_uuid(req, "request 1");
-		/*if(sslog_ss_insert_individual(req) == -1){
-				printf("Error: get_error_text()\n" );
-				return 1;
-			}*/
+		//if(sslog_ss_insert_individual(req) == -1){
+		//		printf("Error: get_error_text()\n" );
+		//		return 1;
+		//	}
 		//system("sleep 5");
-		}
+
+		
 	
 
         //clean_triples_from_ss();
 	
-	sslog_sbcr_unsubscribe(reqsub);
-	sslog_sbcr_unsubscribe(cnreqsub);
-	
-	sslog_ss_remove_individual(head);
-	sslog_ss_remove_individual(server);
 
-	
-	ss_leave(sslog_get_ss_info());
-	sslog_ss_leave_session_all();
-	sslog_repo_clean_all();
-
-	printf("\nKP leave SS...\n");
-
-	return 0;
 }
+
 bool isValidIpAddress(char *ipAddress)
 {
     struct sockaddr_in sa;
     int result = inet_pton(AF_INET, ipAddress, &(sa.sin_addr));
     return result != 0;
 }
-
+/*
 void cntrRequestsHandler(subscription_t *cnreqsub){
 	
 	subscription_changes_data_t* cntr_req_ch_data = NULL;
@@ -319,8 +259,9 @@ void cntrRequestsHandler(subscription_t *cnreqsub){
 			list_free(cntr_req_ch_list);
 		}
 }
-
-void requestsHandler(subscription_t *reqsub){
+*/
+void requestsHandler(subscription_t *reqsub)
+{
 	printf("LOG: processing request handler\n");
 	
 	subscription_changes_data_t* req_ch_data = NULL;
@@ -330,16 +271,20 @@ void requestsHandler(subscription_t *reqsub){
 	req_ch_data = sslog_sbcr_get_changes_last(reqsub);
 		sslog_sbcr_ch_print(req_ch_data);
 		rmreq_ch_list = sslog_sbcr_ch_get_individual_by_action(req_ch_data, ACTION_REMOVE); 	
-		if(!list_is_empty(rmreq_ch_list)){
+		if(!list_is_empty(rmreq_ch_list))
+		{
 			printf("\nLOG: Some request were removed.\n");
 			sslog_sbcr_ch_print(req_ch_data);
 			list_head_t* pos = NULL;
-			list_for_each(pos, &rmreq_ch_list->links ){
+			list_for_each(pos, &rmreq_ch_list->links )
+			{
 				list_t* node = list_entry(pos, list_t, links);
 				char* temp_uuid= (char*)(node->data);
-				if(temp_uuid != NULL ){
+				if(temp_uuid != NULL )
+				{
 					printf("	\nLOG: Processing request\n");
-					if(!strcmp(temp_uuid, headuuid )){
+					if(!strcmp(temp_uuid, headuuid ))
+					{
 						printf ("		LOG:User was in the head. releasing head\n");
 						set_property_by_name(head,PROPERTY_ISBUSY->name, s_false );
 						headuuid = "NaN";
@@ -353,22 +298,25 @@ void requestsHandler(subscription_t *reqsub){
 			}
 				
 			//list_free(rmreq_ch_list);
+
 		}
-		
 		//processing inserted requests
 		req_ch_list = sslog_sbcr_ch_get_individual_by_action(req_ch_data, ACTION_INSERT);
-		if(!list_is_empty(req_ch_list)){
+		if(!list_is_empty(req_ch_list))
+		{
 			printf("\nLOG: Some requests were inserted.\n");
 			sslog_sbcr_ch_print(req_ch_data);
 			reqAdded = true;
 			
 			list_head_t* pos = NULL;
-			list_for_each(pos, &req_ch_list->links ){
+			list_for_each(pos, &req_ch_list->links )
+			{
 				
 				list_t* node = list_entry(pos, list_t, links);
 				char* temp_uuid= (char*)(node->data);
 				
-				if(temp_uuid != NULL ){
+				if(temp_uuid != NULL )
+				{
 					individual_t* temp_req = sslog_repo_get_individual_by_uuid(temp_uuid);	
 					printf("	\nLOG: Processing request\n");
 					char plbuff[10] = "";
@@ -378,12 +326,92 @@ void requestsHandler(subscription_t *reqsub){
 					set_property_by_name(head, PROPERTY_LASTREQ->name, plbuff);
 					printf("	\nLOG: Setting up place: %d\n", lastreq);
 						
-					}
+				}
 					
 				
 				
 			}
 			
 			//list_free(req_ch_list);
-		};
+			
+			sslog_ss_get_property(head,PROPERTY_ISBUSY); 	
+		prop_val_t *iB_val = sslog_get_property(head,PROPERTY_ISBUSY );
+		char *temp_isBusy = strdup((char *) iB_val->prop_value);
+		
+		if (!strcmp(headisbusy, s_false) && reqAdded)
+		{
+			printf("lev1: HEAD IS FREE\n");
+			printf("lev1: SEARCHING FOR NEW REQUESTS\n");
+			individual_t* min_req;
+			int position = 9999999;
+			list_t* candidates = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+			
+			//если в сибе есть реквесты
+			if(candidates)
+			{
+				printf("lev2: LIST IS NOT EMPTY\n");
+				list_head_t* pos = NULL;
+				
+				//проходим по списку, устанавливаем pos
+				list_for_each(pos, &candidates->links )
+				{
+					list_t* node = list_entry(pos, list_t, links);
+					temp_individual = (individual_t*)(node->data);
+					prop_val_t* pos = sslog_get_property(temp_individual, PROPERTY_REQUESTPLACE);
+
+					if (pos != NULL )
+					{
+						printf("lev4: pos is not null\n");
+ 						
+						char* posstr = (char *)pos->prop_value;
+						printf("lev4: string position is #%s\n",posstr);						
+						int posint = 0;
+						for (int i=0; posstr[i]; i++)
+							posint = posint*10 + posstr[i]-0x30;
+						printf("lev4: position is #%d\n",posint);	
+						if(posint != NULL && posint > firstreq && posint < position)
+						{
+							position = posint;
+							min_req = temp_individual;		
+						}
+					}
+				}
+
+				if(min_req != NULL)
+				{					
+					printf("lev3: FOUND NEW REQ\n");
+					new_speaker = sslog_ss_get_property(min_req, PROPERTY_REQUESTUSERNAME);
+					printf("lev3: GETTING NEW SPEAKERNAME\n");
+					if(new_speaker != NULL)
+					{
+						printf("lev4: new speaker is not null\n");
+						char* new_speaker_name = (char *) new_speaker->prop_value;
+						sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME); 
+						sslog_ss_remove_property_all(head, PROPERTY_ISBUSY);
+						
+						if (sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, new_speaker_name) == 0)
+							 printf("lev4: headusername is updated\n");
+
+						if (sslog_ss_add_property(head, PROPERTY_ISBUSY, s_true) == 0)
+							 printf("lev4: isBusy is true\n");
+
+						headisbusy = s_true;
+						firstreq = position;
+						headuuid = min_req->uuid; 
+						printf("lev4: SETTING NEW: speakername, head, isBusy, firstreq, head uuid \n");
+						printf("lev4: new head is %s\n", new_speaker_name);
+												
+					}
+					
+				}
+
+			}
+		}
+		else printf("HEAD IS BUSY\n");		
+
+		}
+
+
+		
+
 }
