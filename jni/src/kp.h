@@ -17,7 +17,8 @@ JavaVM* JVM;
 individual_t *personProfile;
 individual_t *currentSection;
 
-individual_t *queueHead;    //queue
+individual_t *head;    //queue
+
 
 list_t *hasVideoPropList;
 list_t *hasHeadPropList;     //queue
@@ -39,7 +40,7 @@ subscription_t *conferenceSubscriptionContainer;
 subscription_t *presentationSubscriptionContainer;
 subscription_t *conferenceClassSubscriptionContainer;
 subscription_t *presentationClassSubscriptionContainer;
-subscription_t *headsub;
+subscription_t *headsub;    //queue
 
 char *startedVideoUuid;
 const char *GlobalUsername;
@@ -48,12 +49,12 @@ int currentTimeslotIndex;
 int hasVideoPropListLen;
 int hasHeadPropListLen;     //queue
 
-bool headHandler(subscription_t *);
 void addTimeslotToJavaList(JNIEnv *, individual_t *, jobject);
 void subscriptionHandler(subscription_t *);
 void projectorNotificationHandler(subscription_t *);
 void agendaNotificationHandler(subscription_t *);
 void conferenceNotificationHandler(subscription_t *);
+void headHandler(subscription_t *);     //queue
 void logout();
 int getListSize(list_t*);
 int subscribeConferenceService();

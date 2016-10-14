@@ -29,6 +29,7 @@ public class QueueService extends Service{
         {
                 System.out.println("Такого реквеста еще не было");
                 System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
+
         }
                 else {
                     System.out.println("Такой реквест уже был");
