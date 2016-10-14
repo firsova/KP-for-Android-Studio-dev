@@ -128,10 +128,8 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
                 queue1.createRequest();
 
-
-                toQueue.setText("Зачем ты нажал?");
-                toQueue.setBackgroundColor(getResources().getColor(R.color.blue));
-
+                toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+                exitQueue.setBackgroundColor(getResources().getColor(R.color.md_red_A400));
                 break;
 
 			/* exitQueue button */
@@ -142,8 +140,8 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
                 queue2.deleteRequest();
 
-                exitQueue.setText("Зачем ты нажал?");
-                exitQueue.setBackgroundColor(getResources().getColor(R.color.white));
+                exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+                toQueue.setBackgroundColor(getResources().getColor(R.color.md_light_green_A700));
 
                 break;
         }
@@ -172,8 +170,8 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
         //    if (KP.headChanged(KP.gettingUsername) == 0)
        //     {
-                startService(new Intent(getApplicationContext(), MicActivity.class));
-                System.out.print("Здесь включается микрофон");
+               // startService(new Intent(getApplicationContext(), MicActivity.class));
+               // System.out.println("Здесь включается микрофон");
 
         //    }
 

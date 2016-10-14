@@ -123,6 +123,7 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native int getRequestCount();
 	//public static native int initHeadSub();
 	public static native int headChanged(String username);
+	public static native int isHead(String username);
 
 	/* Loading of shared library */
 	static {

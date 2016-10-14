@@ -2541,61 +2541,51 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestList(
 /**======================================= ИНИЦИАЛИЗАЦИЯ ПОДПИСКИ ========================================================**/
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
-
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initHeadSub(JNIEnv *env, jclass clazz, jstring username) {
-  
-    headsub = sslog_new_subscription(false);
-    sslog_sbcr_add_class(headsub, CLASS_QUEUEHEAD);
-
-    sslog_sbcr_subscribe(headsub);
-    if(!sslog_sbcr_is_active(headsub)){
-        return -1;
-    }
+JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_isHead(JNIEnv *env, jclass clazz, jstring username) {
     
-    return 0;
-}
-
-
-
-
-
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_headChanged(JNIEnv *env, jclass clazz, jstring username){
-
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
-    GlobalUsername = p_username;
-    
-    individual_t *head = sslog_new_individual(CLASS_QUEUEHEAD);
-
-sslog_ss_init_individual_with_uuid(head, "QueueHead");
-
-subscription_t *subscription = sslog_new_subscription(false);
-
-list_t *properties = list_get_new_list();
-list_add_data(PROPERTY_HEADUSERNAME, properties);
-
-sslog_sbcr_add_individual(subscription, head, properties);
-
-if (sslog_sbcr_subscribe(subscription) != 0) {
-  //  printf("\nCan't subscribe\n");
+    return foundHead(p_username);
+}
+/**=============================================================================================================*/
+int foundHead(const char *username) {
+   
+    head = sslog_new_individual(CLASS_QUEUEHEAD);
+	if (head == NULL) {
+		printf("\nError:get_error_text() \n");
+		return 1;
+	}
+	
+	//head subscription initialization
+	subscription_t *headsub = sslog_new_subscription(true);
+	sslog_sbcr_add_class(headsub, CLASS_QUEUEHEAD);
+	sslog_sbcr_set_changed_handler	(headsub, headHandler);
+	sslog_sbcr_subscribe(headsub);
+	if(!sslog_sbcr_is_active(headsub)){
+		return 2;
+	}
     return 0;
+    
 }
 
-while (true) {
-    const prop_val_t *p_val = sslog_get_property(head, PROPERTY_HEADUSERNAME->name);
-    if (p_val != NULL) {
-        char *username = strdup((char *) p_val->prop_value);
-       // printf("LOG: HEAD WAS CHANGED, NEW HEADUSERNAME IS: %s\n", username);
-        if(GlobalUsername == username){
-            return 0;
-        }
-    }//else{
-       // printf("LOG: HEAD IS EMPTY\n");
-   // }
-    sslog_sbcr_wait(subscription);
-}
-return 1;
 
+void headHandler(subscription_t *headsub){
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2642,13 +2632,6 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(
         return (*env)->NewStringUTF(env, "В классе Request нет объектов");
     }
 }
-
-
-
-
-
-
-
 
 
 
