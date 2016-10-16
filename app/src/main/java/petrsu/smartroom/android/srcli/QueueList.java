@@ -136,7 +136,7 @@ class Subscription extends AsyncTask<String,Integer,Void> {
 
     @Override
     protected Void doInBackground(String...names){
-        try {
+      //  try {
           /*  int cnt = 0
             for (String name : names) {
                 showName(name);
@@ -148,10 +148,10 @@ class Subscription extends AsyncTask<String,Integer,Void> {
             if (KP.isHead(KP.gettingUsername) == 0) {
                 System.out.print("IT'S HEAD!");
             } else System.out.println("Код возврата подписки: "+ KP.isHead(KP.gettingUsername));
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
+         //   TimeUnit.SECONDS.sleep(1);
+       //// } catch (InterruptedException e){
+        //    e.printStackTrace2();
+       // }
         return null;
     }
 

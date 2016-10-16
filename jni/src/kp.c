@@ -2548,12 +2548,6 @@ JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_isHead(JNIEnv *env,
 }
 /**=============================================================================================================*/
 int foundHead(const char *username) {
-   
-    head = sslog_new_individual(CLASS_QUEUEHEAD);
-	if (head == NULL) {
-		printf("\nError:get_error_text() \n");
-		return 1;
-	}
 	
 	//head subscription initialization
 	subscription_t *headsub = sslog_new_subscription(true);
@@ -2562,7 +2556,9 @@ int foundHead(const char *username) {
 	sslog_sbcr_subscribe(headsub);
 	if(!sslog_sbcr_is_active(headsub)){
 		return 2;
-	}
+	} else __android_log_print(ANDROID_LOG_ERROR, "Queue service",
+						"HEAD SUB IS ACTIVE");
+	
     return 0;
     
 }
@@ -2570,15 +2566,60 @@ int foundHead(const char *username) {
 
 void headHandler(subscription_t *headsub){
 	
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service",
+						"WELCOME TO THE HADLER!");
+	subscription_changes_data_t* head_ch_data = NULL;
+	list_t *head_ch_list = NULL;
+	
+	head_ch_data = sslog_sbcr_get_changes_last(headsub);
+	head_ch_list = sslog_sbcr_ch_get_individual_all(head_ch_data);
+		
+		if(head_ch_list != NULL)
+		{
+			__android_log_print(ANDROID_LOG_ERROR, "Queue service",
+						"head_ch_list is not null");
+			list_head_t* pos = NULL;
+			list_for_each(pos, &head_ch_list->links )
+			{
+				list_t* node = list_entry(pos, list_t, links);
+				temp_individual = (individual_t*)(node->data);
+				prop_val_t *head_username = sslog_ss_get_property (temp_individual, PROPERTY_HEADUSERNAME);
+				if (head_username != NULL) {
+				__android_log_print(ANDROID_LOG_ERROR, "Queue service",
+						"head username is not null");
+				}else __android_log_print(ANDROID_LOG_ERROR, "Queue service",
+						"HEAD USERNAME IS NULL");
+			} 
+		} else __android_log_print(ANDROID_LOG_ERROR, "Queue service",
+						"HEAD_CH_LIST IS NULL");
+		
 }
 
 
+/*
+subscription_changes_data_t *changes = sslog_sbcr_get_changes_last(sbcr);
+	list_t *list = sslog_sbcr_ch_get_individual_all(changes);
 
+	if(list != NULL) {
+		list_head_t *list_walker = NULL;
+		list_for_each(list_walker, &list->links)
+		{
+			list_t *node = list_entry(list_walker, list_t, links);
+			char *uuid = (char *) node->data;
+			individual_t *individual = (individual_t *)
+					sslog_repo_get_individual_by_uuid(uuid);
 
+			// Slide number has been changed 
+			prop_val_t *p_val_slidenum = sslog_ss_get_property (individual,
+						PROPERTY_CURRENTSLIDENUM);
+			if(p_val_slidenum != NULL) {
+				(*env)->CallVoidMethod(env, presentationClassObject,
+						setSlideNumId,
+						(*env)->NewStringUTF(
+								env, (char *)p_val_slidenum->prop_value));
+			}
 
-
-
-
+*/
 
 
 

@@ -18,6 +18,7 @@ individual_t *personProfile;
 individual_t *currentSection;
 
 individual_t *head;    //queue
+individual_t* temp_individual;
 
 
 list_t *hasVideoPropList;
