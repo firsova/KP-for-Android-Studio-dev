@@ -155,8 +155,6 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
         
         connectBtn = (Button) findViewById (R.id.connectBtn);
         connectBtn.setOnClickListener(this);
-        guestBtn = (Button) findViewById (R.id.guestBtn);
-        guestBtn.setOnClickListener(this);
         
         editName = (EditText) findViewById (R.id.editName);
         editPassword = (EditText) findViewById (R.id.editPassword);
@@ -311,16 +309,6 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
                             Toast.LENGTH_SHORT).show();
                 }
                 break;
-
-            case R.id.guestBtn:
-                try {
-                    port = Integer.parseInt(editPort.getText().toString());
-                    joinAsGuest(port);
-                } catch(NumberFormatException e) {
-                    Toast.makeText(this, R.string.portFormatErr,
-                            Toast.LENGTH_SHORT).show();
-                }
-                break;
 		}
 	}
 
@@ -329,7 +317,7 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	 */
 	public void loadAgenda() {
 		Intent intent = new Intent();
-		intent.setClass(getApplicationContext(), Agenda.class);
+		intent.setClass(getApplicationContext(), QueueActivity.class);
 		startActivity(intent);
 	}
 	
@@ -583,8 +571,9 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 		
 		stopService(new Intent(this, NetworkService.class));
 		startService(new Intent(this, NetworkService.class));
-		
-		loadAgenda();
+
+		startActivity(Navigation.getQueueActIntent(this));
+		//loadAgenda();
 		/*if(lastState.equals("Agenda"))
 			loadAgenda();
 		else if(lastState.equals("Projector"))
