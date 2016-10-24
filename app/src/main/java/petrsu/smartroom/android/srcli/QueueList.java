@@ -126,7 +126,7 @@ class Subscription extends AsyncTask<String,Integer,Void> {
 
           */
             if (KP.isHead(KP.gettingUsername) == 0) {
-                System.out.print("IT'S HEAD!");
+                System.out.print("Открываем вкладку микрофона здесь!");
             } else System.out.println("Код возврата подписки: "+ KP.isHead(KP.gettingUsername));
          //   TimeUnit.SECONDS.sleep(1);
        //// } catch (InterruptedException e){
