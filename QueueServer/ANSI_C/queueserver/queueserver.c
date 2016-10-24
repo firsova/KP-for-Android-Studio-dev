@@ -64,6 +64,25 @@ individual_t *temp_req;
 prop_val_t* new_speaker;
 prop_val_t* r_new_speaker;
 	
+
+char* generateUuid(char *uuid) {
+    
+    int rand_val = 0, rand_length = 1, i = 0, postfix_length = 4;
+    char *result = (char*) malloc (
+                                   sizeof(char) * strlen(uuid) + postfix_length + 2);
+    
+    for(; i < postfix_length; rand_length *= 10, i++);
+    
+    do {
+        srand(time(NULL));
+        rand_val = rand() % rand_length;
+        sprintf(result, "%s-%d", uuid, rand_val);
+    } while(sslog_ss_exists_uuid(result) == 1);
+    
+    return result;
+}
+
+
 int main()
 {
     //local variables	
@@ -91,14 +110,18 @@ int main()
 	}
 	
 	head = sslog_new_individual(CLASS_QUEUEHEAD);
+    
+    sslog_set_individual_uuid(head, generateUuid("http://www.cs.karelia.ru/smartroom#QueueHead"));
+    //sslog_ss_init_individual_with_uuid(head, "QueueHead");
+    
+    sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
+    sslog_ss_add_property(head, PROPERTY_ISBUSY, s_false);
+    
+    sslog_ss_insert_individual(head);
 
-	if (head == NULL) {
-		printf("\nError:get_error_text() \n");
-		return 1;
-	}	
-			
-    sslog_ss_init_individual_with_uuid(head, "QueueHead");
-	
+    printf("LOG: head inserted succesfully");
+    
+    
 	individual_t *server = sslog_new_individual(CLASS_QUEUESERVICE);
 	
 	
@@ -149,23 +172,7 @@ int main()
 		return 1;
 	}  
 */	
-	//Base head initialization and insertion 
-	
-	if(sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false) == -1){
-        	printf("Error: get_error_text()\n");
-		return 1;
-	}
-	
-	if(sslog_ss_add_property(head, PROPERTY_ISBUSY, s_false) == -1){
-        	printf("Error: get_error_text()\n");
-		return 1;
-	}
 
-	if(sslog_ss_insert_individual(head) == -1){
-        	printf("Error: get_error_text()\n");
-		return 1;
-	}
-	printf("LOG: head inserted succesfully");
 
 	
 	printf("LOG: Succesfully initialized server.\n");
@@ -230,6 +237,8 @@ int main()
 	
 
 }
+
+
 
 bool isValidIpAddress(char *ipAddress)
 {
