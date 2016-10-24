@@ -2455,7 +2455,7 @@ int requestDeleted(const char *username) {
         list_for_each(pos, &list->links) {
             list_t* node = list_entry(pos, list_t, links);
             request = (individual_t*)(node->data);
-            sslog_ss_populate_individual(request);
+           sslog_ss_populate_individual(request);
 			prop_val_t *username_value = sslog_ss_get_property(request, PROPERTY_REQUESTUSERNAME);
     
 			if(username_value == NULL) {return 2;}
@@ -2556,9 +2556,22 @@ int foundHead(const char *username) {
 	sslog_sbcr_subscribe(headsub);
 	if(!sslog_sbcr_is_active(headsub)){
 		return 2;
-	} else __android_log_print(ANDROID_LOG_ERROR, "Queue service",
-						"HEAD SUB IS ACTIVE");
+	} else __android_log_print(ANDROID_LOG_ERROR, "Queue service","HEAD SUB IS ACTIVE");
 	
+	
+    		
+		
+	
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service","%s",message1);
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service","%s",message2);
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service","%s",message3);
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service","%s",message4);
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service","UUID IS %s",message5);
+	__android_log_print(ANDROID_LOG_ERROR, "Queue service","USERNAME IS %s",headUsername);
+	
+	if(strcmp(username, headUsername) == 0) {
+		__android_log_print(ANDROID_LOG_ERROR, "Queue service","СОВПАДЕНИЕ!");
+			} else __android_log_print(ANDROID_LOG_ERROR, "Queue service","не совпадает:c");
     return 0;
     
 }
@@ -2566,32 +2579,35 @@ int foundHead(const char *username) {
 
 void headHandler(subscription_t *headsub){
 	
-	__android_log_print(ANDROID_LOG_ERROR, "Queue service",
-						"WELCOME TO THE HADLER!");
 	subscription_changes_data_t* head_ch_data = NULL;
 	list_t *head_ch_list = NULL;
-	
 	head_ch_data = sslog_sbcr_get_changes_last(headsub);
 	head_ch_list = sslog_sbcr_ch_get_individual_all(head_ch_data);
 		
 		if(head_ch_list != NULL)
 		{
-			__android_log_print(ANDROID_LOG_ERROR, "Queue service",
-						"head_ch_list is not null");
+			message1 = "head_ch_list is not null";
 			list_head_t* pos = NULL;
+			
 			list_for_each(pos, &head_ch_list->links )
 			{
+				message2 = "in list_for_each";
 				list_t* node = list_entry(pos, list_t, links);
-				temp_individual = (individual_t*)(node->data);
-				prop_val_t *head_username = sslog_ss_get_property (temp_individual, PROPERTY_HEADUSERNAME);
+				char *uuid = (char *) node->data;
+				message5 = uuid;
+				individual_t *temp_ind = (individual_t *)sslog_repo_get_individual_by_uuid(uuid);
+				
+				if (temp_ind != NULL) message3 = "temp individual is not null";
+					else message3 = "ERROR!!! TEMP INDIVIDUAL IS NULL";
+				
+				prop_val_t *head_username = sslog_ss_get_property (temp_ind, PROPERTY_HEADUSERNAME);
+				
 				if (head_username != NULL) {
-				__android_log_print(ANDROID_LOG_ERROR, "Queue service",
-						"head username is not null");
-				}else __android_log_print(ANDROID_LOG_ERROR, "Queue service",
-						"HEAD USERNAME IS NULL");
+					message4 = "head username is not null";
+					headUsername = (char *)head_username;
+				}else message4 = "ERROR!!! HEAD USERNAME IS NULL";
 			} 
-		} else __android_log_print(ANDROID_LOG_ERROR, "Queue service",
-						"HEAD_CH_LIST IS NULL");
+		} else message1 = "ERROR!!! HEAD_CH_LIST IS NULL";
 		
 }
 
@@ -2606,7 +2622,7 @@ subscription_changes_data_t *changes = sslog_sbcr_get_changes_last(sbcr);
 		{
 			list_t *node = list_entry(list_walker, list_t, links);
 			char *uuid = (char *) node->data;
-			individual_t *individual = (individual_t *)
+			individualff_t *individual = (individual_t *)
 					sslog_repo_get_individual_by_uuid(uuid);
 
 			// Slide number has been changed 

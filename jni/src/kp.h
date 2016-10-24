@@ -18,7 +18,7 @@ individual_t *personProfile;
 individual_t *currentSection;
 
 individual_t *head;    //queue
-individual_t* temp_individual;
+//individual_t* temp_individual;
 
 
 list_t *hasVideoPropList;
@@ -44,6 +44,12 @@ subscription_t *presentationClassSubscriptionContainer;
 subscription_t *headsub;    //queue
 
 char *startedVideoUuid;
+const char *message1;
+const char *message2;
+const char *message3;
+const char *message4;
+const char *message5;
+const char *headUsername = "user";
 const char *GlobalUsername;
 
 int currentTimeslotIndex;
