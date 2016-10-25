@@ -16,10 +16,9 @@ JavaVM* JVM;
 
 individual_t *personProfile;
 individual_t *currentSection;
-
+individual_t *temp_ind;
 individual_t *head;    //queue
-//individual_t* temp_individual;
-
+prop_val_t *head_username;
 
 list_t *hasVideoPropList;
 list_t *hasHeadPropList;     //queue
@@ -35,6 +34,7 @@ jclass *classMicService;
 
 jobject *agendaClassObject;
 jobject *presentationClassObject;
+jobject *queueClassObject;
 
 
 subscription_t *conferenceSubscriptionContainer;
