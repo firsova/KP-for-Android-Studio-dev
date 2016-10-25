@@ -114,7 +114,7 @@ int main()
     sslog_set_individual_uuid(head, generateUuid("http://www.cs.karelia.ru/smartroom#QueueHead"));
     //sslog_ss_init_individual_with_uuid(head, "QueueHead");
     
-    sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
+    sslog_ss_add_property(head, PROPERTY_HEADUSERNAME,s_false);
     sslog_ss_add_property(head, PROPERTY_ISBUSY, s_false);
     
     sslog_ss_insert_individual(head);
@@ -395,7 +395,11 @@ void requestsHandler(subscription_t *reqsub)
 					
 				} else printf("lev2: ERROR!!! MINREQ IS NULL!\n");
 
-			}
+			} else {
+					printf ("lev1: THERE ARE NO CANDIDATES\n");
+					sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME);
+					sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
+				}
 		}
 		else printf("HEAD IS BUSY\n");		
 
@@ -510,7 +514,11 @@ void requestsHandler(subscription_t *reqsub)
 					
 				} else printf("lev2: ERROR!!! MINREQ IS NULL\n");
 
-			} else printf ("lev1: THERE ARE NO CANDIDATES\n");
+			} else {
+					printf ("lev1: THERE ARE NO CANDIDATES\n");
+					sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME);
+					sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
+				}
 		}
 		else printf("HEAD IS BUSY\n");		
 
