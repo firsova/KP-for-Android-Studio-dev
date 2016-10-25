@@ -27,12 +27,11 @@ public class QueueService extends Service{
 
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
-                System.out.println("Такого реквеста еще не было");
-                System.out.println(KP.registerRequest(KP.gettingUsername, "SENDED"));
+                System.out.print("\nREQUEST-INFO: Такого реквеста еще не было: "+ KP.registerRequest(KP.gettingUsername, "SENDED"));
 
         }
                 else {
-                    System.out.println("Такой реквест уже был");
+                    System.out.print("\nREQUEST-INFO: Такой реквест уже был");
         }
     }
 
@@ -41,11 +40,10 @@ public class QueueService extends Service{
 
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
-            System.out.println("Данный пользователь еще не посылал реквест");
+            System.out.print("\nREQUEST-INFO: Данный пользователь еще не посылал реквест");
         }
         else {
-            System.out.println("Реквест от данного пользователя удален");
-            System.out.println(KP.deleteRequest(KP.gettingUsername));
+            System.out.print("\nREQUEST-INFO: Реквест от данного пользователя удален: "+KP.deleteRequest(KP.gettingUsername));
 
         }
     }

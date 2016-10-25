@@ -1,5 +1,6 @@
 package petrsu.smartroom.android.srcli;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -37,14 +39,17 @@ import java.util.concurrent.TimeUnit;
  * Created by user on 14.05.16.
  */
 public class QueueList extends ActionBarActivity {
+
+    public String headUsername;
+
     private ListView qlistView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.queuelist);
 
-
-        if (KP.chSpeaker) KP.deleteRequest(KP.gettingUsername);
+        //если сменился выступающий
+        //if (KP.chSpeaker) KP.deleteRequest(KP.gettingUsername);
 
         qlistView = (ListView) findViewById(R.id.qlistView);
 
@@ -53,11 +58,11 @@ public class QueueList extends ActionBarActivity {
 
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
-            System.out.println(KP.getRequestList(x));
+
         }
         Subscription sub;
         sub = new Subscription();
-        sub.execute("name1","name2","name3");   //первый тип
+        sub.execute();
 
         ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
@@ -106,8 +111,10 @@ public class QueueList extends ActionBarActivity {
 }
 
 
-class Subscription extends AsyncTask<String,Integer,Void> {
+class Subscription extends AsyncTask<Void,Integer,Void>/*,Activity*/ {
 
+    private int progress = 0;
+    private int flag = 0;
     @Override
     protected  void onPreExecute() {
         super.onPreExecute();
@@ -115,30 +122,27 @@ class Subscription extends AsyncTask<String,Integer,Void> {
     }
 
     @Override
-    protected Void doInBackground(String...names){
-      //  try {
-          /*  int cnt = 0
-            for (String name : names) {
-                showName(name);
-                publishProgress(++cnt);     //выводим промежуточный результат (вызов onProgressUpdate)
-                                            //второй тип
-            }
-
-          */
-            if (KP.isHead(KP.gettingUsername) == 0) {
-                System.out.print("Открываем вкладку микрофона здесь!");
-            } else System.out.println("Код возврата подписки: "+ KP.isHead(KP.gettingUsername));
-         //   TimeUnit.SECONDS.sleep(1);
-       //// } catch (InterruptedException e){
-        //    e.printStackTrace2();
-       // }
+    protected Void doInBackground(Void...params){
+        while (progress < 100){
+            progress++;
+            publishProgress(progress);
+            SystemClock.sleep(5000);
+        }
         return null;
     }
 
     @Override
-    protected  void  onProgressUpdate(Integer...values){
+    protected  void  onProgressUpdate(Integer...values) {
         super.onProgressUpdate(values);
-        System.out.println("***"+values[0]+"***");
+
+        System.out.print("\nHEAD["+ KP.isHead()+"] = USERNAME[" + KP.gettingUsername+"]");
+
+        if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
+            System.out.println(" ---> UPGRADE: СОВПАЛО");
+            //Intent intent  = new Intent(this,MicActivity.class);
+            //startActivity(intent);
+
+        }
     }
 
     @Override
@@ -147,7 +151,4 @@ class Subscription extends AsyncTask<String,Integer,Void> {
         System.out.println("END");
     }
 
-    private void showName(String name) throws InterruptedException{
-        TimeUnit.SECONDS.sleep(2);
-    }
 }
