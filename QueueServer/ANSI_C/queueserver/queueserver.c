@@ -194,6 +194,24 @@ int main()
 		if (getchar() == 'e' )
 		{
 			printf("Exiting\n");
+
+			list_t* candidates = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
+			//если в сибе есть реквесты
+			if(candidates)
+			{
+				list_head_t* pos = NULL;
+				list_for_each(pos, &candidates->links )
+				{
+					list_t* node = list_entry(pos, list_t, links);
+					individual_t *individual = (individual_t*)(node->data);
+					sslog_ss_remove_property_all(individual,PROPERTY_REQUESTUSERNAME); 
+					sslog_ss_remove_property_all(individual,PROPERTY_HASSTATE);
+					sslog_ss_remove_individual(individual);
+					printf("Removing request properties\n");
+				}
+			} 
+
+
 			sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME); 
 			sslog_ss_remove_property_all(head, PROPERTY_ISBUSY);
 			printf("Removing head properties\n");
@@ -339,7 +357,7 @@ void requestsHandler(subscription_t *reqsub)
 				
 				list_for_each(pos, &candidates->links )
 				{
-                    printf("lev3: IN LIST_FOR_EACH\n");
+                   			 printf("lev3: IN LIST_FOR_EACH\n");
 					list_t* node = list_entry(pos, list_t, links);
 					r_temp_individual = (individual_t*)(node->data);
 					prop_val_t* pos = sslog_get_property(r_temp_individual, PROPERTY_REQUESTPLACE);
@@ -400,8 +418,8 @@ void requestsHandler(subscription_t *reqsub)
 					printf ("lev1: THERE ARE NO CANDIDATES\n");
 					sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME);
 					sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
-                    position = 9999999;
-                    firstreq = 1;
+                  			position = 9999999;
+                  			firstreq = 1;
 				}
 		}
 		else printf("HEAD IS BUSY\n");
@@ -521,8 +539,8 @@ void requestsHandler(subscription_t *reqsub)
 					printf ("lev1: THERE ARE NO CANDIDATES\n");
 					sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME);
 					sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
-                    position = 9999999;
-                    firstreq = 1;
+                    			position = 9999999;
+                    			firstreq = 1;
 				}
 		}
 		else printf("HEAD IS BUSY\n");		
