@@ -339,6 +339,7 @@ void requestsHandler(subscription_t *reqsub)
 				
 				list_for_each(pos, &candidates->links )
 				{
+                    printf("lev3: IN LIST_FOR_EACH\n");
 					list_t* node = list_entry(pos, list_t, links);
 					r_temp_individual = (individual_t*)(node->data);
 					prop_val_t* pos = sslog_get_property(r_temp_individual, PROPERTY_REQUESTPLACE);
@@ -399,9 +400,11 @@ void requestsHandler(subscription_t *reqsub)
 					printf ("lev1: THERE ARE NO CANDIDATES\n");
 					sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME);
 					sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
+                    position = 9999999;
+                    firstreq = 1;
 				}
 		}
-		else printf("HEAD IS BUSY\n");		
+		else printf("HEAD IS BUSY\n");
 
 		}
 		//processing inserted requests
@@ -518,6 +521,8 @@ void requestsHandler(subscription_t *reqsub)
 					printf ("lev1: THERE ARE NO CANDIDATES\n");
 					sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME);
 					sslog_ss_add_property(head, PROPERTY_HEADUSERNAME, s_false);
+                    position = 9999999;
+                    firstreq = 1;
 				}
 		}
 		else printf("HEAD IS BUSY\n");		
