@@ -126,7 +126,7 @@ class Subscription extends AsyncTask<Void,Integer,Void>/*,Activity*/ {
         while (progress < 100){
             progress++;
             publishProgress(progress);
-            SystemClock.sleep(5000);
+            SystemClock.sleep(10000);
         }
         return null;
     }
@@ -139,9 +139,10 @@ class Subscription extends AsyncTask<Void,Integer,Void>/*,Activity*/ {
 
         if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
             System.out.println(" ---> UPGRADE: СОВПАЛО");
-            //Intent intent  = new Intent(this,MicActivity.class);
-            //startActivity(intent);
 
+  /*          Intent intent  = new Intent(this,MicActivity.class);
+            startActivity(intent);
+*/
         }
     }
 
