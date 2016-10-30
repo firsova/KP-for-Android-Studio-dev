@@ -60,9 +60,7 @@ public class QueueList extends ActionBarActivity {
             q.add(KP.getRequestList(x));
 
         }
-        Subscription sub;
-        sub = new Subscription();
-        sub.execute();
+
 
         ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
@@ -110,46 +108,3 @@ public class QueueList extends ActionBarActivity {
     }
 }
 
-
-class Subscription extends AsyncTask<Void,Integer,Void>/*,Activity*/ {
-
-    private int progress = 0;
-    private int flag = 0;
-    @Override
-    protected  void onPreExecute() {
-        super.onPreExecute();
-        System.out.println("BEGIN");
-    }
-
-    @Override
-    protected Void doInBackground(Void...params){
-        while (progress < 100){
-            progress++;
-            publishProgress(progress);
-            SystemClock.sleep(10000);
-        }
-        return null;
-    }
-
-    @Override
-    protected  void  onProgressUpdate(Integer...values) {
-        super.onProgressUpdate(values);
-
-        System.out.print("\nHEAD["+ KP.isHead()+"] = USERNAME[" + KP.gettingUsername+"]");
-
-        if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
-            System.out.println(" ---> UPGRADE: СОВПАЛО");
-
-  /*          Intent intent  = new Intent(this,MicActivity.class);
-            startActivity(intent);
-*/
-        }
-    }
-
-    @Override
-    protected  void  onPostExecute(Void result) {
-        super.onPostExecute(result);
-        System.out.println("END");
-    }
-
-}
