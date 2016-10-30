@@ -27,10 +27,11 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MicActivity extends ActionBarActivity implements View.OnClickListener {
     private ImageButton micButton;
+    private Button exitBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.queueserv);
+        setContentView(R.layout.micactivity);
 
         micButton = (ImageButton) findViewById(R.id.micButton);
         micButton.setOnClickListener(this);
