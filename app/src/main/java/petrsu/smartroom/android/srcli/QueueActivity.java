@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-
+import android.content.Context;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -37,9 +37,28 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
      */
     private GoogleApiClient client;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    private void subCheck(final Context context) {
+        new Thread() {
+            @Override
+            public void run() {
+                while(true){
+                    //if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
+                    //    System.out.println("\n ---> UPGRADE: СОВПАЛО");
+                        startActivity(Navigation.getMicIntent(context));
+                        break;
+                  //  }
+                }
+            }
+        }.start();
+    }
+
+
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.queueserv);
+
+
+
 
         toQueue = (Button) findViewById(R.id.toQueue);
         toQueue.setOnClickListener(this);
@@ -55,6 +74,13 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
             toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
             toQueue.setEnabled(false);
         }
+
+        subCheck(this);
+
+
+
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
