@@ -2484,18 +2484,7 @@ int requestDeleted(const char *username) {
     } else {
         return -1;
     }
-    
-    prop_val_t *username_value = sslog_ss_get_property(request, PROPERTY_REQUESTUSERNAME);
-    
-    if(username_value == NULL) {
-        return 2;
-    }
-    
-    if(strcmp(username, (char *)username_value->prop_value) == 0) {
-        if (sslog_ss_remove_individual(request) != 0)
-            return 5;
-    }
-    
+
     return 0;
     
 }
