@@ -49,8 +49,11 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
             exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+            exitQueue.setEnabled(false);
+
         } else {
             toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+            toQueue.setEnabled(false);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -109,7 +112,10 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 queue1.createRequest();
 
                 toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+                toQueue.setEnabled(false);
+
                 exitQueue.setBackgroundColor(getResources().getColor(R.color.md_red_A400));
+                exitQueue.setEnabled(true);
 
                 startActivity(Navigation.getQueueActListIntent(this));
                 break;
@@ -124,7 +130,10 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
 
                 exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+                exitQueue.setEnabled(false);
+
                 toQueue.setBackgroundColor(getResources().getColor(R.color.md_light_green_A700));
+                toQueue.setEnabled(true);
 
                 startActivity(Navigation.getQueueActListIntent(this));
                 break;
