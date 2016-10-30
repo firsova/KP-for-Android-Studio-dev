@@ -100,8 +100,8 @@ int main()
 	
 	
 	//sslog_ss_init_session();
-	sslog_ss_init_session_with_parameters("X", "127.0.0.1", 10010);
-	//sslog_ss_init_session_with_parameters("X", "194.85.173.9", 10011);
+	//sslog_ss_init_session_with_parameters("X", "127.0.0.1", 10010);
+	sslog_ss_init_session_with_parameters("X", "194.85.173.9", 10011);
 	register_ontology();
         
 	if (ss_join(sslog_get_ss_info(), "QueueServerKP") == -1) {
@@ -211,10 +211,24 @@ int main()
 				}
 			} 
 
+			list_t* heads = sslog_ss_get_individual_by_class_all(CLASS_QUEUEHEAD);
+			//если в сибе есть реквесты
+			if(heads != NULL)
+			{
+				list_head_t* pos = NULL;
+				list_for_each(pos, &heads->links )
+				{
+					list_t* node = list_entry(pos, list_t, links);
+					individual_t *individual = (individual_t*)(node->data);
+					sslog_ss_remove_property_all(individual,PROPERTY_HEADUSERNAME); 
+					sslog_ss_remove_property_all(individual,PROPERTY_ISBUSY);
+					sslog_ss_remove_individual(individual);
+					printf("Removing head properties\n");
+				}
+			} 
 
-			sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME); 
-			sslog_ss_remove_property_all(head, PROPERTY_ISBUSY);
-			printf("Removing head properties\n");
+			//sslog_ss_remove_property_all(head,PROPERTY_HEADUSERNAME); 
+			//sslog_ss_remove_property_all(head,PROPERTY_ISBUSY);
 			sslog_ss_remove_individual(head);
 			sslog_ss_remove_individual(server);
 			printf("Removing individuals\n");
