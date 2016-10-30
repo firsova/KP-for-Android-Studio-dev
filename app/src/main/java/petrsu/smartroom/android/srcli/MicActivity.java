@@ -11,7 +11,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-
+import android.util.Log;
+import android.view.MotionEvent;
+import android.app.usage.UsageEvents;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -25,7 +27,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class MicActivity extends ActionBarActivity implements View.OnClickListener {
+public class MicActivity extends ActionBarActivity implements View.OnTouchListener {
     private ImageButton micButton;
     private Button exitBtn;
 
@@ -34,14 +36,17 @@ public class MicActivity extends ActionBarActivity implements View.OnClickListen
         setContentView(R.layout.micactivity);
 
         micButton = (ImageButton) findViewById(R.id.micButton);
-        micButton.setOnClickListener(this);
+        micButton.setOnTouchListener(this);
+
+        exitBtn = (Button) findViewById(R.id.exitButton);
+        exitBtn.setOnTouchListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
             setSupportActionBar(toolbar);
-            if(getSupportActionBar() != null)
+            if (getSupportActionBar() != null)
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -75,40 +80,64 @@ public class MicActivity extends ActionBarActivity implements View.OnClickListen
             public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                 //Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
                 switch ((int) id) {
-                    case 1: startActivity(Navigation.getAgendaIntent(getApplicationContext()));     break;
+                    case 1:
+                        startActivity(Navigation.getAgendaIntent(getApplicationContext()));
+                        break;
                     case 2:
-                        startActivity(Navigation.getPresentationIntent(getApplicationContext()));   break;
+                        startActivity(Navigation.getPresentationIntent(getApplicationContext()));
+                        break;
                     case 3:
-                        startActivity(Navigation.getSocialProgramIntent(getApplicationContext()));  break;
+                        startActivity(Navigation.getSocialProgramIntent(getApplicationContext()));
+                        break;
                     case 5:
-                        startActivity(Navigation.getCurDisqIntent(getApplicationContext()));        break;
+                        startActivity(Navigation.getCurDisqIntent(getApplicationContext()));
+                        break;
                     case 6:
-                        startActivity(Navigation.getDisqListIntent(getApplicationContext()));       break;
+                        startActivity(Navigation.getDisqListIntent(getApplicationContext()));
+                        break;
                     case 8:
-                        startActivity(Navigation.getSettingsIntent(getApplicationContext()));       break;
+                        startActivity(Navigation.getSettingsIntent(getApplicationContext()));
+                        break;
                     case 10:
-                        startActivity(Navigation.getManIntent(getApplicationContext()));            break;
+                        startActivity(Navigation.getManIntent(getApplicationContext()));
+                        break;
                     case 12:
-                        startActivity(Navigation.exitApp());                                        break;
-                    case 13:                                                                        break;
-                    default:                                                                        break;
+                        startActivity(Navigation.exitApp());
+                        break;
+                    case 13:
+                        break;
+                    default:
+                        break;
                 }
                 return true;
             }
         }).build();
     }
 
-    public void onClick(View v) {
 
-        switch (v.getId()) {
-
-			/* micButton button */
-            case R.id.micButton:
-                System.out.print("Здесь микрофон нужно закрыть");
-                stopService(new Intent(getApplicationContext(), MicActivity.class));
-                QueueService.deleteRequest();
-                break;
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (view.getId()) {
+            case R.id.micButton: {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    //startService(new Intent(this, MicService.class));
+                    Log.i("Ontouch:", "case mic, event down");
+                    break;
+                }
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    //stopService(new Intent(this, MicService.class));
+                    Log.i("Ontouch:", "case mic, event up");
+                    break;
+                }
+            }
+            case R.id.exitButton: {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    startActivity(Navigation.getQueueActListIntent(this));
+                    System.out.println("\nУдаляем HEAD: "+KP.deleteRequest(KP.gettingUsername));
+                    break;
+                }
+            }
         }
+        return false;
     }
-
 }
