@@ -110,6 +110,8 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
                 toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
                 exitQueue.setBackgroundColor(getResources().getColor(R.color.md_red_A400));
+
+                startActivity(Navigation.getQueueActListIntent(this));
                 break;
 
 			/* exitQueue button */
@@ -124,6 +126,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
                 toQueue.setBackgroundColor(getResources().getColor(R.color.md_light_green_A700));
 
+                startActivity(Navigation.getQueueActListIntent(this));
                 break;
         }
     }
