@@ -19,7 +19,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I want to speak"
+        android:text="ask button"
         android:id="@+id/toQueue"
         android:background="#02df06"
         android:layout_centerVertical="true"
@@ -33,7 +33,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="I dont want to speak"
+        android:text="cancel button"
         android:id="@+id/exitQueue"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
