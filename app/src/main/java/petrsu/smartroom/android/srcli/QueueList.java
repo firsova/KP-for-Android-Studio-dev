@@ -1,6 +1,7 @@
 package petrsu.smartroom.android.srcli;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -44,6 +45,28 @@ public class QueueList extends ActionBarActivity {
 
     private ListView qlistView;
 
+    List <String> q = new ArrayList<>();
+
+    private void listUpdate(final Context context) {
+        Thread myThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("\nIN LISTUPDATE()");
+                while(true){
+                    try {
+
+
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
+        myThread.start();
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.queuelist);
@@ -53,17 +76,19 @@ public class QueueList extends ActionBarActivity {
 
         qlistView = (ListView) findViewById(R.id.qlistView);
 
-        List <String> q = new ArrayList<>();
+
 
 
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
-
         }
+
+        listUpdate(this);
 
         ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
 
+        arr.notifyDataSetChanged();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
