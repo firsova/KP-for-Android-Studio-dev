@@ -46,10 +46,9 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
         exitQueue = (Button) findViewById(R.id.exitQueue);
         exitQueue.setOnClickListener(this);
 
-        if (QueueService.createRequest() == 0)
+        if (KP.existingRequest(KP.gettingUsername) == 0)
         {
             exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
-            QueueService.deleteRequest();
         } else {
             toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
         }
