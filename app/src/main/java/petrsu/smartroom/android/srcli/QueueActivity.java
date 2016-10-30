@@ -50,7 +50,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                             startActivity(Navigation.getMicIntent(context));
                             break;
                         }
-                        Thread.sleep(2000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
