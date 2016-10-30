@@ -24,6 +24,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.concurrent.TimeUnit;
+
 
 /**
  * Created by user on 11.05.16.
@@ -38,18 +40,25 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
     private GoogleApiClient client;
 
     private void subCheck(final Context context) {
-        new Thread() {
+        Thread myThread = new Thread(new Runnable() {
             @Override
             public void run() {
+                System.out.println("\nIN SUBCHECK()");
                 while(true){
-                    //if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
-                    //    System.out.println("\n ---> UPGRADE: СОВПАЛО");
-                        startActivity(Navigation.getMicIntent(context));
-                        break;
-                  //  }
+                    try {
+                        if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
+                            startActivity(Navigation.getMicIntent(context));
+                            break;
+                        }
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+
             }
-        }.start();
+        });
+        myThread.start();
     }
 
 
@@ -69,13 +78,15 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
         {
             exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
             exitQueue.setEnabled(false);
+            subCheck(this);
 
         } else {
+
             toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
             toQueue.setEnabled(false);
         }
 
-        subCheck(this);
+
 
 
 
@@ -132,10 +143,12 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 			/* toQueue button */
             case R.id.toQueue:
 
+
                 QueueService queue1;
                 queue1 = new QueueService();
 
                 queue1.createRequest();
+
 
                 toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
                 toQueue.setEnabled(false);
