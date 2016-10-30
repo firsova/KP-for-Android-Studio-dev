@@ -116,7 +116,7 @@ public class KP extends ActionBarActivity implements View.OnClickListener {
 	public static native void stopVideo();
     
     
-	public static native int registerRequest(String username, String state);
+	public static native int registerRequest(String username);
 	public static native int existingRequest(String username);
 	public static native int deleteRequest(String username);
 	public static native String getRequestList(int i);

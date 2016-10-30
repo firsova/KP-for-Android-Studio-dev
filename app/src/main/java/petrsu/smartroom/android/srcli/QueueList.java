@@ -1,6 +1,7 @@
 package petrsu.smartroom.android.srcli;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -50,19 +52,15 @@ public class QueueList extends ActionBarActivity {
 
         //если сменился выступающий
         //if (KP.chSpeaker) KP.deleteRequest(KP.gettingUsername);
-
+        System.out.println("\nIN LIST");
         qlistView = (ListView) findViewById(R.id.qlistView);
-
         List <String> q = new ArrayList<String>();
-
 
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
-
         }
-        Subscription sub;
-        sub = new Subscription();
-        sub.execute();
+
+        subCheck(this);
 
         ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
@@ -108,48 +106,22 @@ public class QueueList extends ActionBarActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
 
     }
+
+    private void subCheck(final Context context) {
+
+        new Thread() {
+            @Override
+            public void run() {
+                while(true){
+                    if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
+                        System.out.println("\n ---> UPGRADE: СОВПАЛО");
+                        startActivity(Navigation.getMicIntent(context));
+                        break;
+                    }
+                }
+
+            }
+        }.start();
+    }
 }
 
-
-class Subscription extends AsyncTask<Void,Integer,Void>/*,Activity*/ {
-
-    private int progress = 0;
-    private int flag = 0;
-    @Override
-    protected  void onPreExecute() {
-        super.onPreExecute();
-        System.out.println("BEGIN");
-    }
-
-    @Override
-    protected Void doInBackground(Void...params){
-        while (progress < 100){
-            progress++;
-            publishProgress(progress);
-            SystemClock.sleep(10000);
-        }
-        return null;
-    }
-
-    @Override
-    protected  void  onProgressUpdate(Integer...values) {
-        super.onProgressUpdate(values);
-
-        System.out.print("\nHEAD["+ KP.isHead()+"] = USERNAME[" + KP.gettingUsername+"]");
-
-        if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
-            System.out.println(" ---> UPGRADE: СОВПАЛО");
-
-  /*          Intent intent  = new Intent(this,MicActivity.class);
-            startActivity(intent);
-*/
-        }
-    }
-
-    @Override
-    protected  void  onPostExecute(Void result) {
-        super.onPostExecute(result);
-        System.out.println("END");
-    }
-
-}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
@@ -13,32 +14,7 @@
 
         />
 
-    <Button
-        android:id="@+id/imageButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:text="Stop"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/imageButton2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:text="Bla-bla-bla, please"
-        android:layout_above="@+id/imageButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="#fffdfd" />
-
     <ImageButton
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
         android:id="@+id/micButton"
         android:src="@drawable/microphone"
         android:layout_alignParentLeft="true"
@@ -46,7 +22,21 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/imageButton2"
-        android:background="@drawable/circle_btn_selector"/>
+        android:background="@drawable/circle_btn_selector"
+        android:layout_width="300dp"
+        android:layout_height="400dp" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="Return to queue"
+        android:elevation="0dp"
+        app:backgroundTint="@color/common_signin_btn_default_background"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

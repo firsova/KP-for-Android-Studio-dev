@@ -45,15 +45,15 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
         toQueue.setOnClickListener(this);
         exitQueue = (Button) findViewById(R.id.exitQueue);
         exitQueue.setOnClickListener(this);
-
-        if (QueueService.createRequest() == 0)
+       // exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+     /*   if (QueueService.createRequest() == 0)
         {
             exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
             QueueService.deleteRequest();
         } else {
             toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
         }
-
+*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
             setSupportActionBar(toolbar);
@@ -109,8 +109,9 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
                 queue1.createRequest();
 
-                toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
-                exitQueue.setBackgroundColor(getResources().getColor(R.color.md_red_A400));
+                //toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+                //exitQueue.setBackgroundColor(getResources().getColor(R.color.md_red_A400));
+                startActivity(Navigation.getQueueActListIntent(this));
                 break;
 
 			/* exitQueue button */
@@ -122,8 +123,9 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 queue2.deleteRequest();
 
 
-                exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
-                toQueue.setBackgroundColor(getResources().getColor(R.color.md_light_green_A700));
+                //exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
+                //toQueue.setBackgroundColor(getResources().getColor(R.color.md_light_green_A700));
+                startActivity(Navigation.getQueueActListIntent(this));
 
                 break;
         }

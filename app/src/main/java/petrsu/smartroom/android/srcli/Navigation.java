@@ -219,6 +219,10 @@ public class Navigation { // was abstract lol
     public static Intent getQueueActListIntent(Context context){
         return new Intent(context , QueueList.class);
     }
+
+    public static Intent getMicIntent(Context context){
+        return new Intent(context, MicActivity.class);
+    }
 }
 
 /*

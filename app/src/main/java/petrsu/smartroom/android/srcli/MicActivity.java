@@ -1,11 +1,14 @@
 package petrsu.smartroom.android.srcli;
 
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -25,15 +28,20 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class MicActivity extends ActionBarActivity implements View.OnClickListener {
+public class MicActivity extends ActionBarActivity implements View.OnTouchListener {
     private ImageButton micButton;
+    private Button exitBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.queueserv);
+        setContentView(R.layout.micactivity);
 
         micButton = (ImageButton) findViewById(R.id.micButton);
-        micButton.setOnClickListener(this);
+        micButton.setOnTouchListener(this);
+
+
+        exitBtn = (Button) findViewById(R.id.exitButton);
+        exitBtn.setOnTouchListener(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
@@ -110,4 +118,29 @@ public class MicActivity extends ActionBarActivity implements View.OnClickListen
         }
     }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (view.getId()){
+            case R.id.micButton: {
+                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    //startService(new Intent(this, MicService.class));
+                    Log.i("Ontouch:","case mic, event down");
+                    break;
+                }
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    //stopService(new Intent(this, MicService.class));
+                    Log.i("Ontouch:","case mic, event up");
+                    break;
+                }
+            }
+            case R.id.exitButton: {
+                if(motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    startActivity(Navigation.getQueueActListIntent(this));
+                    QueueService.deleteRequest();
+                    break;
+                }
+            }
+        }
+        return false;
+    }
 }

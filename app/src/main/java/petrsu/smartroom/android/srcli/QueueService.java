@@ -30,13 +30,13 @@ public class QueueService extends Service{
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
 
-            System.out.print("\nREQUEST-INFO: Такого реквеста еще не было: "+ KP.registerRequest(KP.gettingUsername, "SENDED"));
+            System.out.print("\nREQUEST-INFO:["+KP.existingRequest(KP.gettingUsername)+"] Такого реквеста еще не было: "+ KP.registerRequest(KP.gettingUsername));
             //startService(new Intent(this, QueueList.class));
             return 0;
 
         }
                 else {
-                    System.out.print("\nREQUEST-INFO: Такой реквест уже был");
+                    System.out.print("\nREQUEST-INFO:["+KP.existingRequest(KP.gettingUsername)+"]  Такой реквест уже был" + KP.registerRequest(KP.gettingUsername));
                     return -1;
         }
     }
@@ -46,11 +46,11 @@ public class QueueService extends Service{
 
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
-            System.out.print("\nREQUEST-INFO: Данный пользователь еще не посылал реквест");
+            System.out.print("\nREQUEST-INFO:["+KP.existingRequest(KP.gettingUsername)+"] Данный пользователь еще не посылал реквест"+ KP.deleteRequest(KP.gettingUsername));
             return 0;
         }
         else {
-            System.out.print("\nREQUEST-INFO: Реквест от данного пользователя удален: "+KP.deleteRequest(KP.gettingUsername));
+            System.out.print("\nREQUEST-INFO:["+KP.existingRequest(KP.gettingUsername)+"]  Реквест от данного пользователя удален: "+ KP.deleteRequest(KP.gettingUsername));
             return -1;
 
         }
