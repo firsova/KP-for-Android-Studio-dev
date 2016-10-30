@@ -22,11 +22,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Unnamed-0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57f2f25a-c03f-44b5-af5b-76c7624c9036" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/petrsu/smartroom/android/srcli/QueueList.java" afterPath="$PROJECT_DIR$/app/src/main/java/petrsu/smartroom/android/srcli/QueueList.java" />
-    </list>
+    <list default="true" id="57f2f25a-c03f-44b5-af5b-76c7624c9036" name="Default" comment="" />
     <ignored path="KP-for-Android-Studio-dev.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1737,7 +1733,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
+    <option name="x" value="21" />
     <option name="y" value="50" />
     <option name="width" value="982" />
     <option name="height" value="972" />
@@ -2230,7 +2226,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="50" width="982" height="972" extended-state="0" />
+    <frame x="21" y="50" width="982" height="972" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827103" sideWeight="0.49369085" order="6" side_tool="false" content_ui="tabs" />
