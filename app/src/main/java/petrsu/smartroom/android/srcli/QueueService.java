@@ -25,33 +25,31 @@ public class QueueService extends Service{
 
     }
 
-     static int createRequest() {
+    public static void createRequest() {
 
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
 
             System.out.print("\nREQUEST-INFO: Такого реквеста еще не было: "+ KP.registerRequest(KP.gettingUsername, "SENDED"));
             //startService(new Intent(this, QueueList.class));
-            return 0;
-
-        }
-                else {
+            }
+        else {
                     System.out.print("\nREQUEST-INFO: Такой реквест уже был");
-                    return -1;
+
         }
     }
 
 
-    public static int deleteRequest() {
+    public static void deleteRequest() {
 
         if (KP.existingRequest(KP.gettingUsername) == 0)
         {
             System.out.print("\nREQUEST-INFO: Данный пользователь еще не посылал реквест");
-            return 0;
+
         }
         else {
-            System.out.print("\nREQUEST-INFO: Реквест от данного пользователя удален: "+KP.deleteRequest(KP.gettingUsername));
-            return -1;
+            System.out.print("\nREQUEST-INFO: Реквест от данного пользователя удален: "+ KP.deleteRequest(KP.gettingUsername));
+
 
         }
     }

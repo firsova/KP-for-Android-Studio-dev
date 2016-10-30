@@ -53,14 +53,13 @@ public class QueueList extends ActionBarActivity {
 
         qlistView = (ListView) findViewById(R.id.qlistView);
 
-        List <String> q = new ArrayList<String>();
+        List <String> q = new ArrayList<>();
 
 
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
 
         }
-
 
         ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
         qlistView.setAdapter(arr);
