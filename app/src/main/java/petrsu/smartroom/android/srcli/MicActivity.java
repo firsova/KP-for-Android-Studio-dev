@@ -57,14 +57,13 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
                 .withHeader(R.layout.drawer_header)
                 .withDrawerWidthDp(320)
                 .addDrawerItems(
-                        new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(AdapterView<?> parent, View view, int position, long id, IDrawerItem drawerItem) {
                 //Toast.makeText(Agenda.this, String.valueOf(id), Toast.LENGTH_SHORT).show();
                 switch ((int) id) {
-                    case 4:
+                    case 0:
                         startActivity(Navigation.exitApp());                                        break;
                     default:                                                                        break;
                 }

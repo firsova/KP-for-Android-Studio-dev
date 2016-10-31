@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import android.app.ListActivity;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.mikepenz.iconics.typeface.FontAwesome;
@@ -39,24 +41,41 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by user on 14.05.16.
  */
-public class QueueList extends ActionBarActivity {
+public class QueueList extends ActionBarActivity implements AdapterView.OnItemLongClickListener {
 
     public String headUsername;
-
     private ListView qlistView;
+    ArrayAdapter <String> arr;
+    List <String> q;
 
-    List <String> q = new ArrayList<>();
+    Thread myThread = null;
+
+
 
     private void listUpdate(final Context context) {
-        Thread myThread = new Thread(new Runnable() {
+        myThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("\nIN LISTUPDATE()");
                 while(true){
                     try {
 
+                        runOnUiThread(new Runnable(){
+                            @Override
+                            public void run(){
+                                q.clear();
+                                for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
+                                    q.add(KP.getRequestList(x));
+                                }
 
-                        Thread.sleep(1000);
+                                arr.clear();
+                                arr.addAll(q);
+                                arr.notifyDataSetChanged();
+                                qlistView.setAdapter(arr);
+                            }
+                        });
+
+                        Thread.sleep(6000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -65,6 +84,18 @@ public class QueueList extends ActionBarActivity {
             }
         });
         myThread.start();
+    }
+
+    void refresh(){
+        q.clear();
+        for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
+            q.add(KP.getRequestList(x));
+        }
+
+        arr.clear();
+        arr.addAll(q);
+        arr.notifyDataSetChanged();
+        //qlistView.setAdapter(arr);
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,19 +107,21 @@ public class QueueList extends ActionBarActivity {
 
         qlistView = (ListView) findViewById(R.id.qlistView);
 
+        q = new ArrayList<>();
 
+        qlistView.setAdapter(arr);
+        qlistView.setOnItemLongClickListener(this);
 
+        q.clear();
+        //arr.clear();
 
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
         }
-
-        listUpdate(this);
-
-        ArrayAdapter <String> arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
+        arr = new ArrayAdapter<String>(this, R.layout.listitem, R.id.label, q);
+        //arr.addAll(q);
         qlistView.setAdapter(arr);
 
-        arr.notifyDataSetChanged();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         try {
@@ -111,6 +144,7 @@ public class QueueList extends ActionBarActivity {
                         new PrimaryDrawerItem().withName("QueueList").withIcon(FontAwesome.Icon.faw_globe),
 
                         new DividerDrawerItem(),
+                        new SecondaryDrawerItem().withName("Refresh").withIcon(FontAwesome.Icon.faw_refresh),
                         new SecondaryDrawerItem().withName(R.string.exitClientTitle).withIcon(FontAwesome.Icon.faw_close)
                 ).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
@@ -119,7 +153,8 @@ public class QueueList extends ActionBarActivity {
                 switch ((int) id) {
                     case 1: startActivity(Navigation.getQueueActIntent(getApplicationContext()));   break;
                     case 2: break;
-                    case 4: startActivity(Navigation.exitApp());                                    break;
+                    case 4: refresh(); break;
+                    case 5: startActivity(Navigation.exitApp());                                    break;
                     default:                                                                        break;
                 }
                 return true;
@@ -129,6 +164,15 @@ public class QueueList extends ActionBarActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
 
+    }
+
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
+        Toast.makeText(this, "Pressed on " + pos + " element", Toast.LENGTH_SHORT).show();
+        String user = q.get(pos);
+        Toast.makeText(this, "Pressed on " + user, Toast.LENGTH_SHORT).show();
+        return false;
     }
 }
 

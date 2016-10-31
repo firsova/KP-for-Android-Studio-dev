@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class QueueActivity extends ActionBarActivity implements View.OnClickListener {
     private Button toQueue;
     private Button exitQueue;
+    Thread myThread = null;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -40,7 +42,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
     private GoogleApiClient client;
 
     private void subCheck(final Context context) {
-        Thread myThread = new Thread(new Runnable() {
+         myThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("\nIN SUBCHECK()");
@@ -78,7 +80,10 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
         {
             exitQueue.setBackgroundColor(getResources().getColor(R.color.gray));
             exitQueue.setEnabled(false);
-            subCheck(this);
+            if (myThread == null) {
+                Log.i("QActivity thread", "Launched thread");
+                subCheck(this);
+            }
 
         } else {
 
