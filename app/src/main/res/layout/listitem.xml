@@ -31,14 +31,15 @@
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/avatar_status"
-        android:layout_toEndOf="@id/avatar_status"
-        android:layout_marginRight="@dimen/agenda_name_margin_right"
-        android:layout_marginEnd="@dimen/agenda_name_margin_right"
-        android:textSize="20sp"
+        android:textSize="36sp"
         android:text="Name"
         android:textColor="@color/primary_text_default_material_light"
         android:typeface="normal"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/avatar_status"
+        android:layout_toEndOf="@+id/avatar_status"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp" />
 
-    </RelativeLayout>
+</RelativeLayout>
