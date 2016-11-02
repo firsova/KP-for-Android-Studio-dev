@@ -89,6 +89,10 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
 
             toQueue.setBackgroundColor(getResources().getColor(R.color.gray));
             toQueue.setEnabled(false);
+            if (myThread == null) {
+                Log.i("QActivity thread", "Launched thread");
+                subCheck(this);
+            }
         }
 
 
