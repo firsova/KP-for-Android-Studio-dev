@@ -131,10 +131,16 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
 
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long id) {
-        Toast.makeText(this, "Pressed on " + pos + " element", Toast.LENGTH_SHORT).show();
-        String user = q.get(pos);
-        Toast.makeText(this, "Pressed on " + user, Toast.LENGTH_SHORT).show();
-        return false;
+
+        if (KP.isChairman) {
+            //Toast.makeText(this, "Pressed on " + pos + " element", Toast.LENGTH_SHORT).show();
+            String user = q.get(pos);
+
+            if (KP.deleteRequest(user) == 0)
+                Toast.makeText(this,user+" was deleted", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(this,user+" NOT DELETED!", Toast.LENGTH_SHORT).show();
+        } else return false;
+        return true;
     }
 }
 
