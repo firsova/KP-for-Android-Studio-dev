@@ -136,8 +136,10 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
             //Toast.makeText(this, "Pressed on " + pos + " element", Toast.LENGTH_SHORT).show();
             String user = q.get(pos);
 
-            if (KP.deleteRequest(user) == 0)
-                Toast.makeText(this,user+" was deleted", Toast.LENGTH_SHORT).show();
+            if (KP.deleteRequest(user) == 0) {
+                Toast.makeText(this, user + " was deleted", Toast.LENGTH_SHORT).show();
+                refresh();
+            }
             else Toast.makeText(this,user+" NOT DELETED!", Toast.LENGTH_SHORT).show();
         } else return false;
         return true;
