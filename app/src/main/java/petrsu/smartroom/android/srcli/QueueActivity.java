@@ -49,8 +49,10 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 while(true){
                     try {
                         if (KP.isHead().compareTo(KP.gettingUsername) == 0) {
-                            startActivity(Navigation.getMicIntent(context));
-                            break;
+                            if (!KP.checkSpeakerState()) {
+                                startActivity(Navigation.getMicIntent(context));
+                                break;
+                            } else KP.deleteRequest(KP.gettingUsername);
                         }
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
