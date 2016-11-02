@@ -1,8 +1,5 @@
 package petrsu.smartroom.android.srcli;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,32 +7,27 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.app.usage.UsageEvents;
 import android.widget.Toast;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.DividerDrawerItem;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MicActivity extends ActionBarActivity implements View.OnTouchListener {
     private ImageButton micButton;
     private Button exitBtn;
+    public static boolean isMicServiceLaunched;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.micactivity);
+
+        QueueActivity.isUserOnMicIntent = true;
+        MicActivity.isMicServiceLaunched = true;
 
         micButton = (ImageButton) findViewById(R.id.micButton);
         micButton.setOnTouchListener(this);
@@ -93,6 +85,7 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     if (KP.existingRequest(KP.gettingUsername) == 1) {
                         //stopService(new Intent(this, MicService.class));
+                        MicActivity.isMicServiceLaunched = false;
                         Log.i("Ontouch:", "case mic, event up");
                         break;
                     }else{
@@ -106,6 +99,8 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     startActivity(Navigation.getQueueActListIntent(this));
                     System.out.println("\nУдаляем HEAD: "+KP.deleteRequest(KP.gettingUsername));
+                    QueueActivity.isUserOnMicIntent = false;
+
                     break;
                 }
             }

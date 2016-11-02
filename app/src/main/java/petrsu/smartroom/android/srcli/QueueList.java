@@ -47,6 +47,7 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
     private ListView qlistView;
     ArrayAdapter <String> arr;
     List <String> q;
+    Drawer drawer;
 
     void refresh(){
         q.clear();
@@ -58,6 +59,7 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
         //arr.addAll(q);
         arr.notifyDataSetChanged();
         //qlistView.setAdapter(arr);
+        drawer.closeDrawer();
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,7 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
             e.printStackTrace();
         }
 
-        new DrawerBuilder()
+        drawer = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withActionBarDrawerToggle(true)
@@ -122,6 +124,7 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
                 return true;
             }
         }).build();
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

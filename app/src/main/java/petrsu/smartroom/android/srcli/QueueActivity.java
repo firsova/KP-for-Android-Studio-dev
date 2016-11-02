@@ -1,7 +1,5 @@
 package petrsu.smartroom.android.srcli;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.content.Context;
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -25,8 +22,6 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.concurrent.TimeUnit;
-
 
 /**
  * Created by user on 11.05.16.
@@ -34,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class QueueActivity extends ActionBarActivity implements View.OnClickListener {
     private Button toQueue;
     private Button exitQueue;
+    public static boolean isUserOnMicIntent = false;
     Thread myThread = null;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -53,6 +49,13 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                                 startActivity(Navigation.getMicIntent(context));
                                 break;
                             } else KP.deleteRequest(KP.gettingUsername);
+                        }
+                        if (QueueActivity.isUserOnMicIntent == true && KP.isHead().compareTo(KP.gettingUsername) != 0)
+                        {
+                            if (MicActivity.isMicServiceLaunched == true) {
+                                //stopService(new Intent(this, MicService.class));
+                            }
+                            startActivity(Navigation.getQueueActListIntent(context));
                         }
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
