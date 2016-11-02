@@ -14,6 +14,8 @@ import android.widget.RelativeLayout;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.app.usage.UsageEvents;
+import android.widget.Toast;
+
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -78,14 +80,26 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
         switch (view.getId()) {
             case R.id.micButton: {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    //startService(new Intent(this, MicService.class));
-                    Log.i("Ontouch:", "case mic, event down");
-                    break;
+                    if (KP.existingRequest(KP.gettingUsername) == 1){
+                         //startService(new Intent(this, MicService.class));
+                        Log.i("Ontouch:", "case mic, event down");
+                        break;
+                    } else {
+                        startActivity(Navigation.getQueueActListIntent(this));
+                        Toast.makeText(this,KP.gettingUsername +" was deleted from list by chairman", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    //stopService(new Intent(this, MicService.class));
-                    Log.i("Ontouch:", "case mic, event up");
-                    break;
+                    if (KP.existingRequest(KP.gettingUsername) == 1) {
+                        //stopService(new Intent(this, MicService.class));
+                        Log.i("Ontouch:", "case mic, event up");
+                        break;
+                    }else{
+                        startActivity(Navigation.getQueueActListIntent(this));
+                        Toast.makeText(this,KP.gettingUsername +" was deleted from list by chairman", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
                 }
             }
             case R.id.exitButton: {
