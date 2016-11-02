@@ -48,52 +48,14 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
     ArrayAdapter <String> arr;
     List <String> q;
 
-    Thread myThread = null;
-
-
-
-    private void listUpdate(final Context context) {
-        myThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("\nIN LISTUPDATE()");
-                while(true){
-                    try {
-
-                        runOnUiThread(new Runnable(){
-                            @Override
-                            public void run(){
-                                q.clear();
-                                for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
-                                    q.add(KP.getRequestList(x));
-                                }
-
-                                arr.clear();
-                                arr.addAll(q);
-                                arr.notifyDataSetChanged();
-                                qlistView.setAdapter(arr);
-                            }
-                        });
-
-                        Thread.sleep(6000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        });
-        myThread.start();
-    }
-
     void refresh(){
         q.clear();
+       // arr.clear();
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
             q.add(KP.getRequestList(x));
         }
 
-        arr.clear();
-        arr.addAll(q);
+        //arr.addAll(q);
         arr.notifyDataSetChanged();
         //qlistView.setAdapter(arr);
     }
@@ -112,7 +74,7 @@ public class QueueList extends ActionBarActivity implements AdapterView.OnItemLo
         qlistView.setAdapter(arr);
         qlistView.setOnItemLongClickListener(this);
 
-        q.clear();
+        //q.clear();
         //arr.clear();
 
         for (int x = 0; x < KP.getRequestCount(); x = x + 1) {
