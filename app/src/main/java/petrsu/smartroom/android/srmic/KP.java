@@ -1,7 +1,6 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 
-import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;

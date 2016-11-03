@@ -1,4 +1,4 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import java.util.List;
 import java.util.Map;

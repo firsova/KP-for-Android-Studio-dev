@@ -1,4 +1,4 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import android.app.Service;
 import android.os.IBinder;
@@ -17,13 +17,6 @@ import java.net.InetSocketAddress;
 import java.io.IOException;
 import org.xiph.speex.SpeexEncoder;
 import android.util.Log;
-
-import net.tomp2p.opuswrapper.Opus;
-
-import com.sun.jna.ptr.PointerByReference;
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
 
 
 /**

@@ -1,11 +1,10 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;

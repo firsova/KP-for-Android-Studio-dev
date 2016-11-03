@@ -1,4 +1,4 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -125,7 +125,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 				// Otherwise, set the URL to null.
 				Uri.parse("http://host/path"),
 				// TODO: Make sure this auto-generated app URL is correct.
-				Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
+				Uri.parse("android-app://petrsu.smartroom.android.srmic/http/host/path")
 		);
 		AppIndex.AppIndexApi.end(client, viewAction);
 		// ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -158,7 +158,7 @@ public class Agenda extends AppCompatActivity {// implements  View.OnClickListen
 				// Otherwise, set the URL to null.
 				Uri.parse("http://host/path"),
 				// TODO: Make sure this auto-generated app URL is correct.
-				Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
+				Uri.parse("android-app://petrsu.smartroom.android.srmic/http/host/path")
 		);
 		AppIndex.AppIndexApi.start(client, viewAction);
 	}

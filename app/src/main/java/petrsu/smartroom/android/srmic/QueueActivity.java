@@ -1,4 +1,4 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -209,7 +209,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
+                Uri.parse("android-app://petrsu.smartroom.android.srmic/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
 
@@ -238,7 +238,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://petrsu.smartroom.android.srcli/http/host/path")
+                Uri.parse("android-app://petrsu.smartroom.android.srmic/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

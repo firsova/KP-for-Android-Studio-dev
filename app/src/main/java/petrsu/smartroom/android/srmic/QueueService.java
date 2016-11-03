@@ -1,8 +1,6 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
-import android.app.Activity;
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
 

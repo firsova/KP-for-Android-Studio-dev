@@ -1,4 +1,4 @@
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

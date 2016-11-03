@@ -13,7 +13,7 @@
  * All rights reserved.
  * Mail-list: smartslog@cs.karelia.ru
  */
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import java.util.HashMap;
 

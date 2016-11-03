@@ -1,7 +1,7 @@
 /*
  * 
  */
-package petrsu.smartroom.android.srcli;
+package petrsu.smartroom.android.srmic;
 
 import android.widget.ImageView;
 import android.widget.SimpleAdapter.ViewBinder;
