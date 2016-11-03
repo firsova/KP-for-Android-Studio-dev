@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="petrsu.smartroom.android.srcli"
+    package="petrsu.smartroom.android.srmic"
     android:versionCode="1000"
     android:versionName="0.1.0" >
 
@@ -25,7 +25,7 @@
         android:theme="@style/AppTheme">
         
        <activity
-            android:name="petrsu.smartroom.android.srcli.SmartRoomInfo"
+            android:name="petrsu.smartroom.android.srmic.SmartRoomInfo"
             android:launchMode="singleTask">
             <intent-filter>
         		<action android:name="android.intent.action.VIEW" />
@@ -41,7 +41,7 @@
         </activity>
         
         <activity
-            android:name="petrsu.smartroom.android.srcli.KP"
+            android:name="petrsu.smartroom.android.srmic.KP"
             android:launchMode="singleTask"
             android:label="@string/app_name">
             <intent-filter>
@@ -51,62 +51,62 @@
         </activity>
         
         <activity
-            android:name="petrsu.smartroom.android.srcli.Agenda"
+            android:name="petrsu.smartroom.android.srmic.Agenda"
             android:launchMode="singleTask"
             android:label="@string/agenda"></activity>
         
          <activity 
-            android:name="petrsu.smartroom.android.srcli.ServicesMenu"
+            android:name="petrsu.smartroom.android.srmic.ServicesMenu"
             android:launchMode="singleTask"
             android:label="@string/avail_services"></activity>
          
          <activity 
-            android:name="petrsu.smartroom.android.srcli.Projector"
+            android:name="petrsu.smartroom.android.srmic.Projector"
             android:launchMode="singleTask"
             android:label="@string/presentation"
             android:screenOrientation="landscape"></activity>
          
          <activity 
-            android:name="petrsu.smartroom.android.srcli.SettingsMenu"
+            android:name="petrsu.smartroom.android.srmic.SettingsMenu"
             android:launchMode="singleTask"
             android:label="@string/menu_settings"></activity>
          
          <service
-            android:name="petrsu.smartroom.android.srcli.MicService"
+            android:name="petrsu.smartroom.android.srmic.MicService"
             android:label="@string/mic_service"></service>
          
          <service
-            android:name="petrsu.smartroom.android.srcli.NetworkService"
+            android:name="petrsu.smartroom.android.srmic.NetworkService"
             android:label="@string/netService"></service>
          
          <activity 
-            android:name="petrsu.smartroom.android.srcli.Profile"
+            android:name="petrsu.smartroom.android.srmic.Profile"
             android:launchMode="singleTask"
             android:label="@string/profileLabel">
          </activity>
 
-        <activity android:name="petrsu.smartroom.android.srcli.WebViewer"
+        <activity android:name="petrsu.smartroom.android.srmic.WebViewer"
             android:label="@string/dqBrowser">
         </activity>
 
         <activity
-            android:name="petrsu.smartroom.android.srcli.CityGallery"
+            android:name="petrsu.smartroom.android.srmic.CityGallery"
             android:launchMode="singleTask"
             android:label="CityGallery">
         </activity>
 
         <activity
-            android:name="petrsu.smartroom.android.srcli.QueueActivity"
+            android:name="petrsu.smartroom.android.srmic.QueueActivity"
             android:label="Queue">
         </activity>
 
         <activity
-            android:name="petrsu.smartroom.android.srcli.QueueList"
+            android:name="petrsu.smartroom.android.srmic.QueueList"
             android:label="QueueList">
         </activity>
 
         <activity
-            android:name="petrsu.smartroom.android.srcli.MicActivity"
+            android:name="petrsu.smartroom.android.srmic.MicActivity"
             android:label="MicActivity">
         </activity>
 

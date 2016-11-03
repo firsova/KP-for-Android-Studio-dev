@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "petrsu.smartroom.android.srcli"
+        applicationId "petrsu.smartroom.android.srmic"
         minSdkVersion 15
         targetSdkVersion 21
 
