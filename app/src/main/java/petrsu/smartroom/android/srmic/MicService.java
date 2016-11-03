@@ -37,7 +37,7 @@ public class MicService extends Service {
 	private final int channels = 1;
 	private final int mode = 0;
 	private final int samples = 320;
-	private final int quality = 10;
+	private final int quality = 5;
 	private SpeexEncoder encoder;
 	//private PointerByReference penc;
 
