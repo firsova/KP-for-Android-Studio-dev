@@ -1,5 +1,6 @@
 package petrsu.smartroom.android.srmic;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -53,7 +54,7 @@ public class QueueActivity extends ActionBarActivity implements View.OnClickList
                         if (QueueActivity.isUserOnMicIntent == true && KP.isHead().compareTo(KP.gettingUsername) != 0)
                         {
                             if (MicActivity.isMicServiceLaunched == true) {
-                                //stopService(new Intent(this, MicService.class));
+                                stopService(new Intent(context, MicService.class));
                             }
                             startActivity(Navigation.getQueueActListIntent(context));
                         }

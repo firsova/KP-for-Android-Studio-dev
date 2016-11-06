@@ -1,5 +1,6 @@
 package petrsu.smartroom.android.srmic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,9 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
     private ImageButton micButton;
     private Button exitBtn;
     public static boolean isMicServiceLaunched;
+    /*public static final String BROADCAST_STATUS_SERVICE2 =
+            "com.example.srmic.stopMicService";
+    public static final String SERVICE_STATUS2 = "status";*/
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +77,8 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
             case R.id.micButton: {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     if (KP.existingRequest(KP.gettingUsername) == 1){
-                         //startService(new Intent(this, MicService.class));
+                         startService(new Intent(this, MicService.class));
+                        Toast.makeText(this, KP.getMicServiceIP(), Toast.LENGTH_SHORT).show();
                         Log.i("Ontouch:", "case mic, event down");
                         break;
                     } else {
@@ -84,7 +89,7 @@ public class MicActivity extends ActionBarActivity implements View.OnTouchListen
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                     if (KP.existingRequest(KP.gettingUsername) == 1) {
-                        //stopService(new Intent(this, MicService.class));
+                        stopService(new Intent(this, MicService.class));
                         MicActivity.isMicServiceLaunched = false;
                         Log.i("Ontouch:", "case mic, event up");
                         break;
