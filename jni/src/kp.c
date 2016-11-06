@@ -4,7 +4,7 @@
 
 
 /**
- * @fn  JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_connectSmartSpace(JNIEnv *env, jobject obj, jstring hostname, jstring ip, jint port)
+ * @fn  JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_connectSmartSpace(JNIEnv *env, jobject obj, jstring hostname, jstring ip, jint port)
  *
  * @brief Function connects client to Smart Space
  *
@@ -16,7 +16,7 @@
  *
  * @return Returns 0 in success and -1 if failed
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_connectSmartSpace(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_connectSmartSpace(
 		JNIEnv *env, jobject obj, jstring hostname, jstring ip, jint port) {
 
 	const char *hostname_ = (*env) -> GetStringUTFChars(env, hostname, NULL);
@@ -43,14 +43,14 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_connectSmartSpace(
 
 
 /**
- * @fn  Java_petrsu_smartroom_android_srcli_KP_disconnectSmartSpace(JNIEnv *env, jobject obj)
+ * @fn  Java_petrsu_smartroom_android_srmic_KP_disconnectSmartSpace(JNIEnv *env, jobject obj)
  *
  * @brief Function disconnects client from Smart Space
  *
  * @param env - pointer to JNI environment
  * @param obj - Java object
  */
-JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srcli_KP_disconnectSmartSpace(
+JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srmic_KP_disconnectSmartSpace(
 		JNIEnv *env, jobject obj) {
 
 	logout();
@@ -85,7 +85,7 @@ void logout() {
 
 
 /**
- * @fn  Java_petrsu_smartroom_android_srcli_KP_userRegistration(JNIEnv *env, jobject obj, jstring userName, jstring password)
+ * @fn  Java_petrsu_smartroom_android_srmic_KP_userRegistration(JNIEnv *env, jobject obj, jstring userName, jstring password)
  *
  * @brief Registers client in Smart Space
  *
@@ -99,7 +99,7 @@ void logout() {
  *
  * @return Returns 0 in success, 1 if username exists and -1 if failed
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_userRegistration(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_userRegistration(
 		JNIEnv *env, jobject obj, jstring userName, jstring password) {
 
 	list_t* profileList = sslog_ss_get_individual_by_class_all(CLASS_PROFILE);
@@ -141,7 +141,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_userRegistration(
  *
  * @return Time slot index if success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_personTimeslotIndex(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_personTimeslotIndex(
 		JNIEnv *env, jobject obj) {
 
 	individual_t *timeslot = getFirstTimeslot();
@@ -203,7 +203,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_personTimeslotInde
  * @param email - user email
  * @return 0 in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerGuest(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_registerGuest(
 		JNIEnv *env, jclass clazz, jstring name, jstring phone, jstring email) {
 
 	const char *p_name = (*env)->GetStringUTFChars(env, name, NULL);
@@ -231,7 +231,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerGuest(
  * @param city - city title
  * @return photo url in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_setPlaceInfo(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_setPlaceInfo(
 		JNIEnv *env, jclass clazz, jstring city, jstring uuid) {
 
 	const char *p_city = (*env)->GetStringUTFChars(env, city, NULL);
@@ -509,7 +509,7 @@ int activatePerson(individual_t *profile) {
  *
  * @return Returns 0 in success and -1 if failed
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_loadTimeslotList(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_loadTimeslotList(
 		JNIEnv *env, jclass clazz, jobject obj) {
 
 	if(obj != NULL) {
@@ -642,7 +642,7 @@ char* generateUuid(char *uuid) {
  *
  * @param menu - service menu object
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getServicesInfo(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_getServicesInfo(
 		JNIEnv *env, jclass clazz, jobject menu) {
 
 	jclass class = getJClassObject(env, "ServicesMenu");
@@ -689,9 +689,9 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getServicesInfo(
 jclass getJClassObject(JNIEnv *env, char *className) {
 
 	char *classPath = (char *) malloc (sizeof(char) *
-			strlen("petrsu/smartroom/android/srcli/") + strlen(className));
+			strlen("petrsu/smartroom/android/srmic/") + strlen(className));
 
-	strcpy(classPath, "petrsu/smartroom/android/srcli/");
+	strcpy(classPath, "petrsu/smartroom/android/srmic/");
 	strcat(classPath, className);
 
 	jclass class = (*env)->FindClass(env, classPath);
@@ -742,7 +742,7 @@ jfieldID getFieldID(JNIEnv *env, jclass class, char *fieldName,
  *
  * @return 0 in success, -1 if fail
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_initSubscription(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_initSubscription(
 		JNIEnv *env, jobject obj) {
 
 	jclass *classAgendaObj = getJClassObject(env, "Agenda");
@@ -918,7 +918,7 @@ int subscribePresentationService() {
  *
  * @return 0 in success, -1 or -2 if conference or presentation sbcr inactive
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_isActiveSubscriptions(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_isActiveSubscriptions(
 		JNIEnv *env, jclass clazz) {
 	if(!sslog_sbcr_is_active(conferenceSubscriptionContainer))
 		return -1;
@@ -931,7 +931,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_isActiveSubscripti
 /**
  * obsolete
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_refreshConferenceSbcr(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_refreshConferenceSbcr(
 		JNIEnv *env, jclass clazz) {
 	sslog_free_subscription(conferenceSubscriptionContainer);
 	return subscribeConferenceService();
@@ -941,7 +941,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_refreshConferenceS
 /**
  * obsolete
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_refreshPresentationSbcr(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_refreshPresentationSbcr(
 		JNIEnv *env, jclass clazz) {
 	sslog_free_subscription(presentationSubscriptionContainer);
 	return subscribePresentationService();
@@ -1148,7 +1148,7 @@ void presentationNotificationHandler(subscription_t *sbcr) {
  *
  * @return Current time slot index
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getCurrentTimeslotIndex(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_getCurrentTimeslotIndex(
 		JNIEnv *env, jclass clazz) {
 	return calculateTimeslotIndex(NULL);
 }
@@ -1159,7 +1159,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getCurrentTimeslot
  *
  * @return TRUE if section has been changed and FALSE otherwise
  */
-JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srcli_KP_sectionChanged(
+JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srmic_KP_sectionChanged(
 		JNIEnv *env, jclass class) {
 	individual_t *currentSection_ = getCurrentSection();
 
@@ -1222,7 +1222,7 @@ int calculateTimeslotIndex(prop_val_t *propTimeslot) {
  * @return True if participant is a speaker and
  * false otherwise
  */
-JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srcli_KP_checkSpeakerState(
+JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srmic_KP_checkSpeakerState(
 		JNIEnv *env, jclass clazz) {
 
 	individual_t *timeslot;
@@ -1267,7 +1267,7 @@ JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srcli_KP_checkSpeakerSt
  * @param presentationClassObj - Projector class object
  * @return 0 in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_loadPresentation(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_loadPresentation(
 		JNIEnv *env, jobject obj, jobject presentationClassObj) {
 
 	prop_val_t *p_val_slideNum = NULL;
@@ -1342,7 +1342,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_loadPresentation(
  *
  * @return 0 in success, -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_startConference(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_startConference(
 		JNIEnv *env, jobject obj) {
 
 	individual_t *agendaNotif = sslog_new_individual(CLASS_AGENDANOTIFICATION);
@@ -1395,7 +1395,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_startConference(
  *
  * @return 0 in success, -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_endConference(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_endConference(
 		JNIEnv *env, jobject obj) {
 	individual_t *confNotif = sslog_new_individual(CLASS_CONFERENCENOTIFICATION);
 
@@ -1429,7 +1429,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_endConference(
  * @param slideNumber - presentation slide number
  * @return 0 in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_showSlide(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_showSlide(
 		JNIEnv *env, jclass clazz, jint slideNumber) {
 
 	int ret_val = 0;
@@ -1472,7 +1472,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_showSlide(
  *
  * @return 0 in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_endPresentation(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_endPresentation(
 		JNIEnv *env, jclass clazz) {
 	prop_val_t *curPresentation = NULL;
 	individual_t *presentationService = NULL;
@@ -1553,7 +1553,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_endPresentation(
  *
  * @return IP address in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getMicServiceIP(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getMicServiceIP(
 		JNIEnv *env, jclass clazz) {
 
 	list_t *list = sslog_ss_get_individual_by_class_all(CLASS_MICROPHONESERVICE);
@@ -1584,7 +1584,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getMicServiceIP
  *
  * @return IP address of the Discussion service if success, NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getDiscussionServiceIP(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getDiscussionServiceIP(
 	JNIEnv *env, jclass clazz){
 
 	list_t *list = sslog_ss_get_individual_by_class_all(CLASS_DISCUSSIONSERVICE);
@@ -1615,7 +1615,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getDiscussionSe
  *
  * @return IP address of the SocialProgram service if success, NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getSocialProgramServiceIP(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getSocialProgramServiceIP(
 	JNIEnv *env, jclass clazz){
 
 	list_t *list = sslog_ss_get_individual_by_class_all(CLASS_SOCIALPROGRAMSERVICE);
@@ -1646,7 +1646,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getSocialProgra
  *
  * @return Port in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getMicServicePort
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getMicServicePort
   (JNIEnv *env, jclass clazz) {
 
 	list_t *list = sslog_ss_get_individual_by_class_all(CLASS_MICROPHONESERVICE);
@@ -1678,7 +1678,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getMicServicePo
  *
  * @return Speaker name in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getSpeakerName(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getSpeakerName(
 		JNIEnv *env, jclass clazz) {
 
 	prop_val_t *curTimeslotProp = sslog_ss_get_property(getCurrentSection(),
@@ -1712,7 +1712,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getSpeakerName(
  *
  * @return TRUE if connection established and FALSE otherwise
  */
-JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srcli_KP_checkConnection(
+JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srmic_KP_checkConnection(
 		JNIEnv *env, jobject obj) {
 
 	if(sslog_ss_exists_class(CLASS_SECTION) != 1) {
@@ -1729,7 +1729,7 @@ JNIEXPORT jboolean JNICALL Java_petrsu_smartroom_android_srcli_KP_checkConnectio
  * @param index - index of time slot
  * @return Presentation URL in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getPresentationLink(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getPresentationLink(
 		JNIEnv *env, jclass clazz, jint index) {
 
 	individual_t *person = NULL;
@@ -1778,7 +1778,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getPresentation
  * @param index - time slot index
  * @return 0 in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_startConferenceFrom
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_startConferenceFrom
   (JNIEnv *env, jclass clazz, jint index) {
 
 	int ret_val = 0;
@@ -1850,7 +1850,7 @@ individual_t* getTimeslot(int index) {
  * @param index - time slot index
  * @return Profile uuid in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_loadProfile(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_loadProfile(
 		JNIEnv *env, jclass clazz, jobject obj, jint index) {
 
 	jclass *classProfile = getJClassObject(env, "Profile");
@@ -1911,7 +1911,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_loadProfile(
  * @param phone - person phone number
  * @return 0 in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_saveProfileChanges(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_saveProfileChanges(
 		JNIEnv *env, jclass clazz, jstring name, jstring phone) {
 
 	prop_val_t *person_prop = sslog_ss_get_property(personProfile,
@@ -1957,7 +1957,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_saveProfileChanges
  *
  * @return Person uuid in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getPersonUuid
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getPersonUuid
   (JNIEnv *env, jclass clazz) {
 
 	prop_val_t *person_prop = sslog_ss_get_property(personProfile,
@@ -2060,7 +2060,7 @@ individual_t* getFirstTimeslot() {
  *
  * @return Content service URL in success and NULL otherwise
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getContentUrl(
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getContentUrl(
 		JNIEnv *env, jclass clazz) {
 	individual_t *contentService = getContentService();
 	prop_val_t *urlProp = sslog_ss_get_property(contentService,
@@ -2102,7 +2102,7 @@ individual_t* getContentService() {
 /**
  * TODO
  */
-JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srcli_KP_getCurrentSectionList(
+JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srmic_KP_getCurrentSectionList(
 		JNIEnv *env, jclass clazz) {
 	list_t *conferenceList = sslog_ss_get_individual_by_class_all(CLASS_CONFERENCESERVICE);
 	individual_t *conference;
@@ -2206,7 +2206,7 @@ int getListSize(list_t *list) {
  *
  * @return Array of video titles
  */
-JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srcli_KP_getVideoTitleList(
+JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srmic_KP_getVideoTitleList(
 		JNIEnv *env, jclass clazz) {
 
 	hasVideoPropList = getVideoList();
@@ -2260,7 +2260,7 @@ JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srcli_KP_getVideoTi
  *
  * @return Array of video uuids
  */
-JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srcli_KP_getVideoUuidList(
+JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srmic_KP_getVideoUuidList(
 		JNIEnv *env, jclass clazz) {
 
 	jclass charSeqClass = (*env)->FindClass(env, "java/lang/CharSequence");
@@ -2297,7 +2297,7 @@ JNIEXPORT jobjectArray JNICALL Java_petrsu_smartroom_android_srcli_KP_getVideoUu
  * @param url - video uuid
  * @return o in success and -1 otherwise
  */
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_startVideo(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_startVideo(
 		JNIEnv *env, jclass clazz, jstring url) {
 
 	const char *videoUrl = (*env) -> GetStringUTFChars(env, url, NULL);
@@ -2333,7 +2333,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_startVideo(
 /**
  * @brief Sends notification to stop playing video
  */
-JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srcli_KP_stopVideo
+JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srmic_KP_stopVideo
   (JNIEnv *env, jobject obj) {
 
 	individual_t *individual = sslog_new_individual(
@@ -2362,7 +2362,7 @@ JNIEXPORT void JNICALL Java_petrsu_smartroom_android_srcli_KP_stopVideo
 /**
  * @brief Пробная функция вывода числа
  */
-JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_justNumber()
+JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srmic_KP_justNumber()
 {
     return 6;
 }
@@ -2370,7 +2370,7 @@ JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_justNumber()
 /**
  * @brief Пробная функция вывода строки
  */
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_justString(JNIEnv *env, jobject obj)
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_justString(JNIEnv *env, jobject obj)
 {
     char *just_string = (*env)->NewStringUTF(env, "Hello");
     return just_string;
@@ -2402,7 +2402,7 @@ individual_t* createRequest(const char *r_username,const char *r_state) {
     return request;
 }
 /**=============================================================================================================*/
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_registerRequest(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_registerRequest(
                                                     JNIEnv *env, jclass clazz, jstring username, jstring state) {
     
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
@@ -2444,7 +2444,7 @@ bool requestExists(const char *username) {
     return JNI_FALSE;
 }
 /**=============================================================================================================*/
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_existingRequest(
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_existingRequest(
                                                                               JNIEnv *env, jclass clazz, jstring username) {
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
     
@@ -2456,7 +2456,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_existingRequest(
 /**======================================== УДАЛЕНИЕ РЕКВЕСТА ============================================================**/
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
-JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srcli_KP_deleteRequest(JNIEnv *env, jclass clazz, jstring username) {
+JNIEXPORT int JNICALL Java_petrsu_smartroom_android_srmic_KP_deleteRequest(JNIEnv *env, jclass clazz, jstring username) {
     
     const char *p_username = (*env)->GetStringUTFChars(env, username, NULL);
     return requestDeleted(p_username);
@@ -2494,7 +2494,7 @@ int requestDeleted(const char *username) {
 /**================================= ПОДСЧЕТ КОЛИЧЕСТВА РЕКВЕСТОВ ========================================================**/
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
-JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestCount(JNIEnv *env,jobject object){
+JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srmic_KP_getRequestCount(JNIEnv *env,jobject object){
     
     list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     
@@ -2506,7 +2506,7 @@ JNIEXPORT jint JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestCount(JN
 /**===================================== ВЫВОД РЕКВЕСТОВ ПО ОДНОМУ =======================================================**/
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestList(JNIEnv *env,jobject object, int i){
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getRequestList(JNIEnv *env,jobject object, int i){
     
     list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     
@@ -2548,7 +2548,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestList(
 /**=======================================================================================================================**/
 /**=======================================================================================================================**/
 
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_isHead(JNIEnv *env, jclass clazz/*, jobject obj*/) {
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_isHead(JNIEnv *env, jclass clazz/*, jobject obj*/) {
     
 /*	if (obj != NULL){
 		queueClassObject = (jobject *)(*env)->NewGlobalRef(env, obj);
@@ -2650,7 +2650,7 @@ void headHandler(subscription_t *headsub){
 
 
 
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState(JNIEnv *env, jclass clazz) {
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getRequestState(JNIEnv *env, jclass clazz) {
 
     list_t *list = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     
@@ -2678,7 +2678,7 @@ JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getRequestState
 
 
 
-JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srcli_KP_getAllRequests(JNIEnv *env, jobject obj){
+JNIEXPORT jstring JNICALL Java_petrsu_smartroom_android_srmic_KP_getAllRequests(JNIEnv *env, jobject obj){
     
     list_t* requestList = sslog_ss_get_individual_by_class_all(CLASS_REQUEST);
     if (requestList != NULL){
